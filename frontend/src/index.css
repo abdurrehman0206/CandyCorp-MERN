@@ -190,10 +190,7 @@ body {
 }
 
 .product-card-container {
-  margin-left: 5rem;
-  margin-top: 5rem;
-  max-width: -moz-max-content;
-  max-width: max-content;
+  max-width: 243px;
 }
 .product-card-container .product-card {
   border: 1px solid #d8d9da;
