@@ -1,0 +1,28 @@
+.landing-hero-container {
+  .landing-hero {
+    border-radius: 5px;
+    background: url("https://cdn.pixabay.com/photo/2012/06/27/15/02/candy-50838_1280.jpg");
+    background-repeat: no-repeat;
+
+    height: 300px;
+    color: $text-color;
+    @include flex-layout(column, center, center);
+    .landing-hero-content {
+      @include flex-layout(column, center, center);
+      button {
+        margin-top: 1rem;
+      }
+    }
+    .landing-hero-content{
+        padding: $md;
+        background-color: rgba(0, 0, 0, 0.205);
+        // width: 100%;
+        border-radius: 10px;
+        backdrop-filter: blur(3px);
+        @include device("mobile"){
+            height: 100%;
+            width: 100%;
+        }
+    }
+  }
+}

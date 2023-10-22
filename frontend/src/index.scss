@@ -1,2 +1,24 @@
 @import "./partials/imports";
 @import "./components/ProductCard/ProductCard";
+@import "./components/LandingHero/LandingHero";
+.App-container {
+  height: 100%;
+  width: 100%;
+  // display: flex;;
+  .App {
+    z-index: 1;
+    width: 90%;
+    height: 100%;
+    max-width: 1200px;
+
+    padding: $lg;
+    margin: 0 auto;
+
+    @include device(tablet) {
+      width: 100%;
+    }
+    @include device(mobile) {
+      width: 100%;
+    }
+  }
+}

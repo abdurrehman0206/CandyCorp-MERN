@@ -300,4 +300,61 @@ body {
 .product-card .product-card-action button {
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
   flex-basis: 100%;
+}
+
+.landing-hero-container .landing-hero {
+  border-radius: 5px;
+  background: url("https://cdn.pixabay.com/photo/2012/06/27/15/02/candy-50838_1280.jpg");
+  background-repeat: no-repeat;
+  height: 300px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.landing-hero-container .landing-hero .landing-hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.landing-hero-container .landing-hero .landing-hero-content button {
+  margin-top: 1rem;
+}
+.landing-hero-container .landing-hero .landing-hero-content {
+  padding: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.205);
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+}
+@media (max-width: 767px) {
+  .landing-hero-container .landing-hero .landing-hero-content {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.App-container {
+  height: 100%;
+  width: 100%;
+}
+.App-container .App {
+  z-index: 1;
+  width: 90%;
+  height: 100%;
+  max-width: 1200px;
+  padding: 1rem;
+  margin: 0 auto;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .App-container .App {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .App-container .App {
+    width: 100%;
+  }
 }/*# sourceMappingURL=index.css.map */
