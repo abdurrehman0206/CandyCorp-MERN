@@ -34,7 +34,17 @@
       left: $sm;
     }
     .product-card-likes-badge {
+      font-weight: 600;
+      font-size: $md;
+      padding: $xs $sm;
       right: $sm;
+      border: 1px solid $theme-accent1;
+      background-color: lighten($theme-accent1, 50%);
+      border-radius: 5px;
+      color: $theme-accent1;
+      @include flex-layout(row, center, center);
+      gap: $xs;
+      box-shadow: $box-shadow;
     }
     .instock {
       padding: $xs $sm;
@@ -57,12 +67,37 @@
     h2 {
       font-size: $lg;
     }
+    .product-card-price {
+      @include flex-layout(row, center, center);
+      gap: $sm;
+      p {
+        position: relative;
+        &::after {
+          content: "";
+          width: 102%;
+          height: 2px;
+          background-color: lighten($theme-accent1, 30%);
+          display: block;
+          position: absolute;
+          transform: translateY(50%) rotateZ(-5deg);
+          bottom: 50%;
+        }
+      }
+      .product-card-sale {
+        background-color: $theme-accent1;
+        color: $text-color;
+        padding: 0 $sm;
+        border-radius: 20px;
+        box-shadow: $box-shadow;
+      }
+    }
   }
   .product-card-action {
     width: 100%;
     @include flex-layout(row, center, center);
     gap: $sm;
     button {
+      box-shadow: $box-shadow-hover;
       flex-basis: 100%;
     }
   }

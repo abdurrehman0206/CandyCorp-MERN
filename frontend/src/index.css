@@ -227,7 +227,20 @@ body {
   left: 0.5rem;
 }
 .product-card .product-card-header .product-card-likes-badge {
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
   right: 0.5rem;
+  border: 1px solid #bc131f;
+  background-color: #fbd3d6;
+  border-radius: 5px;
+  color: #bc131f;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
 }
 .product-card .product-card-header .instock {
   padding: 0.25rem 0.5rem;
@@ -252,6 +265,33 @@ body {
 .product-card .product-card-info h2 {
   font-size: 1rem;
 }
+.product-card .product-card-info .product-card-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.product-card .product-card-info .product-card-price p {
+  position: relative;
+}
+.product-card .product-card-info .product-card-price p::after {
+  content: "";
+  width: 102%;
+  height: 2px;
+  background-color: #f1777f;
+  display: block;
+  position: absolute;
+  transform: translateY(50%) rotateZ(-5deg);
+  bottom: 50%;
+}
+.product-card .product-card-info .product-card-price .product-card-sale {
+  background-color: #bc131f;
+  color: #ffffff;
+  padding: 0 0.5rem;
+  border-radius: 20px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+}
 .product-card .product-card-action {
   width: 100%;
   display: flex;
@@ -261,5 +301,6 @@ body {
   gap: 0.5rem;
 }
 .product-card .product-card-action button {
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
   flex-basis: 100%;
 }/*# sourceMappingURL=index.css.map */
