@@ -35,8 +35,7 @@ select {
 }
 
 body {
-  background-color: #000000;
-  color: #dde6ed;
+  color: #45474b;
   height: 100vh;
   max-height: -moz-max-content;
   max-height: max-content;
@@ -47,45 +46,45 @@ body {
 }
 
 .c-ac1 {
-  color: #ea117a;
+  color: #bc131f;
 }
 
 .c-ac2 {
-  color: #5b8fb9;
+  color: #ffffff;
 }
 
 .c-ac3 {
-  color: #fec260;
+  color: #151515;
 }
 
 .bg-ac1 {
-  background-color: #ea117a;
+  background-color: #bc131f;
 }
 
 .bg-ac2 {
-  background-color: #5b8fb9;
+  background-color: #ffffff;
 }
 
 .bg-ac3 {
-  background-color: #fec260;
+  background-color: #151515;
 }
 
 .border-ac1 {
-  border: 1px solid #ea117a;
+  border: 1px solid #bc131f;
 }
 
 .border-ac2 {
-  border: 1px solid #5b8fb9;
+  border: 1px solid #ffffff;
 }
 
 .border-ac3 {
-  border: 1px solid #fec260;
+  border: 1px solid #151515;
 }
 
 .btn-primary {
   white-space: nowrap;
-  color: #dde6ed;
-  background-color: #ea117a;
+  color: #45474b;
+  background-color: #bc131f;
   padding: 0.5rem 1rem;
   font-weight: 700;
   border-radius: 20px;
@@ -96,16 +95,16 @@ body {
   .btn-primary:active {
     transition: all 0.2s ease-out;
     background-color: transparent;
-    border: 1px solid #ea117a;
-    color: #ea117a;
+    border: 1px solid #bc131f;
+    color: #bc131f;
   }
 }
 @media (hover: hover) {
   .btn-primary:hover {
     transition: all 0.2s ease-out;
     background-color: transparent;
-    border: 1px solid #ea117a;
-    color: #ea117a;
+    border: 1px solid #bc131f;
+    color: #bc131f;
   }
 }
 
@@ -115,31 +114,31 @@ body {
   font-weight: 700;
   border-radius: 20px;
   background-color: transparent;
-  border: 1px solid #ea117a;
+  border: 1px solid #bc131f;
   transition: all 0.2s ease-in;
-  color: #ea117a;
+  color: #bc131f;
 }
 @media (hover: none) {
   .btn-outline:active {
     border: 1px solid transparent;
     transition: all 0.2s ease-out;
-    color: #dde6ed;
-    background-color: #ea117a;
+    color: #45474b;
+    background-color: #bc131f;
   }
 }
 @media (hover: hover) {
   .btn-outline:hover {
     border: 1px solid transparent;
     transition: all 0.2s ease-out;
-    color: #dde6ed;
-    background-color: #ea117a;
+    color: #45474b;
+    background-color: #bc131f;
   }
 }
 
 .btn-box-primary {
   white-space: nowrap;
-  color: #dde6ed;
-  background-color: #ea117a;
+  color: #45474b;
+  background-color: #bc131f;
   padding: 0.5rem 1rem;
   font-weight: 700;
   border-radius: 5px;
@@ -150,16 +149,16 @@ body {
   .btn-box-primary:active {
     transition: all 0.2s ease-out;
     background-color: transparent;
-    border: 1px solid #ea117a;
-    color: #ea117a;
+    border: 1px solid #bc131f;
+    color: #bc131f;
   }
 }
 @media (hover: hover) {
   .btn-box-primary:hover {
     transition: all 0.2s ease-out;
     background-color: transparent;
-    border: 1px solid #ea117a;
-    color: #ea117a;
+    border: 1px solid #bc131f;
+    color: #bc131f;
   }
 }
 
@@ -169,23 +168,23 @@ body {
   font-weight: 700;
   border-radius: 5px;
   background-color: transparent;
-  border: 1px solid #ea117a;
+  border: 1px solid #bc131f;
   transition: all 0.2s ease-in;
-  color: #ea117a;
+  color: #bc131f;
 }
 @media (hover: none) {
   .btn-box-outline:active {
     border: 1px solid transparent;
     transition: all 0.2s ease-out;
-    color: #dde6ed;
-    background-color: #ea117a;
+    color: #45474b;
+    background-color: #bc131f;
   }
 }
 @media (hover: hover) {
   .btn-box-outline:hover {
     border: 1px solid transparent;
     transition: all 0.2s ease-out;
-    color: #dde6ed;
-    background-color: #ea117a;
+    color: #45474b;
+    background-color: #bc131f;
   }
 }/*# sourceMappingURL=index.css.map */
