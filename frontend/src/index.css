@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200;10..48,300;10..48,400;10..48,500;10..48,600;10..48,700;10..48,800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Bricolage Grotesque", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+body {
+  background-color: #000000;
+  color: #dde6ed;
+  height: 100vh;
+  max-height: -moz-max-content;
+  max-height: max-content;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.c-ac1 {
+  color: #ea117a;
+}
+
+.c-ac2 {
+  color: #5b8fb9;
+}
+
+.c-ac3 {
+  color: #fec260;
+}
+
+.bg-ac1 {
+  background-color: #ea117a;
+}
+
+.bg-ac2 {
+  background-color: #5b8fb9;
+}
+
+.bg-ac3 {
+  background-color: #fec260;
+}
+
+.border-ac1 {
+  border: 1px solid #ea117a;
+}
+
+.border-ac2 {
+  border: 1px solid #5b8fb9;
+}
+
+.border-ac3 {
+  border: 1px solid #fec260;
+}
+
+.btn-primary {
+  white-space: nowrap;
+  color: #dde6ed;
+  background-color: #ea117a;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in;
+}
+@media (hover: none) {
+  .btn-primary:active {
+    transition: all 0.2s ease-out;
+    background-color: transparent;
+    border: 1px solid #ea117a;
+    color: #ea117a;
+  }
+}
+@media (hover: hover) {
+  .btn-primary:hover {
+    transition: all 0.2s ease-out;
+    background-color: transparent;
+    border: 1px solid #ea117a;
+    color: #ea117a;
+  }
+}
+
+.btn-outline {
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid #ea117a;
+  transition: all 0.2s ease-in;
+  color: #ea117a;
+}
+@media (hover: none) {
+  .btn-outline:active {
+    border: 1px solid transparent;
+    transition: all 0.2s ease-out;
+    color: #dde6ed;
+    background-color: #ea117a;
+  }
+}
+@media (hover: hover) {
+  .btn-outline:hover {
+    border: 1px solid transparent;
+    transition: all 0.2s ease-out;
+    color: #dde6ed;
+    background-color: #ea117a;
+  }
+}
+
+.btn-box-primary {
+  white-space: nowrap;
+  color: #dde6ed;
+  background-color: #ea117a;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in;
+}
+@media (hover: none) {
+  .btn-box-primary:active {
+    transition: all 0.2s ease-out;
+    background-color: transparent;
+    border: 1px solid #ea117a;
+    color: #ea117a;
+  }
+}
+@media (hover: hover) {
+  .btn-box-primary:hover {
+    transition: all 0.2s ease-out;
+    background-color: transparent;
+    border: 1px solid #ea117a;
+    color: #ea117a;
+  }
+}
+
+.btn-box-outline {
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid #ea117a;
+  transition: all 0.2s ease-in;
+  color: #ea117a;
+}
+@media (hover: none) {
+  .btn-box-outline:active {
+    border: 1px solid transparent;
+    transition: all 0.2s ease-out;
+    color: #dde6ed;
+    background-color: #ea117a;
+  }
+}
+@media (hover: hover) {
+  .btn-box-outline:hover {
+    border: 1px solid transparent;
+    transition: all 0.2s ease-out;
+    color: #dde6ed;
+    background-color: #ea117a;
+  }
+}/*# sourceMappingURL=index.css.map */
