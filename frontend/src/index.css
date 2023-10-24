@@ -336,6 +336,40 @@ body {
   }
 }
 
+.about-us-wrapper .about-us .about-us-hero {
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid #d8d9da;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.about-us-wrapper .about-us .about-us-hero img {
+  width: 100%;
+  display: flex;
+}
+.about-us-wrapper .about-us .about-us-hero .swiper-pagination {
+  bottom: 0rem;
+}
+.about-us-wrapper .about-us .about-us-hero .swiper-wrapper {
+  width: -moz-max-content;
+  width: max-content;
+}
+.about-us-wrapper .about-us .about-us-hero .swiper-wrapper .swiper-slide {
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+.about-us-wrapper .about-us .about-us-hero .swiper-pagination-bullet-active {
+  background-color: #bc131f !important;
+}
+@media (max-width: 767px) {
+  .about-us-wrapper .about-us .about-us-hero {
+    display: block;
+  }
+}
+
 .App-container {
   height: 100%;
   width: 100%;

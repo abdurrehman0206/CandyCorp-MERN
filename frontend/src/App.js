@@ -1,5 +1,6 @@
 import LandingHero from "./components/LandingHero/LandingHero";
 import ProductCard from "./components/ProductCard/ProductCard";
+import AboutUs from "./pages/AboutUs/AboutUs";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <div className="App">
         <LandingHero />
         <ProductCard />
+        <AboutUs/>
       </div>
     </div>
   );
