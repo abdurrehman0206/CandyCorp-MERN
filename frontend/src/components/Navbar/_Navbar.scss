@@ -1,0 +1,295 @@
+.navbar-container {
+  overflow: hidden;
+  background-color: transparent;
+  min-width: 100%;
+  padding: 0px 0px 20px 0px;
+  margin: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  span {
+    button {
+      @include flex_layout(row, center, center);
+      padding: 5px 0px 0px 0px;
+      color: $text-color;
+    }
+  }
+  .nav-responsive {
+    overflow: hidden;
+    display: none;
+    background-color: $theme-accent2;
+    box-shadow: $box-shadow;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 99;
+    top: 0%;
+    left: -100%;
+  }
+  .show-nav {
+    animation-name: slideRight;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+  }
+  @keyframes slideRight {
+    100% {
+      left: 0%;
+    }
+  }
+}
+
+.navbar {
+  @include flex_layout(row, space-between, center);
+  gap: 1rem;
+  margin: 0;
+  color: $text-color;
+}
+
+//nav-left
+.nav-left {
+  @include flex_layout(row, space-between, center);
+  gap: 1rem;
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-right: 20px;
+  }
+
+  ul {
+    @include flex_layout(row, space-between, center);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    @include flex_layout(row, center, center);
+    gap: 5px;
+    margin-right: 20px;
+    position: relative;
+  }
+  button {
+    background-color: none;
+    outline: none;
+    cursor: pointer;
+    @include flex_layout(row, center, center);
+  }
+}
+
+.nav-center {
+  @include flex_layout(row, center, center);
+}
+
+// Nav right
+.nav-right {
+  @include flex_layout(row, space-between, center);
+  gap: 2rem;
+  ul {
+    display: hidden;
+    @include flex_layout(row, space-between, center);
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    font-size: 1.5rem;
+  }
+  .hamburger {
+    display: none;
+    font-size: 2rem;
+  }
+}
+// Mobile Responsive
+@mixin common-styles {
+  .navbar-container {
+    overflow: hidden;
+    padding: 0px 0px 20px 0px;
+    margin: 0;
+
+    span {
+      button {
+        font-size: 1.5rem;
+        margin: 0;
+        margin-left: 2rem;
+      }
+    }
+
+    .nav-responsive {
+      display: block;
+    }
+  }
+
+  .navbar {
+    margin: 0;
+    @include flex_layout(row, center, center);
+  }
+
+  .nav-left {
+    ul {
+      display: none;
+      flex-direction: column;
+      background-color: red;
+
+      a {
+        h1 {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .nav-right {
+    ul {
+      display: none;
+    }
+    .hamburger {
+      display: block;
+      font-size: 1.5rem;
+    }
+  }
+
+  .nav-left,
+  .nav-center,
+  .nav-right {
+    margin-top: 10px;
+  }
+}
+
+@include device(mobile) {
+  @include common-styles;
+}
+
+@include device(tablet) {
+  @include common-styles;
+  .navbar {
+    gap: 2rem;
+  }
+}
+//dropdown menu css
+.dropdown-wrapper {
+  display: none;
+  position: absolute;
+  top: 250%;
+  width: 320px;
+
+  .dropdown {
+    background-color: $theme-accent2;
+    box-shadow: $box-shadow;
+    padding: 20px;
+    margin: 10px;
+
+    .dropdown-content {
+      @include flex_layout(column);
+    }
+  }
+}
+
+.show-menu {
+  display: block;
+}
+
+.hide-menu {
+  display: none;
+}
+
+.nav-left-mobile {
+  display: block;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  overflow-y: auto;
+  padding-top: 24px;
+  padding-left: 4px;
+  transition-duration: 0.5s;
+  left: 0;
+}
+
+//nav-responsive css
+.nav-responsive {
+  padding: 10px 20px;
+  position: relative;
+  .nav-top {
+    @include flex_layout(row, space-between, center);
+    gap: 1rem;
+    margin-top: 3rem;
+    border-bottom: 2px solid gray;
+    width: 100%;
+    .hide-menu-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    a {
+      width: 100%;
+      padding: 5px 0px;
+    }
+
+    ul {
+      @include flex_layout(row, center, center);
+      gap: 1rem;
+      li {
+        font-size: 1.5rem;
+      }
+    }
+    button {
+      position: absolute;
+      top: 2%;
+      right: 2%;
+      font-size: 1.5rem;
+      margin: 0;
+      color: $text-color;
+      margin-left: 2rem;
+    }
+  }
+
+  .nav-bottom {
+    margin-top: 10px;
+    ul {
+      @include flex_layout(column);
+      gap: 1rem;
+      padding: 1rem;
+      li {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
+
+.nav-responsive {
+  .nav-footer-container {
+    margin-top: 5rem;
+    @include flex_layout(column, center, center);
+    padding: 1rem;
+
+    .nav-footer {
+      i {
+        margin: 5px;
+        font-size: 1rem;
+      }
+    }
+  }
+  .nav-cpy {
+    font-size: 12px;
+  }
+}
+
+.nav-link {
+  font-weight: normal;
+  &:hover {
+    color: $theme-accent1;
+  }
+}
+.nav-link-wrapper {
+  padding: 5px;
+  .nav-link-active {
+    width: 100%;
+    color: $theme-accent1;
+    border-bottom: 2px solid $theme-accent1;
+    border-radius: 2px;
+    // transition: 0.5s ease-in-out;
+  }
+}

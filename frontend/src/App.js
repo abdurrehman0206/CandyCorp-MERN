@@ -1,17 +1,17 @@
 import LandingHero from "./components/LandingHero/LandingHero";
-import ProductCard from "./components/ProductCard/ProductCard";
-import AboutUs from "./pages/AboutUs/AboutUs";
-
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import { Outlet } from "react-router-dom";
 function App() {
   return (
     <div className="App-container">
       <div className="App">
+        <Navbar />
         <LandingHero />
-        <ProductCard />
-        <AboutUs/>
+        <Outlet />
+        <Footer />
       </div>
     </div>
   );
 }
-
 export default App;
