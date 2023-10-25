@@ -37,7 +37,6 @@ select {
 body {
   color: #45474b;
   height: 100vh;
-  max-height: -moz-max-content;
   max-height: max-content;
 }
 
@@ -529,7 +528,7 @@ body {
   right: 2%;
   font-size: 1.5rem;
   margin: 0;
-  color: #ffffff;
+  color: #45474b;
   margin-left: 2rem;
 }
 .nav-responsive .nav-bottom {
@@ -717,8 +716,7 @@ body {
   padding: 0.75rem;
   background-color: rgba(0, 0, 0, 0.205);
   border-radius: 10px;
-  -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
 }
 @media (max-width: 767px) {
   .landing-hero-container .landing-hero .landing-hero-content {
@@ -747,8 +745,7 @@ body {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.329);
   border: 1px solid #ffffff;
-  -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   box-shadow: 0 -2px 4px -2px rgba(0, 0, 0, 0.2);
   left: 0.5rem;
   right: 0.5rem;
@@ -788,7 +785,6 @@ body {
   bottom: 0rem;
 }
 .about-us-wrapper .about-us .about-us-hero .swiper-wrapper {
-  width: -moz-max-content;
   width: max-content;
 }
 .about-us-wrapper .about-us .about-us-hero .swiper-wrapper .swiper-slide {
@@ -825,4 +821,6 @@ body {
   .App-container .App {
     width: 100%;
   }
-}/*# sourceMappingURL=index.css.map */
+}
+
+/*# sourceMappingURL=index.css.map */
