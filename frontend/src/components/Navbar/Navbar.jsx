@@ -12,6 +12,15 @@ import {
 import { CgProfile, CgFacebook } from "react-icons/cg";
 import { Link } from "react-router-dom";
 function Navbar() {
+  const navItems = [
+    { name: "Home", path: "" },
+    { name: "Shop", path: "shop" },
+    { name: "deals", path: "deals" },
+    { name: "Bundles", path: "bundles" },
+    { name: "Blog", path: "blog" },
+    { name: "Contact", path: "contact" },
+    { name: "About", path: "about" },
+  ];
   const [sidebarMenu, setSidebarMenu] = useState(false);
   const hideSideBarMenu = () => {
     setSidebarMenu(false);
@@ -23,30 +32,13 @@ function Navbar() {
           <Link to="/">
             <h1>CandyCorp</h1>
           </Link>
+          {/* Nav  Items */}
           <ul>
-            <li>
-              <Links name="Home" path="" />
-            </li>
-            <li>
-              <Links name="Shop" path="shop" />
-            </li>
-            <li>
-              <Links name="Deals" path="deals" />
-            </li>
-            <li>
-              <Links name="Bundles" path="bundles" />
-            </li>
-
-            <li>
-              <Links name="Blog" path="blog" />
-            </li>
-
-            <li>
-              <Links name="Contact" path="contact" />
-            </li>
-            <li>
-              <Links name="About" path="/about" />
-            </li>
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <Links name={item.name} path={item.path} />
+              </li>
+            ))}
           </ul>
         </div>
         <div className="nav-center">
@@ -71,6 +63,7 @@ function Navbar() {
           </span>
         </div>
       </nav>
+
       {/* Mobile Responsive Navbar */}
 
       <nav className={`nav-responsive  ${sidebarMenu ? "show-nav" : ""}`}>
@@ -81,6 +74,7 @@ function Navbar() {
           <Link to="">
             <h1>CandyCorp</h1>
           </Link>
+
           <ul>
             <li>
               <CgProfile />
@@ -94,54 +88,17 @@ function Navbar() {
           </ul>
         </div>
         <div className="nav-bottom">
+          {/* Nav  Items */}
           <ul>
-            <li>
-              <Links name="Home" path="" hideSideBarMenu={hideSideBarMenu} />
-            </li>
-            <li>
-              <Links
-                name="Shop"
-                path="shop"
-                hideSideBarMenu={hideSideBarMenu}
-              />
-            </li>
-            <li>
-              <Links
-                name="Deals"
-                path="deals"
-                hideSideBarMenu={hideSideBarMenu}
-              />
-            </li>
-            <li>
-              <Links
-                name="Bundles"
-                path="bundles"
-                hideSideBarMenu={hideSideBarMenu}
-              />
-            </li>
-
-            <li>
-              <Links
-                name="Blog"
-                path="blog"
-                hideSideBarMenu={hideSideBarMenu}
-              />
-            </li>
-
-            <li>
-              <Links
-                name="Contact"
-                path="contact"
-                hideSideBarMenu={hideSideBarMenu}
-              />
-            </li>
-            <li>
-              <Links
-                name="About"
-                path="about"
-                hideSideBarMenu={hideSideBarMenu}
-              />
-            </li>
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <Links
+                  name={item.name}
+                  path={item.path}
+                  hideSideBarMenu={hideSideBarMenu}
+                />
+              </li>
+            ))}
           </ul>
         </div>
         <div className="nav-footer-container">
@@ -153,7 +110,6 @@ function Navbar() {
               <AiOutlineTwitter />
             </i>
             <i>
-              {" "}
               <AiFillInstagram />
             </i>
           </div>

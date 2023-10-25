@@ -6,7 +6,7 @@ function Links({
   dd_links,
   className = "",
   dd_menu = false,
-  path = "/",
+  path = "",
   hideSideBarMenu = () => {},
 }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -26,6 +26,7 @@ function Links({
         >
           {name}
         </NavLink>
+        {/* Dropdown Menu */}
         {dd_menu && (
           <button onClick={() => setShowMenu(!showMenu)}>
             {" "}
