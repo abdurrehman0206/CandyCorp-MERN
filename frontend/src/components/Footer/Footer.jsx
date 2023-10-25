@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlineTwitter, AiFillInstagram } from "react-icons/ai";
 import { CgFacebook } from "react-icons/cg";
 import { Link } from "react-router-dom";
@@ -26,7 +26,6 @@ function Footer() {
       ],
     },
   ];
-
   return (
     <div className="footer-container">
       <footer className="footer">
