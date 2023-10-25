@@ -9,7 +9,7 @@
     button {
       @include flex_layout(row, center, center);
       padding: 5px 0px 0px 0px;
-      color: $text-color;
+      color: $text-color-dark;
     }
   }
   .nav-responsive {
@@ -41,7 +41,7 @@
   @include flex_layout(row, space-between, center);
   gap: 1rem;
   margin: 0;
-  color: $text-color;
+  color: $text-color-dark;
 }
 
 //nav-left

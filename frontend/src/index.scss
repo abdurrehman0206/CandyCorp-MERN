@@ -1,4 +1,7 @@
 @import "./partials/imports";
+@import "./components/Common/style";
+@import "./components/Navbar/Navbar";
+@import "./components/ProductCard/ProductCard";
 @import "./components/LandingHero/LandingHero";
 @import "./components/BlogCard/BlogCard";
 
@@ -25,7 +28,3 @@
     }
   }
 }
-
-@import "./components/Navbar/Navbar";
-@import "./components/ProductCard/ProductCard";
-@import "./components/Common/style";

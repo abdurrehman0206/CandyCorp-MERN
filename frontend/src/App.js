@@ -15,13 +15,12 @@ function App() {
         <Navbar />
         <LandingHero />
 
-        <Outlet />
         <Footer />
 
         <ProductCard />
         <AboutUs />
         <BlogCard />
-
+        <Outlet />
       </div>
     </div>
   );
