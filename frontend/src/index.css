@@ -756,6 +756,15 @@ body {
   background-color: #bc131f;
   border-bottom: 2px solid #45474b;
 }
+.footer .footer-copyright-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: #45474b;
+  text-align: center;
+}
 
 .footer-top-section .top-section-right {
   display: flex;
