@@ -22,9 +22,12 @@ const logger = (req, res, next) => {
 app.use(logger);
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
+const blogRoutes = require("./routes/blogRoutes");
 
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/blogs", blogRoutes);
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {

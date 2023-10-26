@@ -5,13 +5,11 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema(
   {
     name: { type: String, required: true },
-    image:{ type : String, required: true},
+    imageUrl: { type: String, required: true },
     quantity: { type: Number, required: true },
     price: { type: Number, required: true },
     inStock: { type: Boolean },
-    reviews : [ { type: String}]
-    
-
+    reviews: [{ type: String }],
   },
   { timestamps: true }
 );
