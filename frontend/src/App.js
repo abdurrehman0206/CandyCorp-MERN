@@ -13,7 +13,7 @@ function App() {
     <div className="App-container">
       <div className="App">
         {/* scrolltotop  button  */}
-        <ScrollToTop smooth />
+        <ScrollToTop smooth color="white"/>
         <Navbar />
         <LandingHero />
         <ProductCard />
