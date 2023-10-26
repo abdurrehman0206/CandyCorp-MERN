@@ -1,0 +1,53 @@
+.blog-wrapper {
+}
+
+.blog {
+  border: 1px solid $outline-border-color;
+  box-shadow: $box-shadow;
+  border-radius: 5px;
+  //   max-width: 600px;
+  padding: $lg;
+  text-align: left;
+
+  .blog-header {
+    @include flex-layout(row, space-between, center);
+  }
+
+  .back-button {
+    text-decoration: none;
+    color: $theme-accent1;
+    font-weight: 700;
+    font-size: $xxl;
+    transition: all $transition;
+    background-color: $theme-accent2;
+
+    @include flex-layout(row, center, center);
+    border-radius: 50%;
+    box-shadow: $box-shadow;
+    &:hover {
+      box-shadow: $box-shadow-hover;
+      transform: scale(1.1);
+    }
+  }
+
+  .blog-title {
+    font-size: 24px;
+    margin: 20px 0;
+  }
+
+  .blog-date {
+    color: $text-color-grey;
+    font-size: 14px;
+  }
+
+  .blog-image {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+  }
+
+  .blog-content {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
