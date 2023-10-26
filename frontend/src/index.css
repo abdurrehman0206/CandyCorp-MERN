@@ -195,22 +195,22 @@ body {
   align-items: center;
   border: 1px solid #d8d9da;
   border-radius: 0.25rem;
-  padding: 0px 10px;
   background-color: none;
+  padding: 0px 8px;
+  width: 100%;
 }
 .search-container .search-input {
   border: none;
-  padding: 8px;
+  padding: 7px;
   width: 100%;
   outline: none;
-  font-size: 16px;
 }
 .search-container .search-icon {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 .search-container .search-icon:hover {
@@ -218,29 +218,19 @@ body {
   transition: background-color 0.3s;
 }
 @media (max-width: 767px) {
-  .search-container {
-    width: 100%;
-    padding: 0px 5px;
-  }
-  .search-container .search-input {
-    padding: 0;
-  }
   .search-container .search-icon {
     font-size: 1.5rem;
   }
 }
-@media (min-width: 1024px) {
-  .search-container {
-    width: 20rem;
+@media (min-width: 768px) and (max-width: 1023px) {
+  .search-container .search-icon {
+    font-size: 1.5rem;
   }
 }
 
 .navbar-container {
-  overflow: hidden;
   background-color: #ffffff;
   min-width: 100%;
-  padding: 0px 0px 20px 0px;
-  margin: 0;
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 .navbar-container span button {
@@ -250,6 +240,7 @@ body {
   align-items: center;
   padding: 5px 0px 0px 0px;
   color: #45474b;
+  margin: 0;
 }
 .navbar-container .nav-responsive {
   overflow: hidden;
@@ -281,6 +272,7 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  padding: 10px 0px;
   margin: 0;
   color: #45474b;
 }
@@ -290,10 +282,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-}
-.nav-left a {
-  text-decoration: none;
+  font-size: 1rem;
 }
 .nav-left h1 {
   font-size: 24px;
@@ -303,9 +292,9 @@ body {
 .nav-left ul {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  list-style: none;
+  gap: 5px;
   margin: 0;
   padding: 0;
 }
@@ -314,8 +303,6 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  margin-right: 20px;
   position: relative;
 }
 .nav-left button {
@@ -329,6 +316,7 @@ body {
 }
 
 .nav-center {
+  flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -340,20 +328,21 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
 }
 .nav-right ul {
-  display: hidden;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  list-style: none;
   margin: 0;
   padding: 0;
 }
 .nav-right li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
   font-size: 1.5rem;
 }
 .nav-right .hamburger {
@@ -368,27 +357,23 @@ body {
     margin: 0;
   }
   .navbar-container span button {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     margin: 0;
-    margin-left: 2rem;
   }
   .navbar-container .nav-responsive {
     display: block;
   }
   .navbar {
+    justify-content: space-between;
     margin: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    padding: 0px 0px;
   }
   .nav-left ul {
     display: none;
     flex-direction: column;
-    background-color: red;
   }
-  .nav-left ul a h1 {
-    font-size: 16px;
+  .nav-left h1 {
+    margin: 0;
   }
   .nav-right ul {
     display: none;
@@ -396,11 +381,6 @@ body {
   .nav-right .hamburger {
     display: block;
     font-size: 1.5rem;
-  }
-  .nav-left,
-  .nav-center,
-  .nav-right {
-    margin-top: 10px;
   }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -410,27 +390,23 @@ body {
     margin: 0;
   }
   .navbar-container span button {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     margin: 0;
-    margin-left: 2rem;
   }
   .navbar-container .nav-responsive {
     display: block;
   }
   .navbar {
+    justify-content: space-between;
     margin: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    padding: 0px 0px;
   }
   .nav-left ul {
     display: none;
     flex-direction: column;
-    background-color: red;
   }
-  .nav-left ul a h1 {
-    font-size: 16px;
+  .nav-left h1 {
+    margin: 0;
   }
   .nav-right ul {
     display: none;
@@ -439,10 +415,9 @@ body {
     display: block;
     font-size: 1.5rem;
   }
-  .nav-left,
-  .nav-center,
-  .nav-right {
-    margin-top: 10px;
+  .nav-center {
+    flex: none;
+    width: 25rem;
   }
   .navbar {
     gap: 2rem;

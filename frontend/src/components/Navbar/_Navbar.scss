@@ -1,15 +1,14 @@
 .navbar-container {
-  overflow: hidden;
   background-color: $theme-accent2;
   min-width: 100%;
-  padding: 0px 0px 20px 0px;
-  margin: 0;
+
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   span {
     button {
       @include flex_layout(row, center, center);
       padding: 5px 0px 0px 0px;
       color: $text-color-dark;
+      margin: 0;
     }
   }
   .nav-responsive {
@@ -40,6 +39,7 @@
 .navbar {
   @include flex_layout(row, space-between, center);
   gap: 1rem;
+  padding: 10px 0px;
   margin: 0;
   color: $text-color-dark;
 }
@@ -47,11 +47,7 @@
 //nav-left
 .nav-left {
   @include flex_layout(row, space-between, center);
-  gap: 1rem;
-  a {
-    text-decoration: none;
-  }
-
+  font-size: 1rem;
   h1 {
     font-size: 24px;
     margin-right: 20px;
@@ -59,15 +55,13 @@
   }
 
   ul {
-    @include flex_layout(row, space-between, center);
-    list-style: none;
+    @include flex_layout(row, center, center);
+    gap: 5px;
     margin: 0;
     padding: 0;
   }
   li {
     @include flex_layout(row, center, center);
-    gap: 5px;
-    margin-right: 20px;
     position: relative;
   }
   button {
@@ -79,22 +73,21 @@
 }
 
 .nav-center {
+  flex: 1;
   @include flex_layout(row, center, center);
 }
 
 // Nav right
 .nav-right {
   @include flex_layout(row, space-between, center);
-  gap: 2rem;
   ul {
-    display: hidden;
     @include flex_layout(row, space-between, center);
-    gap: 1rem;
-    list-style: none;
     margin: 0;
     padding: 0;
   }
   li {
+    @include flex_layout(row, center, center);
+    margin-left: 5px;
     font-size: 1.5rem;
   }
   .hamburger {
@@ -102,6 +95,7 @@
     font-size: 2rem;
   }
 }
+
 // Mobile Responsive
 @mixin common-styles {
   .navbar-container {
@@ -111,9 +105,8 @@
 
     span {
       button {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
         margin: 0;
-        margin-left: 2rem;
       }
     }
 
@@ -123,21 +116,18 @@
   }
 
   .navbar {
+    justify-content: space-between;
     margin: 0;
-    @include flex_layout(row, center, center);
+    padding: 0px 0px;
   }
 
   .nav-left {
     ul {
       display: none;
       flex-direction: column;
-      background-color: red;
-
-      a {
-        h1 {
-          font-size: 16px;
-        }
-      }
+    }
+    h1 {
+      margin: 0;
     }
   }
 
@@ -150,12 +140,6 @@
       font-size: 1.5rem;
     }
   }
-
-  .nav-left,
-  .nav-center,
-  .nav-right {
-    margin-top: 10px;
-  }
 }
 
 @include device(mobile) {
@@ -164,6 +148,10 @@
 
 @include device(tablet) {
   @include common-styles;
+  .nav-center {
+    flex: none;
+    width: 25rem;
+  }
   .navbar {
     gap: 2rem;
   }

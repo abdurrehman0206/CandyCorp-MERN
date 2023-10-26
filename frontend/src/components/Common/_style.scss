@@ -2,20 +2,19 @@
   @include flex_layout(row, center, center);
   border: 1px solid $outline-border-color;
   border-radius: $xs;
-
-  padding: 0px 10px;
   background-color: none;
+  padding: 0px 8px;
+  width: 100%;
   .search-input {
     border: none;
-    padding: 8px;
+    padding: 7px;
     width: 100%;
     outline: none;
-    font-size: 16px;
   }
 
   .search-icon {
     @include flex_layout(row, center, center);
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor: pointer;
 
     &:hover {
@@ -23,17 +22,20 @@
       transition: background-color 0.3s;
     }
   }
-  @include device(mobile) {
-    width: 100%;
-    padding: 0px 5px;
-    .search-input {
-      padding: 0;
-    }
+  @mixin common-styles {
     .search-icon {
       font-size: 1.5rem;
     }
   }
-  @include device(desktop) {
-    width: 20rem;
+  @include device(mobile) {
+   
+    @include common-styles;
   }
+  @include device(tablet) {
+    @include common-styles;
+  }
+  // @include device(desktop) {
+  //   max-width: 20rem;
+  //   min-width: 15rem;
+  // }
 }
