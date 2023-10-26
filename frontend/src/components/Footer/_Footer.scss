@@ -11,6 +11,12 @@
     background-color: $theme-accent1;
     border-bottom: 2px solid $text-color-dark;
   }
+  .footer-copyright-section {
+    @include flex_layout(row, center, center);
+    padding:10px;
+  color: $text-color-dark;
+    text-align: center;
+  }
 }
 
 .footer-top-section {
@@ -58,6 +64,7 @@
     color: $text-color-dark;
   }
 }
+
 /* Responsive design for tablets */
 @include device(tablet) {
   .footer-bottom-section {

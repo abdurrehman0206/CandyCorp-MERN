@@ -74,6 +74,9 @@ function Footer() {
             );
           })}
         </section>
+        <section className="footer-copyright-section">
+          <p className="nav-cpy">&copy; 2023 CandyCorp</p>
+        </section>
       </footer>
     </div>
   );
