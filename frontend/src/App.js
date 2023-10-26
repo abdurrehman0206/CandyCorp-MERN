@@ -8,17 +8,19 @@ import ProductCard from "./components/ProductCard/ProductCard";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import BlogCard from "./components/BlogCard/BlogCard";
 import { ScrollRestoration } from "react-router-dom";
+import Blog from "./pages/Blog/Blog";
 function App() {
   return (
     <div className="App-container">
       <div className="App">
         {/* scrolltotop  button  */}
-        <ScrollToTop smooth />
+        <ScrollToTop smooth color="white" />
         <Navbar />
         <LandingHero />
         <ProductCard />
         <AboutUs />
         <BlogCard />
+        <Blog />
         <Outlet />
         <Footer />
         <ScrollRestoration />
