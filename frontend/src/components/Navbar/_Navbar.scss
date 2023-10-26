@@ -6,7 +6,6 @@
   span {
     button {
       @include flex_layout(row, center, center);
-      padding: 5px 0px 0px 0px;
       color: $text-color-dark;
       margin: 0;
     }
