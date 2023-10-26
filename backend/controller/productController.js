@@ -3,24 +3,28 @@ const USER = require("../model/userModel");
 const mongoose = require("mongoose");
 
 const createProduct = async (req, res) => {
-  const { name, image, quantity, price } = req.body;
+  const { name, description, price, quantity, images } = req.body;
 
-  const Product = new PRODUCT({
+  const inStock = quantity > 0;
+
+  const product = new PRODUCT({
     name,
-    image,
-    quantity,
+    description,
     price,
-    inStock: quantity > 0 ? true : false,
+    quantity,
+    inStock,
+    images,
   });
+
   try {
-    const newProduct = await PRODUCT.create(Product);
+    const newProduct = await PRODUCT.create(product);
     res.status(201).json({
       success: true,
       message: "Product created successfully",
       data: newProduct,
     });
   } catch (error) {
-    res.status(404).json({
+    res.status(400).json({
       success: false,
       message: "Product creation failed",
       error: error.message,
@@ -29,11 +33,13 @@ const createProduct = async (req, res) => {
 };
 const getProducts = async (req, res) => {
   try {
-    const Products = await PRODUCT.find().sort({ createdAt: -1 });
+    const products = await PRODUCT.find()
+      .sort({ createdAt: -1 })
+      .populate("reviews.user");
     res.status(200).json({
       success: true,
       message: "Products fetched successfully",
-      data: Products,
+      data: products,
     });
   } catch (error) {
     res.status(404).json({
@@ -43,6 +49,7 @@ const getProducts = async (req, res) => {
     });
   }
 };
+
 const getProduct = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -116,7 +123,7 @@ const addProductToCart = async (req, res) => {
   }
   try {
     const user = await USER.findById(req.user.id).select("shoppingCart");
-    
+
     const isAlreadyInCart = user.shoppingCart.find((item) => item === id);
     if (isAlreadyInCart) {
       return res.status(400).json({
@@ -152,7 +159,6 @@ const removeProductFromCart = async (req, res) => {
     });
   }
   try {
-  
     const user = await USER.findById(req.user.id).select("shoppingCart");
     const isInCart = user.shoppingCart.find((item) => item === id);
     if (!isInCart) {
@@ -203,7 +209,107 @@ const deleteProduct = async (req, res) => {
     });
   }
 };
+const addUserReview = async (req, res) => {
+  const { id } = req.params;
+  const { userId, rating, comment } = req.body;
 
+  if (
+    !mongoose.Types.ObjectId.isValid(id) ||
+    !mongoose.Types.ObjectId.isValid(userId)
+  ) {
+    return res.status(404).json({
+      success: false,
+      message: "Product not found",
+      error: "Invalid Id",
+    });
+  }
+
+  try {
+    const product = await PRODUCT.findById(id);
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    const review = {
+      user: userId,
+      rating,
+      comment,
+    };
+
+    product.reviews.push(review);
+    await product.save();
+
+    res.status(200).json({
+      success: true,
+      message: "User review and rating added successfully",
+      data: product,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Error",
+      error: error.message,
+    });
+  }
+};
+
+const updateUserReview = async (req, res) => {
+  const { id, reviewId } = req.params;
+  const { userId, rating, comment } = req.body;
+
+  if (
+    !mongoose.Types.ObjectId.isValid(id) ||
+    !mongoose.Types.ObjectId.isValid(userId)
+  ) {
+    return res.status(404).json({
+      success: false,
+      message: "Product not found",
+      error: "Invalid Id",
+    });
+  }
+
+  try {
+    const product = await PRODUCT.findById(id);
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    const review = product.reviews.id(reviewId);
+
+    if (!review) {
+      return res.status(404).json({
+        success: false,
+        message: "Review not found",
+      });
+    }
+
+    review.user = userId;
+    review.rating = rating;
+    review.comment = comment;
+
+    await product.save();
+
+    res.status(200).json({
+      success: true,
+      message: "User review and rating updated successfully",
+      data: product,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Error",
+      error: error.message,
+    });
+  }
+};
 module.exports = {
   createProduct,
   getProducts,
@@ -212,4 +318,6 @@ module.exports = {
   addProductToCart,
   removeProductFromCart,
   deleteProduct,
+  addUserReview,
+  updateUserReview,
 };

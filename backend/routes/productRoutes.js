@@ -10,6 +10,8 @@ const {
   deleteProduct,
   addProductToCart,
   removeProductFromCart,
+  addUserReview,
+  updateUserReview,
 } = require("../controller/productController");
 
 // router.use(requireAuth);
@@ -20,5 +22,6 @@ router.put("/:id", updateProduct);
 router.patch("/:id/addToCart", addProductToCart);
 router.patch("/:id/removeFromCart", removeProductFromCart);
 router.delete("/:id", deleteProduct);
-
+router.post("/:id/reviews", addUserReview);
+router.put("/:id/reviews/:reviewId", updateUserReview);
 module.exports = router;
