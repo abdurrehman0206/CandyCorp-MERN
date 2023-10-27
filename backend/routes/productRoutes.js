@@ -14,7 +14,7 @@ const {
   updateUserReview,
 } = require("../controller/productController");
 
-// router.use(requireAuth);
+router.use(requireAuth);
 router.post("/", createProduct);
 router.get("/", getProducts);
 router.get("/:id", getProduct);
