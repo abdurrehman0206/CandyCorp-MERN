@@ -60,7 +60,8 @@ const getUserOrders = async (req, res) => {
   try {
     const orders = await ORDER.find({ user: userId })
       .sort({ orderDate: -1 })
-      .populate("user products");
+      .populate("user", "fullname username email")
+      .populate("products");
     if (!orders) {
       return res.status(400).json({
         success: false,
