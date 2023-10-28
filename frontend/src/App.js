@@ -1,7 +1,9 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
+
 import { Home, AboutUs, Bundles } from "./pages";
 import { Layout } from "./components";
+
 function App() {
   return (
     <div className="App-container">
