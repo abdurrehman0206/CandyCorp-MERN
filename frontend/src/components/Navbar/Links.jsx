@@ -9,7 +9,7 @@ function Links({
   path = "",
   hideSideBarMenu = () => {},
   sidebarMenu = false,
-  Children
+  Children,
 }) {
   const [showMenu, setShowMenu] = useState(false);
   return (
