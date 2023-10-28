@@ -7,7 +7,7 @@ import Layout from "./Layout/Layout";
 import Orders from "./Orders/Orders";
 import Addresses from "./Addresses/Addresses";
 import UserSetting from "./UserSetting/UserSetting";
-import AddressForm from "./AddressForm/AddressForm";
+
 export {
   Navbar,
   Footer,
@@ -18,5 +18,5 @@ export {
   Orders,
   Addresses,
   UserSetting,
-  AddressForm,
+  
 };

@@ -29,7 +29,6 @@
 }
 
 // user-profile-content
-
 .user-profile-content {
   width: 100%;
   padding: $lg;
@@ -37,17 +36,57 @@
   grid-template-columns: 1fr 4fr;
   gap: $lg;
   .user-profile-sidebar-nav {
-    padding: 20px;
+    background: $text-color-dark;
+    height: 200px;
+    padding: 1.5rem;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
       rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    ul {
+      li {
+        justify-content: flex-start;
+        padding: $md 0;
+        margin: 0;
+        width: 100%;
+        font-size: 16px;
+        color: $text-color;
+        border-bottom: 1px solid $outline-border-color;
+        &:hover {
+          border-bottom: 1px solid $theme-accent1;
+          color: $theme-accent1;
+        }
+        // .user-profile-navlink {
+        //   width: 100%;
+        //   height: 100%;
+        // }
+        .user-profile-navlink-active {
+       
+          color: $theme-accent1;
+        }
+      }
+    }
+    @include device(mobile) {
+      padding: 0px;
+      height: 50px;
+      ul {
+        width: 100%;
+        height: 100%;
+        @include flex_layout(row, center, center);
+        gap: 10px;
+        li {
+          width: 100%;
+          height: 100%;
+          @include flex_layout(row, center, center);
+        }
+      }
+    }
   }
   .user-profile-nav-content {
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
       rgba(0, 0, 0, 0.23) 0px 6px 6px;
     flex: 1;
   }
-}
-
-.user-profile-navlink-active {
-  color: $theme-accent1;
+  @include device(mobile) {
+    grid-template-columns: 1fr; // Switch to a single-column layout
+    grid-template-rows: auto 1fr; // Two rows
+  }
 }

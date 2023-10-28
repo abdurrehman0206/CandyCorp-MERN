@@ -33,6 +33,11 @@
         }
       }
     }
+    @include device(mobile) {
+      grid-template-columns: 1fr; // Switch to a single-column layout
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: $xs;
+    }
   }
 }
 .order-status {

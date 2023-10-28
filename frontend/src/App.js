@@ -1,7 +1,17 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
-import { Home, AboutUs, Bundles, UserProfile } from "./pages/imports";
+
 import { Addresses, Layout, Orders, UserSetting } from "./components/imports";
+
+import {
+  Home,
+  AboutUs,
+  Bundles,
+  Login,
+  SignUp,
+  UserProfile,
+} from "./pages/imports";
+
 
 function App() {
   return (
@@ -19,6 +29,8 @@ function App() {
                 <Route path="addresses" element={<Addresses />} />
                 <Route path="setting" element={<UserSetting />} />
               </Route>
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<SignUp />} />
             </Route>
           </Routes>
         </BrowserRouter>

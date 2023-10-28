@@ -42,7 +42,9 @@ function UserProfile() {
                 <NavLink
                   to="setting"
                   className={({ isActive }) =>
-                    isActive ? "user-profile-navlink-active" : ""
+                    isActive
+                      ? "user-profile-navlink-active"
+                      : "user-profile-navlink"
                   }
                 >
                   Settings

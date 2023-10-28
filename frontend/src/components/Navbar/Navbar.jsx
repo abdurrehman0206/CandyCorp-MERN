@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "../Common/SearchBar";
 import Links from "./Links";
 import {
@@ -12,6 +13,7 @@ import {
 import { CgProfile, CgFacebook } from "react-icons/cg";
 import { Link, NavLink } from "react-router-dom";
 function Navbar() {
+  const nav = useNavigate();
   const navItems = [
     { name: "Home", path: "" },
     { name: "Shop", path: "shop" },
@@ -89,7 +91,14 @@ function Navbar() {
                     </li>
                     <li>Orders</li>
                   </ul>
-                  <button className="btn-box-primary">Sign in</button>
+                  <button
+                    className="btn-box-primary"
+                    onClick={() => {
+                      nav("/login");
+                    }}
+                  >
+                    Sign in
+                  </button>
                 </div>
               </div>
             </li>
