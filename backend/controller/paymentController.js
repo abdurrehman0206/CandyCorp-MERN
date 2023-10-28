@@ -19,7 +19,7 @@ const checkOut = async (req, res) => {
       },
     });
     if (charge) {
-      return res.status(200).json({
+      return res.status(201).json({
         success: true,
         message: "Charge was successful",
         data: charge,

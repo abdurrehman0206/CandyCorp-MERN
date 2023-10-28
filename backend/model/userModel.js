@@ -11,7 +11,8 @@ const userSchema = new Schema(
     shoppingCart: [{ type: String }],
   },
 
-  { timestamps: true }
+  { timestamps: true },
+  
 );
 
 userSchema.statics.signup = async function (

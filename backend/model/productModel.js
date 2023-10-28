@@ -4,21 +4,22 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema(
   {
-    name: String,
-    description: String,
-    price: Number,
-    quantity: Number,
-    inStock: Boolean,
-    images: [{ type: String }], 
+    name: { type: String },
+    description: { type: String },
+    price: { type: Number },
+    quantity: { type: Number },
+    inStock: { type: Boolean },
+    images: [{ type: String }],
     reviews: [
       {
-        user: { type: mongoose.Schema.Types.ObjectId, ref: "USER" }, 
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "USER" },
         rating: Number,
         comment: String,
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
+  
 );
 
 module.exports = mongoose.model("PRODUCT", productSchema);
