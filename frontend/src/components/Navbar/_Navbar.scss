@@ -11,7 +11,7 @@
     }
   }
   .nav-responsive {
-    overflow: hidden;
+    overflow: normal;
     display: none;
     background-color: $theme-accent2;
     box-shadow: $box-shadow;
@@ -78,6 +78,7 @@
 
 // Nav right
 .nav-right {
+  position: relative;
   @include flex_layout(row, space-between, center);
   ul {
     @include flex_layout(row, space-between, center);
@@ -88,6 +89,35 @@
     @include flex_layout(row, center, center);
     margin-left: 5px;
     font-size: 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+      .dropdown-wrapper {
+        display: block;
+        position: absolute;
+        top: 70%;
+        left: -140%;
+        width: 220px;
+        padding: 10px 0px;
+        .btn-box-primary {
+          width: 100%;
+        }
+        .dropdown-content {
+          padding: 1rem;
+          gap: 1rem;
+          li {
+            margin: 0;
+
+            font-size: 16px;
+            text-align: start;
+
+            &:hover {
+              color: $theme-accent1;
+            }
+          }
+        }
+      }
+    }
   }
   .hamburger {
     display: none;
@@ -155,21 +185,32 @@
     gap: 2rem;
   }
 }
+
 //dropdown menu css
 .dropdown-wrapper {
   display: none;
   position: absolute;
-  top: 250%;
+  top: 100%;
+  left: -50%;
   width: 320px;
+  z-index: 999;
 
   .dropdown {
     background-color: $theme-accent2;
-    box-shadow: $box-shadow;
+    // box-shadow: $box-shadow;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
     padding: 20px;
     margin: 10px;
-
+    border-radius: 5px;
     .dropdown-content {
       @include flex_layout(column);
+    }
+    .dropdown-content-sidebar {
+      li {
+        font-size: 16px;
+      }
     }
   }
 }
@@ -195,7 +236,6 @@
   transition-duration: 0.5s;
   left: 0;
 }
-
 //nav-responsive css
 .nav-responsive {
   padding: 10px 20px;
@@ -223,7 +263,7 @@
         font-size: 1.5rem;
       }
     }
-    button {
+    .nav-top-close-btn {
       position: absolute;
       top: 2%;
       right: 2%;
@@ -241,6 +281,7 @@
       gap: 1rem;
       padding: 1rem;
       li {
+        width: 100%;
         font-size: 1.25rem;
       }
     }
@@ -249,7 +290,6 @@
 
 .nav-responsive {
   .nav-footer-container {
-    margin-top: 5rem;
     @include flex_layout(column, center, center);
     padding: 1rem;
 
@@ -273,10 +313,23 @@
 }
 .nav-link-wrapper {
   padding: 5px;
-  .nav-link-active {
+  .nav-link-header {
     width: 100%;
+    @include flex_layout(row, space-between, center);
+    gap: 5px;
+  }
+  .nav-link-active {
     color: $theme-accent1;
     border-bottom: 2px solid $theme-accent1;
     border-radius: 2px;
   }
+}
+
+.nav-link-addition {
+  width: 100%;
+}
+
+.auth-btn {
+  padding: 0.5rem;
+  background-color: red;
 }

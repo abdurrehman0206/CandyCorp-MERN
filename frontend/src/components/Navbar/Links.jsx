@@ -1,20 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, Children } from "react";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 function Links({
-  name,
-  dd_links,
+  name = "",
+  dd_links = [],
   className = "",
   dd_menu = false,
   path = "",
   hideSideBarMenu = () => {},
+  sidebarMenu = false,
+  Children
 }) {
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <div className={className ? className : "nav-link-wrapper"}>
-      <div>
+    <div
+      className={`nav-link-wrapper ${sidebarMenu ? "nav-link-addition" : ""}`}
+      onMouseEnter={() => setShowMenu(true)}
+      onMouseLeave={() => setShowMenu(false)}
+    >
+      <div className="nav-link-header ">
         <NavLink
-          onClick={() => hideSideBarMenu()}
+          onClick={() => {
+            hideSideBarMenu();
+            setShowMenu(false);
+          }}
           to={path}
           className={({ isActive }) => {
             if (isActive) {
@@ -24,26 +33,31 @@ function Links({
             }
           }}
         >
+          {Children}
           {name}
         </NavLink>
-        {/* Dropdown Menu */}
+
         {dd_menu && (
-          <button onClick={() => setShowMenu(!showMenu)}>
-            {" "}
-            {showMenu ? <AiOutlineCaretUp /> : <AiOutlineCaretDown />}{" "}
+          <button>
+            {showMenu ? <AiOutlineCaretUp /> : <AiOutlineCaretDown />}
           </button>
         )}
       </div>
-
+      {/* Dropdown Menu */}
       {dd_menu && (
         <div
-          className={`dropdown-wrapper ${showMenu ? "show-menu" : "hide-menu"}`}
+          className={`${!sidebarMenu ? "dropdown-wrapper" : ""} ${
+            showMenu ? "show-menu" : "hide-menu"
+          }`}
         >
           <div className="dropdown">
             <ul className="dropdown-content">
-              {dd_links.map((link) => (
-                <li key={link.name}>{link.name}</li>
-              ))}
+              {dd_menu &&
+                dd_links.map((link) => (
+                  <li key={link.name}>
+                    <Link onClick={() => setShowMenu(false)}>{link.name}</Link>
+                  </li>
+                ))}
             </ul>
           </div>
         </div>
