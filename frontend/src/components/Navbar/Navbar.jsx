@@ -15,11 +15,28 @@ function Navbar() {
   const navItems = [
     { name: "Home", path: "" },
     { name: "Shop", path: "shop" },
-    { name: "Deals", path: "deals" },
-    { name: "Bundles", path: "bundles" },
-    { name: "Blog", path: "blog" },
+    {
+      name: "Deals",
+      path: "deals",
+      dd_menu: true,
+      dd_links: [
+        { name: "New Arrivals", path: "deals/new-arrivals" },
+        { name: "Best Sellers", path: "deals/best-sellers" },
+      ],
+    },
+    {
+      name: "Bundles",
+      path: "bundles",
+    },
+    {
+      name: "Blog",
+      path: "blog",
+    },
     { name: "Contact", path: "contact" },
-    { name: "About", path: "about" },
+    {
+      name: "About",
+      path: "about",
+    },
   ];
   const [sidebarMenu, setSidebarMenu] = useState(false);
   const hideSideBarMenu = () => {
@@ -28,6 +45,7 @@ function Navbar() {
   return (
     <div className="navbar-container">
       <nav className="navbar">
+        {/* navbar left */}
         <div className="nav-left">
           <Link to="/">
             <h1>CandyCorp</h1>
@@ -36,14 +54,21 @@ function Navbar() {
           <ul>
             {navItems.map((item) => (
               <li key={item.name}>
-                <Links name={item.name} path={item.path} />
+                <Links
+                  name={item.name}
+                  path={item.path}
+                  dd_menu={item.dd_menu}
+                  dd_links={item.dd_links}
+                />
               </li>
             ))}
           </ul>
         </div>
+        {/* Navbar Center  */}
         <div className="nav-center">
           <SearchBar />
         </div>
+        {/* Navbar Right */}
         <div className="nav-right">
           <ul>
             <li>
@@ -54,6 +79,16 @@ function Navbar() {
             </li>
             <li>
               <CgProfile />
+              <div className="dropdown-wrapper show-profile-menu ">
+                <div className="dropdown">
+                  <ul className="dropdown-content">
+                    {/*  */}
+                    <li>My Account</li>
+                    <li>Orders</li>
+                  </ul>
+                  <button className="btn-box-primary">Sign in</button>
+                </div>
+              </div>
             </li>
           </ul>
           <span className="hamburger">
@@ -68,7 +103,10 @@ function Navbar() {
 
       <nav className={`nav-responsive  ${sidebarMenu ? "show-nav" : ""}`}>
         <div className="nav-top">
-          <button onClick={() => setSidebarMenu(false)}>
+          <button
+            className="nav-top-close-btn"
+            onClick={() => setSidebarMenu(false)}
+          >
             <AiOutlineClose />
           </button>
           <Link to="">
@@ -86,6 +124,7 @@ function Navbar() {
               <AiOutlineShoppingCart />
             </li>
           </ul>
+          <button className="btn-box-primary">Sign in</button>
         </div>
         <div className="nav-bottom">
           {/* Nav  Items */}
@@ -96,6 +135,10 @@ function Navbar() {
                   name={item.name}
                   path={item.path}
                   hideSideBarMenu={hideSideBarMenu}
+                  dd_menu={item.dd_menu}
+                  dd_links={item.dd_links}
+                  sidebarMenu={true}
+                  className={`${item.dd_menu ? "sidebar-dropdown" : ""}`}
                 />
               </li>
             ))}
