@@ -9,6 +9,8 @@ import AboutUs from "./pages/AboutUs/AboutUs";
 import BlogCard from "./components/BlogCard/BlogCard";
 import { ScrollRestoration } from "react-router-dom";
 import Blog from "./pages/Blog/Blog";
+import Login from "./pages/AuthPages/Login";
+import Signup from "./pages/AuthPages/SignUp";
 function App() {
   return (
     <div className="App-container">
@@ -21,6 +23,8 @@ function App() {
         <AboutUs />
         <BlogCard />
         <Blog />
+        <Login/>
+        <Signup/>
         <Outlet />
         <Footer />
         <ScrollRestoration />
