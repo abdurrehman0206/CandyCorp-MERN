@@ -10,7 +10,7 @@ import {
   AiFillInstagram,
 } from "react-icons/ai";
 import { CgProfile, CgFacebook } from "react-icons/cg";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 function Navbar() {
   const navItems = [
     { name: "Home", path: "" },
@@ -79,11 +79,14 @@ function Navbar() {
             </li>
             <li>
               <CgProfile />
+
               <div className="dropdown-wrapper show-profile-menu ">
                 <div className="dropdown">
                   <ul className="dropdown-content">
                     {/*  */}
-                    <li>My Account</li>
+                    <li>
+                      <Link to="account">My Account</Link>
+                    </li>
                     <li>Orders</li>
                   </ul>
                   <button className="btn-box-primary">Sign in</button>

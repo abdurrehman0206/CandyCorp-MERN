@@ -197,7 +197,6 @@
 
   .dropdown {
     background-color: $theme-accent2;
-    // box-shadow: $box-shadow;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
       rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
@@ -236,6 +235,7 @@
   transition-duration: 0.5s;
   left: 0;
 }
+
 //nav-responsive css
 .nav-responsive {
   padding: 10px 20px;

@@ -1,0 +1,53 @@
+.user-profile-wrapper {
+  margin-top: $lg;
+  .user-profile {
+    color: $text-color-dark;
+    @include flex_layout(colum);
+    // padding: 10px;
+    // background: green;
+  }
+}
+
+.user-profile {
+  @include flex_layout(column);
+  .user-profile-header {
+    padding: 1rem;
+    // background-color: blue;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    width: 100%;
+    div {
+      span {
+        display: block;
+        font-size: $md;
+      }
+    }
+    .user-profile-signout-btn {
+      @include flex_layout(row, end, center);
+    }
+  }
+}
+
+// user-profile-content
+
+.user-profile-content {
+  width: 100%;
+  padding: $lg;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: $lg;
+  .user-profile-sidebar-nav {
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
+  .user-profile-nav-content {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    flex: 1;
+  }
+}
+
+.user-profile-navlink-active {
+  color: $theme-accent1;
+}
