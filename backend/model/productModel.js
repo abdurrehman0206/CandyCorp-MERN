@@ -9,10 +9,10 @@ const productSchema = new Schema(
     price: Number,
     quantity: Number,
     inStock: Boolean,
-    images: [{ type: String }], // Array of image URLs
+    images: [{ type: String }], 
     reviews: [
       {
-        user: { type: mongoose.Schema.Types.ObjectId, ref: "USER" }, // Reference to User model
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "USER" }, 
         rating: Number,
         comment: String,
       },

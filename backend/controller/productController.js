@@ -110,10 +110,10 @@ const updateProduct = async (req, res) => {
 const addProductToCart = async (req, res) => {
   const { id } = req.params;
   const { ProductUserId } = req.body;
-
+  //TODO: Fix this
   if (
     !mongoose.Types.ObjectId.isValid(id) ||
-    !mongoose.Types.ObjectId.isValid(ProductUserId)
+    !mongoose.Types.ObjectId.isValid(id)
   ) {
     return res.status(404).json({
       success: false,
