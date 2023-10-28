@@ -9,17 +9,17 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [image, setImage] = useState(null);
 
-//   const { signup, loading } = useSignup();
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     await signup(email, password, fullname, username, image);
-//   };
+  //   const { signup, loading } = useSignup();
+  //   const handleSubmit = async (e) => {
+  //     e.preventDefault();
+  //     await signup(email, password, fullname, username, image);
+  //   };
   return (
     <div className="auth-wrapper">
       <form
         className="auth-form"
         onSubmit={(e) => {
-        //   handleSubmit(e);
+          //   handleSubmit(e);
         }}
       >
         <div className="auth-form-header">
@@ -52,7 +52,7 @@ function Signup() {
             type="email"
             className="form-control"
             id="email"
-            placeholder="johndoe@risidio.dev"
+            placeholder="johndoe@candycorp.dev"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -77,7 +77,7 @@ function Signup() {
             onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
-        <button className="btn-primary" disabled={false}>
+        <button className="btn-box-primary" disabled={false}>
           {/* {loading ? "Signing Up" : "Signup"} */}
           Signup
         </button>

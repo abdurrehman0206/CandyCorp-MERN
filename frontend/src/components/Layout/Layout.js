@@ -18,7 +18,7 @@ function Layout() {
     <>
       <Navbar />
       <ScrollTop />
-      <LandingHero />
+      {/* <LandingHero /> */}
       <Outlet />
       <Footer />
     </>

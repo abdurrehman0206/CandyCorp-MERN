@@ -1,6 +1,7 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
-import { Home, AboutUs, Bundles } from "./pages/imports";
+import { Home, AboutUs, Bundles, Login, SignUp } from "./pages/imports";
+
 import { Layout } from "./components/imports";
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
               <Route path="" element={<Home />} />
               <Route path="about" element={<AboutUs />} />
               <Route path="bundles" element={<Bundles />} />
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<SignUp />} />
             </Route>
           </Routes>
         </BrowserRouter>
