@@ -15,6 +15,7 @@ function Addresses() {
     phone: "",
   });
   const [showForm, setShowForm] = useState(false);
+  const [update, setUpdate] = useState(false);
   // useEffect(() => {
   //   console.log(values);
   // }, [values]);
@@ -63,6 +64,7 @@ function Addresses() {
               <button
                 className="address-btn-edit"
                 onClick={() => {
+                  setUpdate(true);
                   setShowForm(true);
                   setValues({
                     firstName: "",
@@ -92,70 +94,82 @@ function Addresses() {
             {showForm ? "cancel" : "Add Address"}
           </button>
         }
-
+        {/* Address form */}
         {showForm && (
           <div className="address-form-container">
-            <div>
-              <h3>Add a mew Form (new)</h3>
-              <div className="address-form">
-                <Input
-                  label="First name"
-                  type="text"
-                  value={values.firstName}
-                  name="firstName"
-                  onChange={handleChange}
-                />
-                <Input
-                  label="Last name"
-                  type="text"
-                  value={values.lastName}
-                  name="lastName"
-                  onChange={handleChange}
-                />
-                <Input
-                  label="Company"
-                  type="text"
-                  value={values.company}
-                  name="company"
-                  onChange={handleChange}
-                />
-                <Input
-                  label="Address1"
-                  type="text"
-                  value={values.address1}
-                  name="address1"
-                  onChange={handleChange}
-                />
-                <Input
-                  label="Address2"
-                  type="text"
-                  value={values.address2}
-                  name="address2"
-                  onChange={handleChange}
-                />
-                <Input
-                  label="Country"
-                  type="text"
-                  value={values.country}
-                  name="country"
-                  onChange={handleChange}
-                />
-                <Input
-                  label="Postal/Zip Code"
-                  type="text"
-                  value={values.postalCode}
-                  name="postalCode"
-                  onChange={handleChange}
-                />
-                <Input
-                  label="Phone"
-                  type="text"
-                  value={values.phone}
-                  name="phone"
-                  onChange={handleChange}
-                />
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                console.log("submitted");
+              }}
+            >
+              <div>
+                <h3>{update?"Update exciting address":"Add a mew address"} </h3>
+                <div className="address-form form-grid-container">
+                  <Input
+                    label="First name"
+                    type="text"
+                    value={values.firstName}
+                    name="firstName"
+                    onChange={handleChange}
+                  />
+                  <Input
+                    label="Last name"
+                    type="text"
+                    value={values.lastName}
+                    name="lastName"
+                    onChange={handleChange}
+                  />
+                  <Input
+                    label="Company"
+                    type="text"
+                    value={values.company}
+                    name="company"
+                    onChange={handleChange}
+                  />
+                  <Input
+                    label="Address1"
+                    type="text"
+                    value={values.address1}
+                    name="address1"
+                    onChange={handleChange}
+                  />
+                  <Input
+                    label="Address2"
+                    type="text"
+                    value={values.address2}
+                    name="address2"
+                    onChange={handleChange}
+                  />
+                  <Input
+                    label="Country"
+                    type="text"
+                    value={values.country}
+                    name="country"
+                    onChange={handleChange}
+                  />
+                  <Input
+                    label="Postal/Zip Code"
+                    type="text"
+                    value={values.postalCode}
+                    name="postalCode"
+                    onChange={handleChange}
+                  />
+                  <Input
+                    label="Phone"
+                    type="text"
+                    value={values.phone}
+                    name="phone"
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
-            </div>
+              <div className="submit-btn">
+                <button className="btn-box-primary">
+                  {update ? "update" : "Add"}
+                </button>
+              </div>
+            </form>
           </div>
         )}
       </div>

@@ -69,3 +69,23 @@
     }
   }
 }
+
+.address-form-container {
+  @include flex_layout(row, center, center);
+  width: 100%;
+  form {
+    @include flex_layout(column);
+    .form-grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $lg;
+      @include device(mobile) {
+        grid-template-columns: 1fr;
+      }
+    }
+    .submit-btn {
+      margin-top: 10px;
+      align-self: end;
+    }
+  }
+}

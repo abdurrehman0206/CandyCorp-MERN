@@ -13,8 +13,8 @@
   }
   .footer-copyright-section {
     @include flex_layout(row, center, center);
-    padding:10px;
-  color: $text-color-dark;
+    padding: 10px;
+    color: $text-color-dark;
     text-align: center;
   }
 }
@@ -51,6 +51,7 @@
 .footer-columns {
   padding: 20px;
   h3 {
+    white-space: nowrap;
     padding: 10px;
     margin-bottom: 20px;
     border-bottom: 2px solid $text-color-dark;

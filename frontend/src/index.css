@@ -886,6 +886,7 @@ body {
   padding: 20px;
 }
 .footer-columns h3 {
+  white-space: nowrap;
   padding: 10px;
   margin-bottom: 20px;
   border-bottom: 2px solid #45474b;
@@ -1144,6 +1145,34 @@ body {
   }
 }
 
+.address-form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.address-form-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.address-form-container form .form-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 767px) {
+  .address-form-container form .form-grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+.address-form-container form .submit-btn {
+  margin-top: 10px;
+  align-self: end;
+}
+
 .about-us-wrapper .about-us .about-us-hero {
   overflow: hidden;
   border-radius: 5px;
@@ -1198,6 +1227,24 @@ body {
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   width: 100%;
+}
+.user-profile .user-profile-header .profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+@media (max-width: 767px) {
+  .user-profile .user-profile-header .profile-pic {
+    width: 70px;
+    height: 70px;
+  }
+}
+.user-profile .user-profile-header .user-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 1.25rem;
 }
 .user-profile .user-profile-header div span {
   display: block;

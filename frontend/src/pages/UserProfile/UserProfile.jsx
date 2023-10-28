@@ -1,14 +1,21 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-
+import profile from "../../assets/profile.jpg";
 function UserProfile() {
   return (
     <div className="user-profile-wrapper">
       <div className="user-profile">
         <header className="user-profile-header">
-          <div>
-            <h2>John Philip</h2>
-            <span>New York, USA</span>
+          <div className="user-details">
+            <img
+              className="profile-pic border-ac3"
+              src={profile}
+              alt="profile-picture"
+            />
+            <div>
+              <h2>John Philip</h2>
+              <span>New York, USA</span>
+            </div>
           </div>
           <div className="user-profile-signout-btn">
             <button className="btn-box-primary">Signout</button>
