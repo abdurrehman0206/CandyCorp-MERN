@@ -9,6 +9,7 @@
 .user-profile {
   @include flex_layout(column);
   .user-profile-header {
+    @include flex-layout(row, space-between, center);
     border-radius: 5px;
     margin-bottom: $md;
     padding: 1rem;

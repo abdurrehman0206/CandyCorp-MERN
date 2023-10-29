@@ -1,20 +1,29 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import profile from "../../assets/profile.jpg";
+import { useAuthContext } from "../../hooks/useAuthContext";
 function UserProfile() {
+  const { user } = useAuthContext();
   return (
     <div className="user-profile-wrapper">
       <div className="user-profile">
         <header className="user-profile-header">
           <div className="user-details">
             <img
-              className="profile-pic border-ac3"
-              src={profile}
+              className="profile-pic border-ac1"
+              src={user.image}
               alt="user-profile"
             />
             <div>
-              <h2>John Philip</h2>
-              <span>New York, USA</span>
+              <h2>{user.fullname}</h2>
+              <span
+                className="c-ac1"
+                style={{
+                  fontWeight: "600",
+                }}
+              >
+                @{user.username}
+              </span>
             </div>
           </div>
           <div className="user-profile-signout-btn">
