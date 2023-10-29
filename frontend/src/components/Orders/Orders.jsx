@@ -33,11 +33,11 @@ function Orders() {
           <div key={order.id} className="Order-content">
             <h3>Order # {order.id}</h3>
             <div className="order-status">
-              <div className={`order-status-dot ${order.status}`}></div>
+              <span className={`order-status-pil ${order.status}`}>
+                {order.status}
+              </span>
 
-              <p>
-                {order.status}, {order.date}
-              </p>
+              <p>{order.date}</p>
             </div>
             <div className="view-order">
               <button className="view-order-btn">View Order</button>
