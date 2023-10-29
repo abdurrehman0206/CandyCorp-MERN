@@ -1183,6 +1183,81 @@ body {
   text-align: center;
 }
 
+.user-setting-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.user-setting-wrapper .user-setting {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+}
+
+.user-setting-details {
+  padding: 1rem;
+}
+.user-setting-details .user-details-container {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.user-setting-details .user-details-container li {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  width: 70%;
+}
+.user-setting-details .user-details-container li span,
+.user-setting-details .user-details-container li p {
+  white-space: nowrap;
+  text-align: left;
+  width: 100%;
+}
+.user-setting-details .user-details-container li span {
+  color: gray;
+}
+
+.user-setting-profile-pic-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.user-setting-profile-pic-section .profile-img-container {
+  position: relative;
+}
+.user-setting-profile-pic-section .profile-img-container .profile-img {
+  border-radius: 5px;
+  width: 100px;
+  height: 100%;
+}
+.user-setting-profile-pic-section .profile-img-container .img-edit-btn {
+  display: none;
+  position: absolute;
+  font-size: 1.5rem;
+  background: #ccc;
+  opacity: 0.8;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+}
+.user-setting-profile-pic-section .profile-img-container:hover .img-edit-btn {
+  display: block;
+}
+
+.change-password-btn {
+  white-space: nowrap;
+}
+
 .about-us-wrapper .about-us .about-us-hero {
   overflow: hidden;
   border-radius: 5px;

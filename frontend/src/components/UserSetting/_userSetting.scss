@@ -1,0 +1,67 @@
+.user-setting-wrapper {
+  width: 100%;
+  height: 100%;
+  //   border: 1px solid red;
+
+  .user-setting {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+  }
+}
+
+.user-setting-details {
+  padding: $lg;
+  .user-details-container {
+    width: 100%;
+    padding: $lg;
+    @include flex_layout(column, center, center);
+    gap: $lg;
+    li {
+      @include flex_layout(row, start, center);
+
+      width: 70%;
+      span,
+      p {
+        white-space: nowrap;
+        text-align: left;
+        width: 100%;
+      }
+      span {
+        color: gray;
+      }
+    }
+  }
+}
+
+.user-setting-profile-pic-section {
+  @include flex_layout(column, center, center);
+  gap: $lg;
+  .profile-img-container {
+    position: relative;
+    .profile-img {
+      border-radius: 5px;
+      width: 100px;
+      height: 100%;
+    }
+    .img-edit-btn {
+      display: none;
+      position: absolute;
+      font-size: $xxl;
+      background: #ccc;
+      opacity: 0.8;
+      width: 100%;
+      height: 100%;
+      top: 0%;
+      left: 0%;
+    }
+    &:hover .img-edit-btn {
+      display: block;
+    }
+  }
+}
+.change-password-btn {
+  white-space: nowrap;
+}
