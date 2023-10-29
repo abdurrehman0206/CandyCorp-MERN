@@ -1,7 +1,6 @@
 .user-setting-wrapper {
   width: 100%;
   height: 100%;
-  //   border: 1px solid red;
 
   .user-setting {
     display: grid;
@@ -9,29 +8,67 @@
     justify-content: center;
     align-content: center;
     height: 100%;
+
+    @include device(mobile) {
+      grid-template-columns: 1fr;
+      .user-setting-details {
+        .user-details-container {
+          padding: $xxxl 0 $lg 0;
+          li {
+            width: 100%;
+          }
+        }
+      }
+      .user-setting-profile-pic-section {
+        display: none;
+      }
+    }
+
+    @include device(tablet) {
+      .user-details-container {
+        li {
+          width: 100%;
+        }
+      }
+    }
   }
 }
 
 .user-setting-details {
   padding: $lg;
   .user-details-container {
+    position: relative;
     width: 100%;
     padding: $lg;
     @include flex_layout(column, center, center);
     gap: $lg;
+
     li {
       @include flex_layout(row, start, center);
+      width: 80%;
+      .user-detail-inp {
+        outline: none;
+        border: none;
+        color: $text-color-dark;
+        font-size: $lg;
+        &:focus {
+          background: none;
+        }
+      }
 
-      width: 70%;
-      span,
-      p {
+      span {
         white-space: nowrap;
         text-align: left;
-        width: 100%;
-      }
-      span {
+        margin-right: 5px;
+        width: 40%;
         color: gray;
       }
+    }
+    .user-detail-edit-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: $lg;
     }
   }
 }
@@ -62,6 +99,49 @@
     }
   }
 }
-.change-password-btn {
-  white-space: nowrap;
+
+// change and upload buttons css
+.change-upload-btn-container {
+  .change-password-btn {
+    margin-right: auto;
+    white-space: nowrap;
+  }
+
+  .upload-img-btn {
+    display: none;
+    justify-content: end;
+    white-space: nowrap;
+    @include device(mobile) {
+      display: block;
+    }
+  }
+}
+
+// Password Change Form Css
+
+.pass-change-form-wrapper {
+  grid-area: 2 / 1 / 3 / 3;
+  padding: 0px $xl;
+  width: 100%;
+  margin: 0px auto;
+  .pass-change-form-inputs {
+    padding: $xl 0px;
+  }
+  @include device(desktop) {
+    padding: 0px 5rem;
+    .pass-change-form-inputs {
+      padding-right: $xxxl;
+    }
+    .input-container {
+      @include flex_layout(row, space-between, center);
+      margin-top:$xl ;
+      .input-label {
+        width: auto;
+        white-space: nowrap;
+      }
+      .input-field {
+        width: 70%;
+      }
+    }
+  }
 }

@@ -41,25 +41,38 @@
   @include flex_layout(row, center, center);
   gap: 15px;
   p {
+    text-align: center;
     width: 100%;
   }
-  .order-status-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%; /* Makes it a circle */
+  .order-status-pil {
+    text-align: center;
+    color: $text-color-dark;
+    font-size: 12px;
+    white-space: nowrap;
+    width: 100px;
+    border-radius: 25px;
+    padding: 1px;
   }
 }
+// pills colors
 .shipped {
-  background-color: yellow; /* Green color for online status */
+  border: 2px solid yellow;
+  background-color: lighten($color: yellow, $amount: 30%);
+  // background-color: yellow;
 }
 
 .in-progress {
-  background-color: gray;
+  border: 2px solid gray;
+  background-color: lighten($color: gray, $amount: 30%);
+  // background-color: gray;
 }
 
 .cancelled {
-  background-color: #e74c3c;
+  border: 2px solid #e74c3c;
+  background-color: lighten($color: #e74c3c, $amount: 30%);
+  // background-color: #e74c3c;
 }
 .delivered {
-  background-color: #2ecc71;
+  border: 2px solid #2ecc71;
+  background-color: lighten($color: #2ecc71, $amount: 30%);
 }
