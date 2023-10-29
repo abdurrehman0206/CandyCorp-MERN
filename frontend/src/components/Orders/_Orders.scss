@@ -5,8 +5,6 @@
 .Orders {
   @include flex_layout(column);
   gap: 1rem;
-  // padding: $lg;
-
   .Order-content {
     padding: $lg;
     width: 100%;
