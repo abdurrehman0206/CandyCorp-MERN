@@ -3,9 +3,10 @@ import profile from "../../assets/profile.jpg";
 import { TfiUpload } from "react-icons/tfi";
 import { FiEdit } from "react-icons/fi";
 import { MdOutlineCancel } from "react-icons/md";
-
+import { useAuthContext } from "../../hooks/useAuthContext";
 import Input from "../Common/Input";
 function UserSetting() {
+  const { user } = useAuthContext();
   const [userDetails, setUserDetails] = useState({
     firstName: "jhon",
     lastName: "Philip",
@@ -26,24 +27,24 @@ function UserSetting() {
           {/* users details container */}
           <ul className="user-details-container">
             <li>
-              <span>First Name</span>
+              <span>Full Name</span>
               <Input
                 className={!edit ? "user-detail-inp" : ""}
                 type="text"
-                value={userDetails.firstName}
+                value={user.fullname}
                 onChange={changeHandle}
-                name="firstName"
+                name="fullName"
                 readOnly={!edit}
               />
             </li>
             <li>
-              <span>Last Name </span>
+              <span>Username </span>
               <Input
                 className={!edit ? "user-detail-inp" : ""}
                 type="text"
-                value={userDetails.lastName}
+                value={user.username}
                 onChange={changeHandle}
-                name="lastName"
+                name="userName"
                 readOnly={!edit}
               />
             </li>
@@ -52,7 +53,7 @@ function UserSetting() {
               <Input
                 className={!edit ? "user-detail-inp" : ""}
                 type="text"
-                value={userDetails.email}
+                value={user.email}
                 onChange={changeHandle}
                 name="email"
                 readOnly={!edit}
@@ -70,7 +71,7 @@ function UserSetting() {
             )}
             <li className="change-upload-btn-container">
               <button
-                className="btn-box-outline change-password-btn"
+                className="btn-box-primary change-password-btn"
                 onClick={() => setChangePassword(!changePassword)}
               >
                 Change password
@@ -91,7 +92,7 @@ function UserSetting() {
           {/* <h4>Profile Image</h4> */}
           <div className="profile-img-container">
             <img
-              src={profile}
+              src={user.image}
               alt="user-profile"
               className="profile-img border-ac3"
             />

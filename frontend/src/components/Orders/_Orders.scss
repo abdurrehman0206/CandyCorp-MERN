@@ -8,6 +8,7 @@
   // padding: $lg;
 
   .Order-content {
+    position: relative;
     padding: $lg;
     width: 100%;
     box-shadow: $box-shadow;
@@ -23,6 +24,7 @@
     .view-order {
       @include flex_layout(row, end, center);
       .view-order-btn {
+        font-weight: 600;
         font-size: 12px;
         color: #2ecc71;
         &:hover {
@@ -34,6 +36,17 @@
       grid-template-columns: 1fr; // Switch to a single-column layout
       grid-template-rows: 1fr 1fr 1fr;
       gap: $xs;
+      .order-status {
+        width: 100%;
+
+        justify-content: space-between;
+        p {
+          width: max-content;
+        }
+      }
+      .view-order {
+        
+      }
     }
   }
 }
@@ -55,24 +68,15 @@
   }
 }
 // pills colors
-.shipped {
-  border: 2px solid yellow;
-  background-color: lighten($color: yellow, $amount: 30%);
-  // background-color: yellow;
-}
-
 .in-progress {
-  border: 2px solid gray;
-  background-color: lighten($color: gray, $amount: 30%);
-  // background-color: gray;
+  background-color: lighten(#0079ff, 40%);
 }
-
+.shipped {
+  background-color: lighten(#dd58d6, 30%);
+}
 .cancelled {
-  border: 2px solid #e74c3c;
-  background-color: lighten($color: #e74c3c, $amount: 30%);
-  // background-color: #e74c3c;
+  background-color: lighten(#ff0060, 30%);
 }
 .delivered {
-  border: 2px solid #2ecc71;
-  background-color: lighten($color: #2ecc71, $amount: 30%);
+  background-color: lighten(#00dfa2, 30%);
 }

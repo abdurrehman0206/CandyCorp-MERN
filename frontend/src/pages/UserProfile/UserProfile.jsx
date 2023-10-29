@@ -15,7 +15,7 @@ function UserProfile() {
               alt="user-profile"
             />
             <div>
-              <h2>John Philip</h2>
+              <h2>{user.fullname}</h2>
               <span>New York, USA</span>
             </div>
           </div>
