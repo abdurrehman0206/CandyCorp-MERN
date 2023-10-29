@@ -9,6 +9,7 @@
 .user-profile {
   @include flex_layout(column);
   .user-profile-header {
+    border-radius: 5px;
     margin-bottom: $md;
     padding: 1rem;
     box-shadow: $box-shadow;
@@ -46,14 +47,16 @@
   grid-template-columns: 1fr 4fr;
   gap: $lg;
   .user-profile-sidebar-nav {
-    background: $text-color-dark;
-    height: 200px;
+    border-radius: 5px;
+    background: $theme-accent3;
+    // height: 200px;
     padding: 1.5rem;
 
     ul {
       li {
         justify-content: flex-start;
         margin: 0;
+        margin: $sm 0;
         width: 100%;
         font-size: 16px;
         font-weight: 600;
@@ -72,6 +75,20 @@
             color: $theme-accent1;
           }
         }
+        a {
+          border-radius: 5px;
+          border-bottom: 0px solid $outline-border-color;
+          text-align: center;
+          &:hover {
+            // border-bottom: 3px solid $theme-accent1;
+            color: $theme-accent2;
+            background-color: $theme-accent1;
+          }
+          &.user-profile-navlink-active {
+            color: $theme-accent2;
+            background-color: $theme-accent1;
+          }
+        }
 
         // .user-profile-navlink {
         //   width: 100%;
@@ -80,17 +97,33 @@
       }
     }
     @include device(mobile) {
-      padding: 0px;
-      height: 50px;
+      padding: 6px;
+      // height: 50px;
+      height: max-content;
       ul {
         width: 100%;
         height: 100%;
         @include flex_layout(row, center, center);
+
         gap: 10px;
         li {
           width: 100%;
           height: 100%;
           @include flex_layout(row, center, center);
+          a {
+            border-radius: 5px;
+            border-bottom: 0px solid $outline-border-color;
+            text-align: center;
+            &:hover {
+              // border-bottom: 3px solid $theme-accent1;
+              color: $theme-accent2;
+              background-color: $theme-accent1;
+            }
+            &.user-profile-navlink-active {
+              color: $theme-accent2;
+              background-color: $theme-accent1;
+            }
+          }
         }
       }
     }
