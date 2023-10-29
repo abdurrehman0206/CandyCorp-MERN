@@ -28,14 +28,31 @@
     }
   }
   @include device(mobile) {
-   
     @include common-styles;
   }
   @include device(tablet) {
     @include common-styles;
   }
-  // @include device(desktop) {
-  //   max-width: 20rem;
-  //   min-width: 15rem;
-  // }
+}
+
+// Inpu styles
+.input-container {
+  width: 100%;
+  .input-label {
+    display: inline-block;
+    margin:0.5rem 0px;
+  }
+  .input-field {
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    background-color: #fff;
+    color: #000;
+    outline: none;
+    transition: background-color 0.2s;
+    border: 1px solid #ccc;
+    width: 100%;
+    &:focus {
+      background-color: #f0f0f0;
+    }
+  }
 }

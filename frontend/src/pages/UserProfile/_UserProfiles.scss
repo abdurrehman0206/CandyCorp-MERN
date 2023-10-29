@@ -1,0 +1,106 @@
+.user-profile-wrapper {
+  margin-top: $lg;
+  .user-profile {
+    color: $text-color-dark;
+    @include flex_layout(colum);
+    // padding: 10px;
+    // background: green;
+  }
+}
+
+.user-profile {
+  @include flex_layout(column);
+  .user-profile-header {
+    padding: 1rem;
+
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    width: 100%;
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      @include device(mobile) {
+        width: 70px;
+        height: 70px;
+      }
+    }
+    .user-details {
+      @include flex_layout(row, start, center);
+      gap: $xl;
+    }
+    div {
+      span {
+        display: block;
+        font-size: $md;
+      }
+    }
+    .user-profile-signout-btn {
+      @include flex_layout(row, end, center);
+    }
+  }
+}
+
+// user-profile-content
+.user-profile-content {
+  width: 100%;
+  padding: $lg;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: $lg;
+  .user-profile-sidebar-nav {
+    background: $text-color-dark;
+    height: 200px;
+    padding: 1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    ul {
+      li {
+        justify-content: flex-start;
+        padding: $md 0;
+        margin: 0;
+        width: 100%;
+        font-size: 16px;
+        color: $text-color;
+        border-bottom: 1px solid $outline-border-color;
+        &:hover {
+          border-bottom: 1px solid $theme-accent1;
+          color: $theme-accent1;
+        }
+        // .user-profile-navlink {
+        //   width: 100%;
+        //   height: 100%;
+        // }
+        .user-profile-navlink-active {
+          color: $theme-accent1;
+        }
+      }
+    }
+    @include device(mobile) {
+      padding: 0px;
+      height: 50px;
+      ul {
+        width: 100%;
+        height: 100%;
+        @include flex_layout(row, center, center);
+        gap: 10px;
+        li {
+          width: 100%;
+          height: 100%;
+          @include flex_layout(row, center, center);
+        }
+      }
+    }
+  }
+  .user-profile-nav-content {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    flex: 1;
+  }
+  @include device(mobile) {
+    grid-template-columns: 1fr; // Switch to a single-column layout
+    grid-template-rows: auto 1fr; // Two rows
+  }
+}
+
+

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { AiOutlineTwitter, AiFillInstagram } from "react-icons/ai";
 import { CgFacebook } from "react-icons/cg";
 import { Link } from "react-router-dom";
@@ -61,7 +61,7 @@ function Footer() {
           </div>
           {footerItems.map((item) => {
             return (
-              <div className="footer-columns">
+              <div key={item.title} className="footer-columns">
                 <h3>{item.title}</h3>
                 <ul>
                   {item.links.map((link) => (

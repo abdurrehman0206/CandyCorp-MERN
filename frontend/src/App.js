@@ -1,8 +1,17 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
-import { Home, AboutUs, Bundles, Login, SignUp } from "./pages/imports";
 
-import { Layout } from "./components/imports";
+import { Addresses, Layout, Orders, UserSetting } from "./components/imports";
+
+import {
+  Home,
+  AboutUs,
+  Bundles,
+  Login,
+  SignUp,
+  UserProfile,
+} from "./pages/imports";
+
 
 function App() {
   return (
@@ -15,6 +24,11 @@ function App() {
               <Route path="" element={<Home />} />
               <Route path="about" element={<AboutUs />} />
               <Route path="bundles" element={<Bundles />} />
+              <Route path="account" element={<UserProfile />}>
+                <Route path="myorders" element={<Orders />} />
+                <Route path="addresses" element={<Addresses />} />
+                <Route path="setting" element={<UserSetting />} />
+              </Route>
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
             </Route>
@@ -23,6 +37,7 @@ function App() {
         {/* ------------ */}
 
         {/* Scroll To Top btn*/}
+
         <ScrollToTop smooth color="white" />
       </div>
     </div>
