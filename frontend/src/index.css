@@ -1294,19 +1294,7 @@ body {
   padding: 0.75rem 0;
   display: block;
   width: 100%;
-  border-bottom: 1px solid #d8d9da;
-}
-.user-profile-content .user-profile-sidebar-nav ul li a:hover {
-  border-bottom: 1px solid #bc131f;
-  color: #bc131f;
-}
-.user-profile-content .user-profile-sidebar-nav ul li a.user-profile-navlink-active {
-  border-bottom: 1px solid #bc131f;
-  color: #bc131f;
-}
-.user-profile-content .user-profile-sidebar-nav ul li a {
   border-radius: 5px;
-  border-bottom: 0px solid #d8d9da;
   text-align: center;
 }
 .user-profile-content .user-profile-sidebar-nav ul li a:hover {

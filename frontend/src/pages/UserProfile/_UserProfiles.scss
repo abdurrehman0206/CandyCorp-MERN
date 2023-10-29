@@ -61,23 +61,23 @@
         font-size: 16px;
         font-weight: 600;
         color: $text-color;
+        // a {
+        //   border-bottom: 1px solid $outline-border-color;
+        //   &:hover {
+        //     border-bottom: 1px solid $theme-accent1;
+        //     color: $theme-accent1;
+        //   }
+        //   &.user-profile-navlink-active {
+        //     border-bottom: 1px solid $theme-accent1;
+        //     color: $theme-accent1;
+        //   }
+        // }
         a {
           padding: $md 0;
           display: block;
           width: 100%;
-          border-bottom: 1px solid $outline-border-color;
-          &:hover {
-            border-bottom: 1px solid $theme-accent1;
-            color: $theme-accent1;
-          }
-          &.user-profile-navlink-active {
-            border-bottom: 1px solid $theme-accent1;
-            color: $theme-accent1;
-          }
-        }
-        a {
           border-radius: 5px;
-          border-bottom: 0px solid $outline-border-color;
+
           text-align: center;
           &:hover {
             // border-bottom: 3px solid $theme-accent1;
