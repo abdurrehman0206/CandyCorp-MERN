@@ -10,13 +10,20 @@ function UserProfile() {
         <header className="user-profile-header">
           <div className="user-details">
             <img
-              className="profile-pic border-ac3"
-              src={profile}
+              className="profile-pic border-ac1"
+              src={user.image}
               alt="user-profile"
             />
             <div>
               <h2>{user.fullname}</h2>
-              <span>New York, USA</span>
+              <span
+                className="c-ac1"
+                style={{
+                  fontWeight: "600",
+                }}
+              >
+                @{user.username}
+              </span>
             </div>
           </div>
           <div className="user-profile-signout-btn">
