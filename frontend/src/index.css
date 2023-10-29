@@ -1279,7 +1279,8 @@ body {
 .user-profile-content .user-profile-sidebar-nav {
   border-radius: 5px;
   background: #151515;
-  padding: 1.5rem;
+  padding: 1.5rem 0.75rem;
+  z-index: 1;
 }
 .user-profile-content .user-profile-sidebar-nav ul li {
   justify-content: flex-start;
@@ -1298,12 +1299,40 @@ body {
   text-align: center;
 }
 .user-profile-content .user-profile-sidebar-nav ul li a:hover {
+  z-index: 2;
+  position: relative;
   color: #ffffff;
   background-color: #bc131f;
+  transition: 0.2s ease-in-out;
+}
+.user-profile-content .user-profile-sidebar-nav ul li a:hover::after {
+  transition: 0.2s ease-in-out;
+  content: "";
+  width: 0%;
+  height: 100%;
+  background-color: #bc131f;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  z-index: -1;
 }
 .user-profile-content .user-profile-sidebar-nav ul li a.user-profile-navlink-active {
+  z-index: 2;
+  position: relative;
   color: #ffffff;
   background-color: #bc131f;
+  transition: 0.2s ease-in-out;
+}
+.user-profile-content .user-profile-sidebar-nav ul li a.user-profile-navlink-active::after {
+  transition: 0.2s ease-in-out;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #bc131f;
+  position: absolute;
+  top: 0;
+  right: -15px;
+  z-index: -1;
 }
 @media (max-width: 767px) {
   .user-profile-content .user-profile-sidebar-nav {
@@ -1337,10 +1366,18 @@ body {
   .user-profile-content .user-profile-sidebar-nav ul li a:hover {
     color: #ffffff;
     background-color: #bc131f;
+    transition: 0.2s ease-in-out;
+  }
+  .user-profile-content .user-profile-sidebar-nav ul li a:hover::after {
+    display: none;
   }
   .user-profile-content .user-profile-sidebar-nav ul li a.user-profile-navlink-active {
     color: #ffffff;
     background-color: #bc131f;
+    transition: 0.2s ease-in-out;
+  }
+  .user-profile-content .user-profile-sidebar-nav ul li a.user-profile-navlink-active::after {
+    display: none;
   }
 }
 .user-profile-content .user-profile-nav-content {
