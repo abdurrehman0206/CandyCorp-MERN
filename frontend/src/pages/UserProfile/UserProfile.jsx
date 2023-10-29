@@ -10,7 +10,7 @@ function UserProfile() {
             <img
               className="profile-pic border-ac3"
               src={profile}
-              alt="profile-picture"
+              alt="user-profile"
             />
             <div>
               <h2>John Philip</h2>

@@ -10,7 +10,7 @@ function Orders() {
     {
       id: 2,
       date: "2020-01-01",
-      status: "canceled",
+      status: "cancelled",
       total: 100,
     },
     {

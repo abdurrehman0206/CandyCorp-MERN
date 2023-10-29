@@ -37,6 +37,7 @@ select {
 body {
   color: #45474b;
   height: 100vh;
+  max-height: -moz-max-content;
   max-height: max-content;
 }
 
@@ -777,7 +778,8 @@ body {
   padding: 0.75rem;
   background-color: rgba(0, 0, 0, 0.205);
   border-radius: 10px;
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
 }
 @media (max-width: 767px) {
   .landing-hero-container .landing-hero .landing-hero-content {
@@ -806,7 +808,8 @@ body {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.329);
   border: 1px solid #ffffff;
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
   box-shadow: 0 -2px 4px -2px rgba(0, 0, 0, 0.2);
   left: 0.5rem;
   right: 0.5rem;
@@ -926,18 +929,17 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1rem;
-  padding: 1rem;
 }
 .Orders .Order-content {
   padding: 1rem;
   width: 100%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
 }
 .Orders .Order-content:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
 }
 .Orders .Order-content p {
   font-size: 14px;
@@ -987,7 +989,7 @@ body {
   background-color: gray;
 }
 
-.canceled {
+.cancelled {
   background-color: #e74c3c;
 }
 
@@ -1006,18 +1008,17 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1rem;
-  padding: 1rem;
 }
 .Orders .Order-content {
   padding: 1rem;
   width: 100%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
 }
 .Orders .Order-content:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
 }
 .Orders .Order-content p {
   font-size: 14px;
@@ -1067,7 +1068,7 @@ body {
   background-color: gray;
 }
 
-.canceled {
+.cancelled {
   background-color: #e74c3c;
 }
 
@@ -1091,13 +1092,13 @@ body {
 .addresses .address-content {
   padding: 1rem;
   width: 100%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
 }
 .addresses .address-content:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
 }
 .addresses .address-content p {
   font-size: 14px;
@@ -1191,6 +1192,7 @@ body {
   bottom: 0rem;
 }
 .about-us-wrapper .about-us .about-us-hero .swiper-wrapper {
+  width: -moz-max-content;
   width: max-content;
 }
 .about-us-wrapper .about-us .about-us-hero .swiper-wrapper .swiper-slide {
@@ -1224,8 +1226,9 @@ body {
   align-items: flex-start;
 }
 .user-profile .user-profile-header {
+  margin-bottom: 0.75rem;
   padding: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
 .user-profile .user-profile-header .profile-pic {
@@ -1259,7 +1262,6 @@ body {
 
 .user-profile-content {
   width: 100%;
-  padding: 1rem;
   display: grid;
   grid-template-columns: 1fr 4fr;
   gap: 1rem;
@@ -1268,7 +1270,6 @@ body {
   background: #45474b;
   height: 200px;
   padding: 1.5rem;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 .user-profile-content .user-profile-sidebar-nav ul li {
   justify-content: flex-start;
@@ -1310,7 +1311,6 @@ body {
   }
 }
 .user-profile-content .user-profile-nav-content {
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   flex: 1;
 }
 @media (max-width: 767px) {
@@ -1371,6 +1371,7 @@ body {
 
 .auth-wrapper {
   width: 100%;
+  height: -moz-max-content;
   height: max-content;
   margin: auto;
   display: flex;
@@ -1464,6 +1465,4 @@ body {
 .scroll-to-top {
   border-radius: 50% !important;
   background-color: #bc131f !important;
-}
-
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */

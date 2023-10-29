@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function UserSetting() {
-  return (
-    <div>UserSetting</div>
-  )
+  return <div>UserSetting</div>;
 }
 
-export default UserSetting
+export default UserSetting;

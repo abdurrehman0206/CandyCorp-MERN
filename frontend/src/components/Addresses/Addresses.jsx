@@ -91,7 +91,7 @@ function Addresses() {
             className="add-address-btn btn-box-primary"
             onClick={() => setShowForm(!showForm)}
           >
-            {showForm ? "cancel" : "Add Address"}
+            {showForm ? "Cancel" : "Add Address"}
           </button>
         }
         {/* Address form */}
@@ -104,7 +104,9 @@ function Addresses() {
               }}
             >
               <div>
-                <h3>{update?"Update exciting address":"Add a mew address"} </h3>
+                <h3>
+                  {update ? "Update existing address" : "Add a new address"}{" "}
+                </h3>
                 <div className="address-form form-grid-container">
                   <Input
                     label="First name"
@@ -166,7 +168,7 @@ function Addresses() {
               </div>
               <div className="submit-btn">
                 <button className="btn-box-primary">
-                  {update ? "update" : "Add"}
+                  {update ? "Update" : "Add"}
                 </button>
               </div>
             </form>
