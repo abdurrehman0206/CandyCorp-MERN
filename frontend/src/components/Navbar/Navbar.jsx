@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../Common/SearchBar";
 import Links from "./Links";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useLogout } from "../../hooks/useLogout";
 import {
   AiOutlineShoppingCart,
   AiOutlineHeart,
@@ -13,6 +15,8 @@ import {
 import { CgProfile, CgFacebook } from "react-icons/cg";
 import { Link, NavLink } from "react-router-dom";
 function Navbar() {
+  const { user } = useAuthContext();
+  const { logout } = useLogout();
   const nav = useNavigate();
   const navItems = [
     { name: "Home", path: "" },
@@ -79,8 +83,12 @@ function Navbar() {
             <li>
               <AiOutlineShoppingCart />
             </li>
-            <li>
-              <CgProfile />
+            <li className="nav-user-icon">
+              {user ? (
+                <img src={user.image} alt={user.username} />
+              ) : (
+                <CgProfile />
+              )}
 
               <div className="dropdown-wrapper show-profile-menu ">
                 <div className="dropdown">
@@ -91,14 +99,25 @@ function Navbar() {
                     </li>
                     <li>Orders</li>
                   </ul>
-                  <button
-                    className="btn-box-primary"
-                    onClick={() => {
-                      nav("/login");
-                    }}
-                  >
-                    Sign in
-                  </button>
+                  {user ? (
+                    <button
+                      className="btn-box-outline"
+                      onClick={() => {
+                        logout();
+                      }}
+                    >
+                      Logout
+                    </button>
+                  ) : (
+                    <button
+                      className="btn-box-primary"
+                      onClick={() => {
+                        nav("/login");
+                      }}
+                    >
+                      Sign in
+                    </button>
+                  )}
                 </div>
               </div>
             </li>
