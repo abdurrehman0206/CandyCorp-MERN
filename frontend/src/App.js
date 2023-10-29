@@ -2,7 +2,8 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
 
 import { Addresses, Layout, Orders, UserSetting } from "./components/imports";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Home,
   AboutUs,
@@ -12,12 +13,23 @@ import {
   UserProfile,
 } from "./pages/imports";
 
-
 function App() {
   return (
     <div className="App-container">
       <div className="App">
         {/* Routes----- */}
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={true}
+          theme="dark"
+        />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>

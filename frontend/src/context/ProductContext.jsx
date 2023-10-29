@@ -32,13 +32,14 @@ export const ProductContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   useLayoutEffect(() => {
     if (!user) {
+      console.log("User is not logged in");
       return;
     }
     const fetchProducts = async () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/api/PRODUCTS`,
+          `${process.env.REACT_APP_BASE_URL}/api/products`,
           {
             method: "GET",
             headers: {

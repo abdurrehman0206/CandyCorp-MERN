@@ -163,6 +163,7 @@ body {
 }
 
 .btn-box-outline {
+  white-space: nowrap;
   box-sizing: border-box;
   padding: 0.5rem 1rem;
   font-weight: 700;
@@ -384,7 +385,7 @@ body {
   width: 220px;
   padding: 10px 0px;
 }
-.nav-right li .dropdown-wrapper .btn-box-primary {
+.nav-right li .dropdown-wrapper button {
   width: 100%;
 }
 .nav-right li .dropdown-wrapper .dropdown {
@@ -409,6 +410,13 @@ body {
 }
 .nav-right li:hover .dropdown-wrapper {
   display: block;
+}
+.nav-right li.nav-user-icon img {
+  width: 25px;
+  height: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
 }
 .nav-right .hamburger {
   display: none;

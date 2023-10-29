@@ -6,18 +6,18 @@ function Login() {
   document.title = "Login";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //   const { login, loading } = useLogin();
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     await login(email, password);
-  //   };
+  const { login, loading } = useLogin();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(email, password);
+  };
 
   return (
     <div className="auth-wrapper">
       <form
         className="auth-form"
         onSubmit={(e) => {
-          //   handleSubmit(e);
+          handleSubmit(e);
         }}
       >
         <div className="auth-form-header">
@@ -46,9 +46,8 @@ function Login() {
             value={password || ""}
           />
         </div>
-        <button className="btn-box-primary" disabled={false}>
-          {/* {loading ? "Logging In" : "Login"} */}
-          Login
+        <button className="btn-box-primary" disabled={loading}>
+          {loading ? "Logging In" : "Login"}
         </button>
         <small>
           Don't have an account? <NavLink to="/signup">Register</NavLink>
