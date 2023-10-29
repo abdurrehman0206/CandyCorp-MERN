@@ -2,8 +2,7 @@
   margin-top: $lg;
   .user-profile {
     color: $text-color-dark;
-    @include flex_layout(colum);
-   
+    @include flex_layout(column);
   }
 }
 
@@ -54,23 +53,30 @@
     ul {
       li {
         justify-content: flex-start;
-        padding: $md 0;
         margin: 0;
         width: 100%;
         font-size: 16px;
+        font-weight: 600;
         color: $text-color;
-        border-bottom: 1px solid $outline-border-color;
-        &:hover {
-          border-bottom: 1px solid $theme-accent1;
-          color: $theme-accent1;
+        a {
+          padding: $md 0;
+          display: block;
+          width: 100%;
+          border-bottom: 1px solid $outline-border-color;
+          &:hover {
+            border-bottom: 1px solid $theme-accent1;
+            color: $theme-accent1;
+          }
+          &.user-profile-navlink-active {
+            border-bottom: 1px solid $theme-accent1;
+            color: $theme-accent1;
+          }
         }
+
         // .user-profile-navlink {
         //   width: 100%;
         //   height: 100%;
         // }
-        .user-profile-navlink-active {
-          color: $theme-accent1;
-        }
       }
     }
     @include device(mobile) {

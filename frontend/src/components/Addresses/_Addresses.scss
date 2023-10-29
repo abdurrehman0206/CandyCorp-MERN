@@ -5,7 +5,7 @@
 .addresses {
   @include flex_layout(column);
   gap: 1rem;
-  padding: $lg;
+  // padding: $lg;
 
   .address-content {
     padding: $lg;
@@ -69,9 +69,10 @@
 }
 
 .address-form-container {
-  @include flex_layout(row, center, center);
+  @include flex_layout(row, flex-start, center);
   width: 100%;
   form {
+    width: 100%;
     @include flex_layout(column);
     .form-grid-container {
       display: grid;
@@ -82,8 +83,17 @@
       }
     }
     .submit-btn {
-      margin-top: 10px;
+      margin-top: $lg;
       align-self: end;
+      button {
+        padding: $sm $lg;
+      }
+    }
+    .form-wrapper-div {
+      width: 100% !important;
+      h3 {
+        text-align: center;
+      }
     }
   }
 }

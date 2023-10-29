@@ -1087,7 +1087,6 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1rem;
-  padding: 1rem;
 }
 .addresses .address-content {
   padding: 1rem;
@@ -1149,11 +1148,12 @@ body {
 .address-form-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
 }
 .address-form-container form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -1170,8 +1170,17 @@ body {
   }
 }
 .address-form-container form .submit-btn {
-  margin-top: 10px;
+  margin-top: 1rem;
   align-self: end;
+}
+.address-form-container form .submit-btn button {
+  padding: 0.5rem 1rem;
+}
+.address-form-container form .form-wrapper-div {
+  width: 100% !important;
+}
+.address-form-container form .form-wrapper-div h3 {
+  text-align: center;
 }
 
 .about-us-wrapper .about-us .about-us-hero {
@@ -1214,7 +1223,7 @@ body {
 .user-profile-wrapper .user-profile {
   color: #45474b;
   display: flex;
-  flex-direction: colum;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
@@ -1273,18 +1282,24 @@ body {
 }
 .user-profile-content .user-profile-sidebar-nav ul li {
   justify-content: flex-start;
-  padding: 0.75rem 0;
   margin: 0;
   width: 100%;
   font-size: 16px;
+  font-weight: 600;
   color: #ffffff;
+}
+.user-profile-content .user-profile-sidebar-nav ul li a {
+  padding: 0.75rem 0;
+  display: block;
+  width: 100%;
   border-bottom: 1px solid #d8d9da;
 }
-.user-profile-content .user-profile-sidebar-nav ul li:hover {
+.user-profile-content .user-profile-sidebar-nav ul li a:hover {
   border-bottom: 1px solid #bc131f;
   color: #bc131f;
 }
-.user-profile-content .user-profile-sidebar-nav ul li .user-profile-navlink-active {
+.user-profile-content .user-profile-sidebar-nav ul li a.user-profile-navlink-active {
+  border-bottom: 1px solid #bc131f;
   color: #bc131f;
 }
 @media (max-width: 767px) {

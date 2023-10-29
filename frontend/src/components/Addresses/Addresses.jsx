@@ -103,7 +103,7 @@ function Addresses() {
                 console.log("submitted");
               }}
             >
-              <div>
+              <div className="form-wrapper-div">
                 <h3>
                   {update ? "Update existing address" : "Add a new address"}{" "}
                 </h3>
