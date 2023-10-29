@@ -46,7 +46,7 @@ function Login() {
             value={password || ""}
           />
         </div>
-        <button className="btn-box-primary" disabled={false}>
+        <button className="btn-box-primary" disabled={loading}>
           {loading ? "Logging In" : "Login"}
         </button>
         <small>
