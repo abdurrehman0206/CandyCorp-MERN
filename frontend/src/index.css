@@ -417,6 +417,7 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+  border: 2px solid #bc131f;
 }
 .nav-right .hamburger {
   display: none;
