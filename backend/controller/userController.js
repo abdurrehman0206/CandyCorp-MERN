@@ -8,6 +8,7 @@ const generateToken = (email, id) => {
   });
   return token;
 };
+
 const signup = async (req, res) => {
   const { email, password, fullname, username, image } = req.body;
   const emptyInputs = [];
@@ -48,6 +49,7 @@ const signup = async (req, res) => {
       username: user.username,
       image: user.image,
       shoppingCart: user.shoppingCart,
+      addresses: user.addresses, 
       token,
     };
     return res.status(201).json({
@@ -63,6 +65,7 @@ const signup = async (req, res) => {
     });
   }
 };
+
 const login = async (req, res) => {
   const { email, password } = req.body;
   const emptyInputs = [];
@@ -98,6 +101,7 @@ const login = async (req, res) => {
       username: user.username,
       image: user.image,
       shoppingCart: user.shoppingCart,
+      addresses: user.addresses, 
       token,
     };
     return res.status(200).json({
@@ -113,6 +117,38 @@ const login = async (req, res) => {
     });
   }
 };
+
+const updateAddresses = async (req, res) => {
+  const userId = req.user.id;
+  const { addresses } = req.body;
+
+  try {
+    const user = await USER.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+        error: "User does not exist",
+      });
+    }
+
+    user.addresses = addresses; 
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Addresses updated successfully",
+      addresses: user.addresses,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Error",
+      error: error.message,
+    });
+  }
+};
+
 const verifyToken = async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   if (!token) {
@@ -133,6 +169,7 @@ const verifyToken = async (req, res) => {
       username: user.username,
       image: user.image,
       shoppingCart: user.shoppingCart,
+      addresses: user.addresses, 
       token,
     };
     return res.status(200).json({
@@ -150,9 +187,9 @@ const verifyToken = async (req, res) => {
   }
 };
 
-
 module.exports = {
   signup,
   login,
+  updateAddresses,
   verifyToken,
 };

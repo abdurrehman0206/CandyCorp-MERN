@@ -1,6 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
+const addressSchema = new Schema({
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  company: { type: String },
+  address1: { type: String, required: true },
+  address2: { type: String },
+  country: { type: String, required: true },
+  postalCode: { type: String, required: true },
+  phone: { type: String, required: true },
+});
 const userSchema = new Schema(
   {
     email: { type: String, required: true, unique: true },
@@ -9,10 +19,10 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     image: { type: String },
     shoppingCart: [{ type: String }],
+    addresses: [addressSchema],
   },
 
-  { timestamps: true },
-  
+  { timestamps: true }
 );
 
 userSchema.statics.signup = async function (
