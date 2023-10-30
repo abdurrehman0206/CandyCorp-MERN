@@ -68,15 +68,15 @@
   }
 }
 // pills colors
-.in-progress {
+.Processing {
   background-color: lighten(#0079ff, 40%);
 }
-.shipped {
+.Shipped {
   background-color: lighten(#dd58d6, 30%);
 }
-.cancelled {
+.Cancelled {
   background-color: lighten(#ff0060, 30%);
 }
-.delivered {
+.Delivered {
   background-color: lighten(#00dfa2, 30%);
 }
