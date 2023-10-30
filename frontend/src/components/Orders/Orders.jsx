@@ -56,7 +56,16 @@ function Orders() {
   //   },
   // ];
 
-  //TODO: Add no orders render
+  if (orders.length === 0) {
+    return (
+      <div className="no-orders">
+        <p>
+          Looks like you haven't indulged in Candy Corp's sweetness yet. Time to
+          explore our delectable treats!
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="Orders-wrapper">
       <div className="Orders">

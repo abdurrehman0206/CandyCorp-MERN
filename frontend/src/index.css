@@ -1021,6 +1021,12 @@ body {
   background-color: #79ffda;
 }
 
+.no-orders p {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+}
+
 .Orders-wrapper {
   width: 100%;
   height: 100%;
@@ -1113,6 +1119,12 @@ body {
 
 .Delivered {
   background-color: #79ffda;
+}
+
+.no-orders p {
+  text-align: center;
+  font-style: italic;
+  color: #888;
 }
 
 .addresses-wrapper {

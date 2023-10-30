@@ -45,7 +45,6 @@
         }
       }
       .view-order {
-        
       }
     }
   }
@@ -79,4 +78,12 @@
 }
 .Delivered {
   background-color: lighten(#00dfa2, 30%);
+}
+
+.no-orders {
+  p {
+    text-align: center;
+    font-style: italic;
+    color: $text-color-grey;
+  }
 }
