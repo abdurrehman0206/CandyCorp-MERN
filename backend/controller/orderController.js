@@ -81,9 +81,44 @@ const getUserOrders = async (req, res) => {
     });
   }
 };
+const getOrder = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({
+      success: false,
+      message: "Order not found",
+      error: "Invalid Id",
+    });
+  }
+
+  try {
+    const order = await ORDER.findById(id);
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Order details fetched successfully",
+      data: order,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
 
 module.exports = {
   createOrder,
   getAllOrders,
   getUserOrders,
+  getOrder,
 };

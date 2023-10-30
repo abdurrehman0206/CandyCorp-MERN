@@ -1005,20 +1005,26 @@ body {
   padding: 1px;
 }
 
-.in-progress {
+.Processing {
   background-color: #cce4ff;
 }
 
-.shipped {
+.Shipped {
   background-color: #f7d7f5;
 }
 
-.cancelled {
+.Cancelled {
   background-color: #ff99bf;
 }
 
-.delivered {
+.Delivered {
   background-color: #79ffda;
+}
+
+.no-orders p {
+  text-align: center;
+  font-style: italic;
+  color: #888;
 }
 
 .Orders-wrapper {
@@ -1099,20 +1105,26 @@ body {
   padding: 1px;
 }
 
-.in-progress {
+.Processing {
   background-color: #cce4ff;
 }
 
-.shipped {
+.Shipped {
   background-color: #f7d7f5;
 }
 
-.cancelled {
+.Cancelled {
   background-color: #ff99bf;
 }
 
-.delivered {
+.Delivered {
   background-color: #79ffda;
+}
+
+.no-orders p {
+  text-align: center;
+  font-style: italic;
+  color: #888;
 }
 
 .addresses-wrapper {
