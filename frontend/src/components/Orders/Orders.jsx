@@ -80,7 +80,6 @@ function Orders() {
               <span className={`order-status-pil ${order.status}`}>
                 {order.status}
               </span>
-
               <p>{new Date(order.createdAt).toLocaleString()}</p>
             </div>
             <div className="view-order">

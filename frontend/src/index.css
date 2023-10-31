@@ -947,6 +947,7 @@ body {
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
+  gap: 2rem;
 }
 .Orders .Order-content:hover {
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
@@ -1047,6 +1048,7 @@ body {
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
+  gap: 2rem;
 }
 .Orders .Order-content:hover {
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
