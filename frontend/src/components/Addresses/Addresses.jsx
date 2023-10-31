@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-
+import { useAuthContext } from "../../hooks/useAuthContext";
 import Input from "../Common/Input";
 function Addresses() {
+  const { user } = useAuthContext();
+  console.log("🚀 ~ file: Addresses.jsx:7 ~ Addresses ~ user:", user);
+
   // const [addressEdit, setAddressEdit] = useState(false);
   const [values, setValues] = useState({
     firstName: "",
@@ -23,69 +26,81 @@ function Addresses() {
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-
+  const handleAddressUpdate = async () => {};
   // addresses data
-  const adresses = [
-    {
-      id: 1,
-      address: "123 Main St",
-      city: "Canada",
-      state: "Cn",
-      zip: "10011",
-    },
-    {
-      id: 2,
-      address: "123 Main St",
-      city: "New York",
-      state: "NY",
-      zip: "10001",
-    },
-    {
-      id: 3,
-      address: "123 Main St",
-      city: "Pakistan",
-      state: "PK",
-      zip: "10021",
-    },
-  ];
+  // const adresses = [
+  //   {
+  //     id: 1,
+  //     address: "123 Main St",
+  //     city: "Canada",
+  //     state: "Cn",
+  //     zip: "10011",
+  //   },
+  //   {
+  //     id: 2,
+  //     address: "123 Main St",
+  //     city: "New York",
+  //     state: "NY",
+  //     zip: "10001",
+  //   },
+  //   {
+  //     id: 3,
+  //     address: "123 Main St",
+  //     city: "Pakistan",
+  //     state: "PK",
+  //     zip: "10021",
+  //   },
+  // ];
 
   return (
     <div className="adresses-wrapper">
       <div className="addresses">
-        {adresses.map((address, index) => (
-          <div key={address.id} className="address-content">
-            <h3>Address # {index + 1}</h3>
-            <div className="address">
-              <p>
-                {address.address}, {address.city} {address.state}
-              </p>
-            </div>
-            <div className="address-edit">
-              <button
-                className="address-btn-edit"
-                onClick={() => {
-                  setUpdate(true);
-                  setShowForm(true);
-                  setValues({
-                    firstName: "",
-                    lastName: "",
-                    company: "",
-                    address1: address.name,
-                    address2: "",
-                    country: address.city,
-                    postalCode: address.zip,
-                    phone: "",
-                  });
-                }}
-              >
-                <AiOutlineEdit />
-              </button>
-              <button className="address-btn-delete">
-                <AiOutlineDelete />
-              </button>
-            </div>
+        {user.addresses.length === 0 ? (
+          <div className="no-orders">
+            <p>
+              Sweeten your day with CandyCorp's treats, but it looks like our
+              delivery sleigh needs a map to find your address. Add one and let
+              the sweetness flow!
+            </p>
           </div>
-        ))}
+        ) : (
+          <>
+            {user.addresses.map((address, index) => (
+              <div key={address.id} className="address-content">
+                <h3>Address # {index + 1}</h3>
+                <div className="address">
+                  <p>
+                    {address.address1}, {address.address2} {address.country}
+                  </p>
+                </div>
+                <div className="address-edit">
+                  <button
+                    className="address-btn-edit"
+                    onClick={() => {
+                      setUpdate(true);
+                      setShowForm(true);
+                      setValues({
+                        firstName: address.firstname,
+                        lastName: address.lastname,
+                        company: address.company,
+                        address1: address.address1,
+                        address2: address.address2,
+                        country: address.country,
+                        postalCode: address.postalCode,
+                        phone: address.phone,
+                      });
+                    }}
+                  >
+                    <AiOutlineEdit />
+                  </button>
+                  <button className="address-btn-delete">
+                    <AiOutlineDelete />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
         {
           <button
             className="add-address-btn btn-box-primary"
@@ -167,7 +182,14 @@ function Addresses() {
                 </div>
               </div>
               <div className="submit-btn">
-                <button className="btn-box-primary">
+                <button
+                  className="btn-box-primary"
+                  onClick={() => {
+                    if (update) {
+                      handleAddressUpdate();
+                    }
+                  }}
+                >
                   {update ? "Update" : "Add"}
                 </button>
               </div>
