@@ -17,6 +17,7 @@ const requireAuth = async (req, res, next) => {
       username: user.username,
       image: user.image,
       shoppingCart: user.shoppingCart,
+      addresses: user.addresses,
     };
 
     next();
