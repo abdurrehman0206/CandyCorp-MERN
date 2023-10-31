@@ -8,7 +8,7 @@ function Orders() {
       return;
     }
     const getOrders = async () => {
-      const user = JSON.parse(localStorage.getItem("user"));
+      
       if (user) {
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/api/orders/${user.id}`,
@@ -22,6 +22,10 @@ function Orders() {
         const json = await response.json();
         if (json.success) {
           setOrders(json.data);
+          console.log(
+            "🚀 ~ file: Orders.jsx:25 ~ getOrders ~ data:",
+            json.data
+          );
         } else {
           console.log(json.error);
         }
@@ -77,7 +81,11 @@ function Orders() {
                 {order.status}
               </span>
 
+
               <p>{order.date}</p>
+=======
+              <p>{new Date(order.createdAt).toLocaleString()}</p>
+
             </div>
             <div className="view-order">
               <button className="view-order-btn">View Order</button>

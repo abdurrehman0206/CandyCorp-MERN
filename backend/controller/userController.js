@@ -4,7 +4,7 @@ const validator = require("validator");
 
 const generateToken = (email, id) => {
   const token = JWT.sign({ email, id }, process.env.SECRET, {
-    expiresIn: "1d",
+    expiresIn: "365d",
   });
   return token;
 };
@@ -49,7 +49,7 @@ const signup = async (req, res) => {
       username: user.username,
       image: user.image,
       shoppingCart: user.shoppingCart,
-      addresses: user.addresses, 
+      addresses: user.addresses,
       token,
     };
     return res.status(201).json({
@@ -60,8 +60,8 @@ const signup = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: error.message,
-      error: "Internal server error",
+      message: "Internal Server Error",
+      error: error.message,
     });
   }
 };
@@ -101,7 +101,7 @@ const login = async (req, res) => {
       username: user.username,
       image: user.image,
       shoppingCart: user.shoppingCart,
-      addresses: user.addresses, 
+      addresses: user.addresses,
       token,
     };
     return res.status(200).json({
@@ -112,18 +112,27 @@ const login = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: error.message,
-      error: "Internal server error",
+      message: "Internal Server Error",
+      error: error.message,
     });
   }
 };
-
-const updateAddresses = async (req, res) => {
+const addAddress = async (req, res) => {
+  const {
+    firstname,
+    lastname,
+    company,
+    address1,
+    address2,
+    country,
+    postalCode,
+    phone,
+  } = req.body;
   const userId = req.user.id;
-  const { addresses } = req.body;
 
   try {
     const user = await USER.findById(userId);
+
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -132,23 +141,99 @@ const updateAddresses = async (req, res) => {
       });
     }
 
-    user.addresses = addresses; 
-    await user.save();
+    const newAddress = {
+      firstname,
+      lastname,
+      company,
+      address1,
+      address2,
+      country,
+      postalCode,
+      phone,
+    };
 
-    return res.status(200).json({
+    user.addresses.push(newAddress);
+
+    const updatedUser = await user.save();
+
+    return res.status(201).json({
       success: true,
-      message: "Addresses updated successfully",
-      addresses: user.addresses,
+      message: "Address added successfully",
+      data: newAddress,
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Internal Error",
+      message: "Internal Server Error",
       error: error.message,
     });
   }
 };
 
+const updateAddress = async (req, res) => {
+  const { addressId } = req.params;
+  const {
+    firstname,
+    lastname,
+    company,
+    address1,
+    address2,
+    country,
+    postalCode,
+    phone,
+  } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const user = await USER.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+        error: "User does not exist",
+      });
+    }
+
+    const addressIndex = user.addresses.findIndex(
+      (address) => address._id == addressId
+    );
+
+    if (addressIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Address not found",
+        error: "Address does not exist",
+      });
+    }
+
+    user.addresses[addressIndex] = {
+      firstname,
+      lastname,
+      company,
+      address1,
+      address2,
+      country,
+      postalCode,
+      phone,
+      _id: addressId,
+    };
+
+    const updatedUser = await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Address updated successfully",
+      data: updatedUser.addresses[addressIndex],
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
 const verifyToken = async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   if (!token) {
@@ -169,7 +254,7 @@ const verifyToken = async (req, res) => {
       username: user.username,
       image: user.image,
       shoppingCart: user.shoppingCart,
-      addresses: user.addresses, 
+      addresses: user.addresses,
       token,
     };
     return res.status(200).json({
@@ -181,8 +266,52 @@ const verifyToken = async (req, res) => {
     console.log(error);
     return res.status(500).json({
       success: false,
-      message: error.message,
-      error: "Internal server error",
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+const deleteAddress = async (req, res) => {
+  const { addressId } = req.params;
+  const userId = req.user.id;
+
+  try {
+    const user = await USER.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+        error: "User does not exist",
+      });
+    }
+
+    const addressIndex = user.addresses.findIndex(
+      (address) => address._id == addressId
+    );
+
+    if (addressIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Address not found",
+        error: "Address does not exist",
+      });
+    }
+
+    user.addresses.splice(addressIndex, 1);
+
+    const updatedUser = await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Address deleted successfully",
+      data: updatedUser.addresses,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
     });
   }
 };
@@ -190,6 +319,8 @@ const verifyToken = async (req, res) => {
 module.exports = {
   signup,
   login,
-  updateAddresses,
+  addAddress,
+  updateAddress,
+  deleteAddress,
   verifyToken,
 };

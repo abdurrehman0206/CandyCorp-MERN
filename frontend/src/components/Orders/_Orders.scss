@@ -13,12 +13,14 @@
     border-radius: 5px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
     &:hover {
       box-shadow: $box-shadow-hover;
     }
     p {
       font-size: 14px;
     }
+
     .view-order {
       @include flex_layout(row, end, center);
       .view-order-btn {
@@ -50,6 +52,7 @@
 .order-status {
   @include flex_layout(row, center, center);
   gap: 15px;
+
   p {
     text-align: center;
     width: 100%;
