@@ -10,7 +10,7 @@ import UserProfile from "./UserProfile/UserProfile";
 import Product from "./Product/Product";
 import Products from "./Products/Products";
 import Home from "./Home/Home";
-
+import ContactUs from "./ContactUs/ContactUs";
 export {
   AboutUs,
   Login,
@@ -24,4 +24,5 @@ export {
   Product,
   Products,
   Home,
+  ContactUs
 };
