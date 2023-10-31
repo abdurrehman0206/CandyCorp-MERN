@@ -271,11 +271,56 @@ const verifyToken = async (req, res) => {
     });
   }
 };
+const deleteAddress = async (req, res) => {
+  const { addressId } = req.params;
+  const userId = req.user.id;
+
+  try {
+    const user = await USER.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+        error: "User does not exist",
+      });
+    }
+
+    const addressIndex = user.addresses.findIndex(
+      (address) => address._id == addressId
+    );
+
+    if (addressIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Address not found",
+        error: "Address does not exist",
+      });
+    }
+
+    user.addresses.splice(addressIndex, 1);
+
+    const updatedUser = await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Address deleted successfully",
+      data: updatedUser.addresses,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
 
 module.exports = {
   signup,
   login,
   addAddress,
   updateAddress,
+  deleteAddress,
   verifyToken,
 };
