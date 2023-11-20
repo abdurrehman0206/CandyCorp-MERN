@@ -3,13 +3,14 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import Input from "../Common/Input";
 function Addresses() {
-  const { user } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
+  const [updateId, setUpdateId] = useState("");
   console.log("🚀 ~ file: Addresses.jsx:7 ~ Addresses ~ user:", user);
 
   // const [addressEdit, setAddressEdit] = useState(false);
   const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     company: "",
     address1: "",
     address2: "",
@@ -19,38 +20,39 @@ function Addresses() {
   });
   const [showForm, setShowForm] = useState(false);
   const [update, setUpdate] = useState(false);
-  // useEffect(() => {
-  //   console.log(values);
-  // }, [values]);
-  // onChange Handler
+
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-  const handleAddressUpdate = async () => {};
-  // addresses data
-  // const adresses = [
-  //   {
-  //     id: 1,
-  //     address: "123 Main St",
-  //     city: "Canada",
-  //     state: "Cn",
-  //     zip: "10011",
-  //   },
-  //   {
-  //     id: 2,
-  //     address: "123 Main St",
-  //     city: "New York",
-  //     state: "NY",
-  //     zip: "10001",
-  //   },
-  //   {
-  //     id: 3,
-  //     address: "123 Main St",
-  //     city: "Pakistan",
-  //     state: "PK",
-  //     zip: "10021",
-  //   },
-  // ];
+  const handleAddressUpdate = async () => {
+    if (!user) {
+      console.log("User is not logged in");
+      return;
+    }
+    if (user) {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/users/update-address/${updateId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          method: "PATCH",
+          body: JSON.stringify({ ...values }),
+        }
+      );
+      const json = await response.json();
+      if (json.success) {
+        dispatch({ type: "UPDATE_ADDRESS", payload: json.data });
+      } else {
+        console.log(json.error);
+      }
+    }
+  };
+  const handleAddressAdd = async () => {
+    try {
+    } catch (e) {}
+  };
 
   return (
     <div className="adresses-wrapper">
@@ -68,6 +70,7 @@ function Addresses() {
             {user.addresses.map((address, index) => (
               <div key={address.id} className="address-content">
                 <h3>Address # {index + 1}</h3>
+
                 <div className="address">
                   <p>
                     {address.address1}, {address.address2} {address.country}
@@ -79,9 +82,10 @@ function Addresses() {
                     onClick={() => {
                       setUpdate(true);
                       setShowForm(true);
+                      setUpdateId(address._id);
                       setValues({
-                        firstName: address.firstname,
-                        lastName: address.lastname,
+                        firstname: address.firstname,
+                        lastname: address.lastname,
                         company: address.company,
                         address1: address.address1,
                         address2: address.address2,
@@ -126,14 +130,14 @@ function Addresses() {
                   <Input
                     label="First name"
                     type="text"
-                    value={values.firstName}
+                    value={values.firstname}
                     name="firstName"
                     onChange={handleChange}
                   />
                   <Input
                     label="Last name"
                     type="text"
-                    value={values.lastName}
+                    value={values.lastname}
                     name="lastName"
                     onChange={handleChange}
                   />
@@ -187,6 +191,8 @@ function Addresses() {
                   onClick={() => {
                     if (update) {
                       handleAddressUpdate();
+                    } else if (!update) {
+                      handleAddressAdd();
                     }
                   }}
                 >
