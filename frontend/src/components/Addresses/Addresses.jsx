@@ -75,6 +75,31 @@ function Addresses() {
       }
     }
   };
+  const handleAddressDelete = async (deleteId) => {
+    console.log("handleAddressDelete invoked");
+    if (!user) {
+      console.log("User is not logged in");
+      return;
+    }
+    if (user) {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/users/delete-address/${deleteId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          method: "DELETE",
+        }
+      );
+      const json = await response.json();
+      if (json.success) {
+        dispatch({ type: "DELETE_ADDRESS", payload: json.data });
+      } else {
+        console.log(json.error);
+      }
+    }
+  };
 
   return (
     <div className="adresses-wrapper">
@@ -119,7 +144,12 @@ function Addresses() {
                   >
                     <AiOutlineEdit />
                   </button>
-                  <button className="address-btn-delete">
+                  <button
+                    className="address-btn-delete"
+                    onClick={() => {
+                      handleAddressDelete(address._id);
+                    }}
+                  >
                     <AiOutlineDelete />
                   </button>
                 </div>

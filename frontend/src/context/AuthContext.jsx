@@ -64,6 +64,17 @@ export const userReducer = (state, action) => {
           addresses: newAddresses,
         },
       };
+    case "DELETE_ADDRESS":
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...state.user, addresses: [...action.payload] })
+      );
+      return {
+        user: {
+          ...state.user,
+          addresses: [...action.payload],
+        },
+      };
 
     default:
       return state;
