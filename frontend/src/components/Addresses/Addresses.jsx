@@ -5,7 +5,6 @@ import Input from "../Common/Input";
 function Addresses() {
   const { user, dispatch } = useAuthContext();
   const [updateId, setUpdateId] = useState("");
-  console.log("🚀 ~ file: Addresses.jsx:7 ~ Addresses ~ user:", user);
 
   // const [addressEdit, setAddressEdit] = useState(false);
   const [values, setValues] = useState({
@@ -25,6 +24,7 @@ function Addresses() {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
   const handleAddressUpdate = async () => {
+    console.log("handleAddressUpdate invoked");
     if (!user) {
       console.log("User is not logged in");
       return;
@@ -50,8 +50,30 @@ function Addresses() {
     }
   };
   const handleAddressAdd = async () => {
-    try {
-    } catch (e) {}
+    console.log("handleAddressAdd invoked");
+    if (!user) {
+      console.log("User is not logged in");
+      return;
+    }
+    if (user) {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/users/add-address`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          method: "POST",
+          body: JSON.stringify({ ...values }),
+        }
+      );
+      const json = await response.json();
+      if (json.success) {
+        dispatch({ type: "ADD_ADDRESS", payload: json.data });
+      } else {
+        console.log(json.error);
+      }
+    }
   };
 
   return (
@@ -108,7 +130,24 @@ function Addresses() {
         {
           <button
             className="add-address-btn btn-box-primary"
-            onClick={() => setShowForm(!showForm)}
+            onClick={() => {
+              if (showForm) {
+                setShowForm(false);
+                setUpdate(false);
+              } else {
+                setValues({
+                  firstname: "",
+                  lastname: "",
+                  company: "",
+                  address1: "",
+                  address2: "",
+                  country: "",
+                  postalCode: "",
+                  phone: "",
+                });
+                setShowForm(true);
+              }
+            }}
           >
             {showForm ? "Cancel" : "Add Address"}
           </button>
@@ -131,14 +170,14 @@ function Addresses() {
                     label="First name"
                     type="text"
                     value={values.firstname}
-                    name="firstName"
+                    name="firstname"
                     onChange={handleChange}
                   />
                   <Input
                     label="Last name"
                     type="text"
                     value={values.lastname}
-                    name="lastName"
+                    name="lastname"
                     onChange={handleChange}
                   />
                   <Input
@@ -191,7 +230,7 @@ function Addresses() {
                   onClick={() => {
                     if (update) {
                       handleAddressUpdate();
-                    } else if (!update) {
+                    } else {
                       handleAddressAdd();
                     }
                   }}

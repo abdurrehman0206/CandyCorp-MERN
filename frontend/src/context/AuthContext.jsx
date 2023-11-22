@@ -33,6 +33,20 @@ export const userReducer = (state, action) => {
           shoppingCart: action.payload,
         },
       };
+    case "ADD_ADDRESS":
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...state.user,
+          addresses: [...state.user.addresses, action.payload],
+        })
+      );
+      return {
+        user: {
+          ...state.user,
+          addresses: [...state.user.addresses, action.payload],
+        },
+      };
     case "UPDATE_ADDRESS":
       const newAddresses = state.user.addresses.map((address) => {
         if (address._id === action.payload._id) {
