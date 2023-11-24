@@ -11,7 +11,7 @@ import {
   SignUp,
   UserProfile,
   ContactUs,
-  Product,
+  Products,
   Blogs,
 } from "./pages/imports";
 
@@ -37,7 +37,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route path="" element={<Home />} />
               <Route path="about" element={<AboutUs />} />
-              <Route path="shop" element={<Product />} />
+              <Route path="shop" element={<Products />} />
               <Route path="bundles" element={<Bundles />} />
               <Route path="blogs" element={<Blogs />} />
 
