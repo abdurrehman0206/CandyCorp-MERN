@@ -105,7 +105,7 @@ function Addresses() {
     <div className="adresses-wrapper">
       <div className="addresses">
         {user.addresses.length === 0 ? (
-          <div className="no-orders">
+          <div className="no-orders" key={user.addresses.length}>
             <p>
               Sweeten your day with CandyCorp's treats, but it looks like our
               delivery sleigh needs a map to find your address. Add one and let
