@@ -41,6 +41,10 @@ export const userReducer = (state, action) => {
           addresses: [...state.user.addresses, action.payload],
         })
       );
+      console.log(
+        "🚀 ~ file: AuthContext.jsx:43 ~ userReducer ~ action.payload:",
+        action.payload
+      );
       return {
         user: {
           ...state.user,
