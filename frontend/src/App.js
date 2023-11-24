@@ -18,6 +18,8 @@ import {
   SignUp,
   UserProfile,
   ContactUs,
+  Product,
+  Blogs,
 } from "./pages/imports";
 
 function App() {

@@ -23,31 +23,83 @@ function Addresses() {
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-  const handleAddressUpdate = async () => {};
-  // addresses data
-  // const adresses = [
-  //   {
-  //     id: 1,
-  //     address: "123 Main St",
-  //     city: "Canada",
-  //     state: "Cn",
-  //     zip: "10011",
-  //   },
-  //   {
-  //     id: 2,
-  //     address: "123 Main St",
-  //     city: "New York",
-  //     state: "NY",
-  //     zip: "10001",
-  //   },
-  //   {
-  //     id: 3,
-  //     address: "123 Main St",
-  //     city: "Pakistan",
-  //     state: "PK",
-  //     zip: "10021",
-  //   },
-  // ];
+  const handleAddressUpdate = async () => {
+    console.log("handleAddressUpdate invoked");
+    if (!user) {
+      console.log("User is not logged in");
+      return;
+    }
+    if (user) {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/users/update-address/${updateId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          method: "PATCH",
+          body: JSON.stringify({ ...values }),
+        }
+      );
+      const json = await response.json();
+      if (json.success) {
+        dispatch({ type: "UPDATE_ADDRESS", payload: json.data });
+      } else {
+        console.log(json.error);
+      }
+    }
+  };
+  const handleAddressAdd = async () => {
+    console.log("handleAddressAdd invoked");
+    if (!user) {
+      console.log("User is not logged in");
+      return;
+    }
+    if (user) {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/users/add-address`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          method: "POST",
+          body: JSON.stringify({ ...values }),
+        }
+      );
+      const json = await response.json();
+      if (json.success) {
+        dispatch({ type: "ADD_ADDRESS", payload: json.data });
+      } else {
+        console.log(json.error);
+      }
+    }
+  };
+  const handleAddressDelete = async (deleteId) => {
+    console.log("handleAddressDelete invoked");
+    if (!user) {
+      console.log("User is not logged in");
+      return;
+    }
+    if (user) {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/users/delete-address/${deleteId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          method: "DELETE",
+        }
+      );
+      const json = await response.json();
+      if (json.success) {
+        dispatch({ type: "DELETE_ADDRESS", payload: json.data });
+      } else {
+        console.log(json.error);
+      }
+    }
+  };
 
   return (
     <div className="adresses-wrapper">
