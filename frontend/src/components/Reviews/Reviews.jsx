@@ -57,7 +57,34 @@ function Reviews() {
           {addReview ? <RxCross2 /> : <IoMdAdd />}
           {addReview ? "Cancel" : "Add"}
         </button>
-
+        {addReview && (
+          <form className="review-form">
+            <h2>Share Your Thoughts!</h2>
+            <Input
+              label={"Titile*"}
+              className="review-form-input"
+              placeholder="Title..."
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <div>
+              <span>Your rating*</span>
+              <Rating
+                onClick={(rate) => setRating(rate)}
+                initialValue={rating}
+                className="review-form-rating"
+              />
+            </div>
+            <div className="review-message-area-container">
+              <span>Your review*</span>
+              <textarea
+                placeholder="Message..."
+                className="review-message-area"
+                onChange={(e) => setComment(e.target.value)}
+              />
+            </div>
+            <button className="btn-box-primary">Submit</button>
+          </form>
+        )}
         {/* customer review */}
         {customerReviews.map((customer) => {
           return (
@@ -92,34 +119,6 @@ function Reviews() {
         })}
 
         {/* Review Form */}
-        {addReview && (
-          <form className="review-form">
-            <h2>Share Your Thoughts!</h2>
-            <Input
-              label={"Titile*"}
-              className="review-form-input"
-              placeholder="Title..."
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <div>
-              <span>Your rating*</span>
-              <Rating
-                onClick={(rate) => setRating(rate)}
-                initialValue={rating}
-                className="review-form-rating"
-              />
-            </div>
-            <div className="review-message-area-container">
-              <span>Your review*</span>
-              <textarea
-                placeholder="Message..."
-                className="review-message-area"
-                onChange={(e) => setComment(e.target.value)}
-              />
-            </div>
-            <button className="btn-box-primary">Submit</button>
-          </form>
-        )}
       </section>
     </div>
   );

@@ -22,6 +22,7 @@ import {
   Product,
   Blogs,
   Blog,
+  Cart,
 } from "./pages/imports";
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
                 <Route path="product-description" element={<ProductDesc />} />
                 <Route path="customer-reviews" element={<Reviews />} />
               </Route>
+              <Route path="cart" element={<Cart />} />
             </Route>
           </Routes>
         </BrowserRouter>
