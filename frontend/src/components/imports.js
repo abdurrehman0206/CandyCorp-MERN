@@ -7,7 +7,9 @@ import Layout from "./Layout/Layout";
 import Orders from "./Orders/Orders";
 import Addresses from "./Addresses/Addresses";
 import UserSetting from "./UserSetting/UserSetting";
-
+import ProductDetail from "./ProductDetail/ProductDetail";
+import Reviews from "./Reviews/Reviews";
+import ProductDesc from "./ProductDesc/ProductDesc";
 export {
   Navbar,
   Footer,
@@ -18,5 +20,7 @@ export {
   Orders,
   Addresses,
   UserSetting,
-  
+  ProductDetail,
+  Reviews,
+  ProductDesc,
 };
