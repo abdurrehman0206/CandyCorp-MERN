@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import profile from "../../assets/profile.jpg";
 import { useAuthContext } from "../../hooks/useAuthContext";
 function UserProfile() {
   const { user } = useAuthContext();

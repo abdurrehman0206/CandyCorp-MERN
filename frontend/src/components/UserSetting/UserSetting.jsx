@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import profile from "../../assets/profile.jpg";
 import { TfiUpload } from "react-icons/tfi";
 import { FiEdit } from "react-icons/fi";
 import { MdOutlineCancel } from "react-icons/md";

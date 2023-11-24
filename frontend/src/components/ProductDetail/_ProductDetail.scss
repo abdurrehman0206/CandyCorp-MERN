@@ -1,0 +1,102 @@
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  max-width: 100%;
+  margin: 20px auto;
+
+  @include device(mobile) {
+    grid-template-columns: 1fr;
+  }
+  .product-detail-img {
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      // display: none;
+    }
+  }
+  .product-detail-desc {
+    width: 100%;
+    padding: 1rem;
+    @include flex-layout(column, center, center);
+    gap: 2rem;
+
+    .product-detail-header {
+      @include flex-layout(column, center, start);
+      gap: 2rem;
+      .product-price {
+        font-weight: 800;
+        // opacity: 0.7;
+      }
+    }
+    div {
+      height: 100%;
+      width: 100%;
+    }
+
+    .product-info {
+      ul {
+        @include flex-layout(column, center, start);
+        gap: 1rem;
+        li {
+          @include flex-layout(row, center, center);
+          gap: 10px;
+          h4 {
+            font-weight: 1000;
+          }
+        }
+      }
+    }
+    .product-add-to-cart {
+      @include flex-layout(row, start, center);
+      gap: 1.5rem;
+      .product-quantity {
+        width: auto;
+        @include flex-layout(row, center, center);
+        gap: 1rem;
+        span {
+          padding: 5px;
+        }
+        .product-dec,
+        .product-inc {
+          cursor: pointer;
+          svg {
+            margin-top: 2px;
+
+            width: 30px;
+            height: 30px;
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+        .product-counter {
+          font-weight: 700;
+        }
+      }
+      .product-wishlist {
+        cursor: pointer;
+        svg {
+          color: $theme-accent1;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+    .product-share {
+      @include flex-layout(row, center, center);
+      i {
+        white-space: nowrap;
+        width: 100%;
+      }
+      div {
+        width: 100%;
+      }
+      .product-share-links {
+        @include flex-layout(row, center, center);
+        gap: 1.5rem;
+      }
+    }
+  }
+}

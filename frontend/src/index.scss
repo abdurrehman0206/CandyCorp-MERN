@@ -9,13 +9,18 @@
 @import "./components/Orders/Orders";
 @import "./components/Addresses/Addresses";
 @import "./components/UserSetting/userSetting";
-
+@import "./components/ProductDetail/ProductDetail";
+@import "./components/Reviews/Reviews";
+@import "./components/ProductDesc/ProductDesc";
 //pages
 @import "./pages/AboutUs/AboutUs";
 @import "./pages/UserProfile/UserProfiles";
 @import "./pages/Blog/Blog";
 @import "./pages/AuthPages/AuthPage";
 @import "./pages/ContactUs/ContactUs";
+@import "./pages/Home/Home";
+@import "./pages/Product/Product";
+
 .App-container {
   height: 100vh;
   width: 100vw;
