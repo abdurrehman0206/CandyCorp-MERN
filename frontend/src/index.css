@@ -1387,6 +1387,250 @@ body {
   }
 }
 
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  max-width: 100%;
+  margin: 20px auto;
+}
+@media (max-width: 767px) {
+  .product-detail {
+    grid-template-columns: 1fr;
+  }
+}
+.product-detail .product-detail-img .product-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.product-detail .product-detail-desc {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.product-detail .product-detail-desc .product-detail-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 2rem;
+}
+.product-detail .product-detail-desc .product-detail-header .product-price {
+  font-weight: 800;
+}
+.product-detail .product-detail-desc div {
+  height: 100%;
+  width: 100%;
+}
+.product-detail .product-detail-desc .product-info ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 1rem;
+}
+.product-detail .product-detail-desc .product-info ul li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.product-detail .product-detail-desc .product-info ul li h4 {
+  font-weight: 1000;
+}
+.product-detail .product-detail-desc .product-add-to-cart {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 1.5rem;
+}
+.product-detail .product-detail-desc .product-add-to-cart .product-quantity {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.product-detail .product-detail-desc .product-add-to-cart .product-quantity span {
+  padding: 5px;
+}
+.product-detail .product-detail-desc .product-add-to-cart .product-quantity .product-dec,
+.product-detail .product-detail-desc .product-add-to-cart .product-quantity .product-inc {
+  cursor: pointer;
+}
+.product-detail .product-detail-desc .product-add-to-cart .product-quantity .product-dec svg,
+.product-detail .product-detail-desc .product-add-to-cart .product-quantity .product-inc svg {
+  margin-top: 2px;
+  width: 30px;
+  height: 30px;
+}
+.product-detail .product-detail-desc .product-add-to-cart .product-quantity .product-dec svg:hover,
+.product-detail .product-detail-desc .product-add-to-cart .product-quantity .product-inc svg:hover {
+  opacity: 1;
+}
+.product-detail .product-detail-desc .product-add-to-cart .product-quantity .product-counter {
+  font-weight: 700;
+}
+.product-detail .product-detail-desc .product-add-to-cart .product-wishlist {
+  cursor: pointer;
+}
+.product-detail .product-detail-desc .product-add-to-cart .product-wishlist svg {
+  color: #bc131f;
+  width: 20px;
+  height: 20px;
+}
+.product-detail .product-detail-desc .product-share {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.product-detail .product-detail-desc .product-share i {
+  white-space: nowrap;
+  width: 100%;
+}
+.product-detail .product-detail-desc .product-share div {
+  width: 100%;
+}
+.product-detail .product-detail-desc .product-share .product-share-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.reviews-wrapper .reviews {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.reviews-wrapper .reviews .add-review {
+  padding: 0.5rem;
+  font-size: 1rem;
+  align-self: end;
+}
+.reviews-wrapper .reviews .add-review svg {
+  margin-right: 3px;
+}
+.reviews-wrapper .reviews .customer-review {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid;
+  border-color: #e6e6e6;
+}
+.reviews-wrapper .reviews .customer-review-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+.reviews-wrapper .reviews .customer-review-header .customer-profile-image {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid;
+  border-radius: 50%;
+}
+.reviews-wrapper .reviews .customer-review-header .customer-name {
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+.reviews-wrapper .reviews .customer-review-header .customer-rating-stars {
+  margin-right: 0.5rem;
+}
+.reviews-wrapper .reviews .customer-review-header .customer-rating-stars svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.reviews-wrapper .reviews .customer-review-header .customer-review-info {
+  padding: 0.75rem;
+}
+.reviews-wrapper .reviews .customer-review-desc h4 {
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+.reviews-wrapper .reviews .customer-review-desc p {
+  font-weight: normal;
+}
+.reviews-wrapper .reviews .review-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 1rem;
+  padding: 0.75rem;
+  width: 100%;
+}
+.reviews-wrapper .reviews .review-form button {
+  align-self: end;
+}
+.reviews-wrapper .reviews .review-form span {
+  display: block;
+  margin-bottom: 5px;
+}
+.reviews-wrapper .reviews .review-form .review-form-input {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.reviews-wrapper .reviews .review-form .review-message-area-container {
+  width: 100%;
+}
+.reviews-wrapper .reviews .review-form .review-message-area-container .review-message-area {
+  width: 100%;
+  padding: 10px;
+  height: 100px;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  background-color: #fff;
+  color: #000;
+  outline: none;
+  transition: background-color 0.2s;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.reviews-wrapper .reviews .review-form .review-message-area-container .review-message-area:focus {
+  background-color: #f0f0f0;
+}
+.reviews-wrapper .reviews .review-form .review-form-rating {
+  width: auto;
+}
+.reviews-wrapper .reviews .review-form .review-form-rating svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.product-desc-wrapper .product-desc {
+  color: #45474b;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 2rem;
+}
+.product-desc-wrapper .product-desc span svg {
+  width: 50px;
+  height: 50px;
+  opacity: 0.7;
+}
+.product-desc-wrapper .product-desc p {
+  font-size: 18px;
+}
+
 .about-us-wrapper .about-us .about-us-hero {
   overflow: hidden;
   border-radius: 5px;
@@ -1786,6 +2030,62 @@ body {
   .contact-wrapper .contact-container {
     grid-template-columns: 1fr;
   }
+}
+
+.product-wrapper .product .product-desc-review-container .product-desc-review-navbar {
+  color: #45474b;
+  width: 50%;
+  border-bottom: 1px solid gray;
+  padding: 0 0.75rem;
+  z-index: 1;
+}
+@media (max-width: 767px) {
+  .product-wrapper .product .product-desc-review-container .product-desc-review-navbar {
+    width: 70%;
+  }
+}
+.product-wrapper .product .product-desc-review-container .product-desc-review-navbar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.product-wrapper .product .product-desc-review-container .product-desc-review-navbar ul li {
+  justify-content: flex-start;
+  margin: 0;
+  margin: 0.5rem 0;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+}
+.product-wrapper .product .product-desc-review-container .product-desc-review-navbar ul li a {
+  padding: 0.75rem 0;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+}
+.product-wrapper .product .product-desc-review-container .product-desc-review-navbar ul li a:hover {
+  z-index: 2;
+  position: relative;
+  color: #ffffff;
+  background-color: #bc131f;
+  transition: 0.2s ease-in-out;
+}
+.product-wrapper .product .product-desc-review-container .product-desc-review-navbar ul li a.product-navlink-active {
+  z-index: 2;
+  position: relative;
+  color: #ffffff;
+  background-color: #bc131f;
+  transition: 0.2s ease-in-out;
+}
+.product-wrapper .product .related-product-container {
+  margin-top: 5rem;
+}
+.product-wrapper .product .related-product-container h2 {
+  width: 100%;
+  text-align: center;
 }
 
 .App-container {

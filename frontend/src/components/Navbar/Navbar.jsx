@@ -13,7 +13,7 @@ import {
   AiFillInstagram,
 } from "react-icons/ai";
 import { CgProfile, CgFacebook } from "react-icons/cg";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Navbar() {
   const { user } = useAuthContext();
   const { logout } = useLogout();

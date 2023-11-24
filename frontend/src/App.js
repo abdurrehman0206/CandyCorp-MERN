@@ -1,6 +1,13 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
-import { Addresses, Layout, Orders, UserSetting } from "./components/imports";
+import {
+  Addresses,
+  Layout,
+  Orders,
+  ProductDesc,
+  Reviews,
+  UserSetting,
+} from "./components/imports";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -11,6 +18,7 @@ import {
   SignUp,
   UserProfile,
   ContactUs,
+  Product,
 } from "./pages/imports";
 
 function App() {
@@ -44,6 +52,10 @@ function App() {
               <Route path="contact" element={<ContactUs />} />
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
+              <Route path="product" element={<Product />}>
+                <Route path="product-description" element={<ProductDesc />} />
+                <Route path="customer-reviews" element={<Reviews />} />
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>

@@ -83,7 +83,6 @@ function Orders() {
 
 
               <p>{order.date}</p>
-=======
               <p>{new Date(order.createdAt).toLocaleString()}</p>
 
             </div>

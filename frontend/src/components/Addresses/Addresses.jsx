@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import Input from "../Common/Input";
@@ -27,30 +27,6 @@ function Addresses() {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
   const handleAddressUpdate = async () => {};
-  // addresses data
-  // const adresses = [
-  //   {
-  //     id: 1,
-  //     address: "123 Main St",
-  //     city: "Canada",
-  //     state: "Cn",
-  //     zip: "10011",
-  //   },
-  //   {
-  //     id: 2,
-  //     address: "123 Main St",
-  //     city: "New York",
-  //     state: "NY",
-  //     zip: "10001",
-  //   },
-  //   {
-  //     id: 3,
-  //     address: "123 Main St",
-  //     city: "Pakistan",
-  //     state: "PK",
-  //     zip: "10021",
-  //   },
-  // ];
 
   return (
     <div className="adresses-wrapper">

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import Input from "../../components/Common/Input";
 import { CgFacebook } from "react-icons/cg";
