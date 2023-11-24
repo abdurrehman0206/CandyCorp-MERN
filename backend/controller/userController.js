@@ -159,7 +159,7 @@ const addAddress = async (req, res) => {
     return res.status(201).json({
       success: true,
       message: "Address added successfully",
-      data: newAddress,
+      data: updatedUser.addresses[updatedUser.addresses.length - 1],
     });
   } catch (error) {
     return res.status(500).json({

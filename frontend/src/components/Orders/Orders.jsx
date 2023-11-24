@@ -5,10 +5,10 @@ function Orders() {
   const [orders, setOrders] = useState([]);
   useLayoutEffect(() => {
     if (!user) {
+      console.log("User is not logged in");
       return;
     }
     const getOrders = async () => {
-      
       if (user) {
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/api/orders/${user.id}`,
@@ -33,32 +33,6 @@ function Orders() {
     };
     getOrders();
   }, [user]);
-  // const orders = [
-  //   {
-  //     id: 1,
-  //     date: "2020-01-01",
-  //     status: "in-progress",
-  //     total: 100,
-  //   },
-  //   {
-  //     id: 2,
-  //     date: "2020-01-01",
-  //     status: "cancelled",
-  //     total: 100,
-  //   },
-  //   {
-  //     id: 3,
-  //     date: "2020-01-01",
-  //     status: "shipped",
-  //     total: 100,
-  //   },
-  //   {
-  //     id: 4,
-  //     date: "2020-01-01",
-  //     status: "delivered",
-  //     total: 100,
-  //   },
-  // ];
 
   if (orders.length === 0) {
     return (
@@ -81,10 +55,8 @@ function Orders() {
                 {order.status}
               </span>
 
-
               <p>{order.date}</p>
               <p>{new Date(order.createdAt).toLocaleString()}</p>
-
             </div>
             <div className="view-order">
               <button className="view-order-btn">View Order</button>

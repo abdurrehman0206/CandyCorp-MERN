@@ -4,17 +4,17 @@ export const productReducer = (state, action) => {
   switch (action.type) {
     case "SET_PRODUCTS":
       return {
-        PRODUCTS: action.payload,
+        products: action.payload,
       };
 
     case "ADD_PRODUCT":
       return {
-        PRODUCTS: [...state.blogs, action.payload],
+        products: [...state.products, action.payload],
       };
 
     case "CLEAR_PRODUCTS":
       return {
-        PRODUCTS: null,
+        products: null,
       };
 
     default:
@@ -24,7 +24,7 @@ export const productReducer = (state, action) => {
 export const ProductContext = createContext();
 export const ProductContextProvider = ({ children }) => {
   const initialState = {
-    PRODUCTS: null,
+    products: null,
   };
 
   const [state, dispatch] = useReducer(productReducer, initialState);

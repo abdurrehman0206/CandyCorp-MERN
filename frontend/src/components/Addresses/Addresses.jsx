@@ -3,13 +3,13 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import Input from "../Common/Input";
 function Addresses() {
-  const { user } = useAuthContext();
-  console.log("🚀 ~ file: Addresses.jsx:7 ~ Addresses ~ user:", user);
+  const { user, dispatch } = useAuthContext();
+  const [updateId, setUpdateId] = useState("");
 
   // const [addressEdit, setAddressEdit] = useState(false);
   const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     company: "",
     address1: "",
     address2: "",
@@ -19,20 +19,41 @@ function Addresses() {
   });
   const [showForm, setShowForm] = useState(false);
   const [update, setUpdate] = useState(false);
-  // useEffect(() => {
-  //   console.log(values);
-  // }, [values]);
-  // onChange Handler
+
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
   const handleAddressUpdate = async () => {};
+  // addresses data
+  // const adresses = [
+  //   {
+  //     id: 1,
+  //     address: "123 Main St",
+  //     city: "Canada",
+  //     state: "Cn",
+  //     zip: "10011",
+  //   },
+  //   {
+  //     id: 2,
+  //     address: "123 Main St",
+  //     city: "New York",
+  //     state: "NY",
+  //     zip: "10001",
+  //   },
+  //   {
+  //     id: 3,
+  //     address: "123 Main St",
+  //     city: "Pakistan",
+  //     state: "PK",
+  //     zip: "10021",
+  //   },
+  // ];
 
   return (
     <div className="adresses-wrapper">
       <div className="addresses">
         {user.addresses.length === 0 ? (
-          <div className="no-orders">
+          <div className="no-orders" key={user.addresses.length}>
             <p>
               Sweeten your day with CandyCorp's treats, but it looks like our
               delivery sleigh needs a map to find your address. Add one and let
@@ -44,6 +65,7 @@ function Addresses() {
             {user.addresses.map((address, index) => (
               <div key={address.id} className="address-content">
                 <h3>Address # {index + 1}</h3>
+
                 <div className="address">
                   <p>
                     {address.address1}, {address.address2} {address.country}
@@ -55,9 +77,10 @@ function Addresses() {
                     onClick={() => {
                       setUpdate(true);
                       setShowForm(true);
+                      setUpdateId(address._id);
                       setValues({
-                        firstName: address.firstname,
-                        lastName: address.lastname,
+                        firstname: address.firstname,
+                        lastname: address.lastname,
                         company: address.company,
                         address1: address.address1,
                         address2: address.address2,
@@ -69,7 +92,12 @@ function Addresses() {
                   >
                     <AiOutlineEdit />
                   </button>
-                  <button className="address-btn-delete">
+                  <button
+                    className="address-btn-delete"
+                    onClick={() => {
+                      handleAddressDelete(address._id);
+                    }}
+                  >
                     <AiOutlineDelete />
                   </button>
                 </div>
@@ -80,7 +108,24 @@ function Addresses() {
         {
           <button
             className="add-address-btn btn-box-primary"
-            onClick={() => setShowForm(!showForm)}
+            onClick={() => {
+              if (showForm) {
+                setShowForm(false);
+                setUpdate(false);
+              } else {
+                setValues({
+                  firstname: "",
+                  lastname: "",
+                  company: "",
+                  address1: "",
+                  address2: "",
+                  country: "",
+                  postalCode: "",
+                  phone: "",
+                });
+                setShowForm(true);
+              }
+            }}
           >
             {showForm ? "Cancel" : "Add Address"}
           </button>
@@ -102,15 +147,15 @@ function Addresses() {
                   <Input
                     label="First name"
                     type="text"
-                    value={values.firstName}
-                    name="firstName"
+                    value={values.firstname}
+                    name="firstname"
                     onChange={handleChange}
                   />
                   <Input
                     label="Last name"
                     type="text"
-                    value={values.lastName}
-                    name="lastName"
+                    value={values.lastname}
+                    name="lastname"
                     onChange={handleChange}
                   />
                   <Input
@@ -163,6 +208,8 @@ function Addresses() {
                   onClick={() => {
                     if (update) {
                       handleAddressUpdate();
+                    } else {
+                      handleAddressAdd();
                     }
                   }}
                 >
