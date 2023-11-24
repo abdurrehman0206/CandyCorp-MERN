@@ -69,7 +69,27 @@ function Cart() {
             );
           })}
         </div>
-        <div className="cart-summary"></div>
+        <div className="cart-summary">
+          <h4>Summary</h4>
+          <ul>
+            <li>
+              Subtotal <span>$1000</span>
+            </li>
+            <li>
+              Taxes <span>$100</span>
+            </li>
+            <li>
+              Shipping <span>$80</span>
+            </li>
+            <br />
+            <hr />
+
+            <li>
+              Total <span>$1180</span>
+            </li>
+          </ul>
+          <button className="btn-box-primary checkout-btn">Check Out</button>
+        </div>
       </div>
     </div>
   );
