@@ -19,7 +19,9 @@ import {
   UserProfile,
   ContactUs,
   Products,
+  Product,
   Blogs,
+  Blog,
 } from "./pages/imports";
 
 function App() {
@@ -47,6 +49,7 @@ function App() {
               <Route path="shop" element={<Products />} />
               <Route path="bundles" element={<Bundles />} />
               <Route path="blogs" element={<Blogs />} />
+              <Route path="blogs/:blogId" element={<Blog />} />
 
               <Route path="account" element={<UserProfile />}>
                 <Route path="myorders" element={<Orders />} />

@@ -1,19 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { SlCalender } from "react-icons/sl";
-function BlogCard() {
+function BlogCard(props) {
+  const nav = useNavigate();
   return (
-    <div className="blog-card-container">
+    <div className="blog-card-container" onClick={() => nav(`${props._id}`)}>
       <div className="blog-card">
-        <img
-          src="https://thumbs.dreamstime.com/z/valentines-day-candy-hearts-4014974.jpg?w=992"
-          alt="Blog Post"
-        />
+        <img src={props.imageUrl} alt={props.title} />
         <div className="blog-card-info">
           <small>
             <SlCalender />
-            September 23 , 2020
+            {new Date(props.createdAt).toDateString()}
           </small>
-          <h1>Top 10 Candies of the Month</h1>
+          <h1>{props.title}</h1>
         </div>
       </div>
     </div>

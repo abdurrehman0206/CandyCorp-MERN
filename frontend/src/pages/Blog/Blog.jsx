@@ -1,15 +1,43 @@
-import React from "react";
+import React, { useState, useLayoutEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { useAuthContext } from "../../hooks/useAuthContext";
 function Blog() {
-  const blogData = {
-    title: "Sample Blog Title",
-    date: "October 30, 2023",
-    content:
-      "Greetings fellow Halloween fiends, tis the season for another dive down the history of Halloween. This time we’re rewinding through the decades and exploring the most popular Halloween candies from each decade. We can start this deep dive as far back as we’d like, but for the sake of our candy-loving readers, we’ll begin our journey in the 80s! Before we start, we’d like to acknowledge that there is an endless selection of candies we could choose from each decade. However, we had to narrow our selection down to the most popular candies during the Halloween season from each respective decade.",
-    imageUrl:
-      "https://www.candywarehouse.com/cdn/shop/articles/Blog_History-of-Rock-Candy-01.jpg?v=1692305964", // Replace with your image URL
-  };
+  const [blogData, setBlogData] = useState("");
+  const { user } = useAuthContext();
+  const { blogId } = useParams();
+  console.log("🚀 ~ file: Blog.jsx:7 ~ Blog ~ blogId:", blogId);
+
+  useLayoutEffect(() => {
+    const fetchBlog = async () => {
+      if (!user) {
+        console.log("User not logged in");
+        return;
+      } else {
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/api/blogs/${blogId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        const json = await response.json();
+        if (json.success) {
+          setBlogData(json.data);
+        } else {
+          console.log(json.error);
+        }
+      }
+    };
+    fetchBlog();
+  }, [user, blogId]);
+  if (!blogData) {
+    return;
+  }
   return (
     <div className="blog-wrapper">
       <div className="blog">
@@ -20,7 +48,14 @@ function Blog() {
           <h1 className="blog-title">{blogData.title}</h1>
           <p className="blog-date">{blogData.date}</p>
         </div>
-        <img src={blogData.imageUrl} alt="Blog" className="blog-image" />
+        <div className="blog-image-cont">
+          <img
+            src={blogData.imageUrl}
+            alt="Blog"
+            className="blog-image"
+            loading="eager"
+          />
+        </div>
         <p className="blog-content">{blogData.content}</p>
       </div>
     </div>

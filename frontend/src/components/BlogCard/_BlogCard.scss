@@ -1,13 +1,15 @@
 .blog-card-container {
   .blog-card {
     max-width: 400px;
-
+    height: 300px;
     border: 1px solid $outline-border-color;
     overflow: hidden;
     border-radius: 5px;
     position: relative;
     img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: flex;
     }
     .blog-card-info {
@@ -31,6 +33,11 @@
       small {
         @include flex-layout(row, flex-start, center);
         gap: $sm;
+      }
+      transition: $transition;
+      &:hover {
+        transition: $transition;
+        background-color: rgba(0, 0, 0, 0.429);
       }
     }
     box-shadow: $box-shadow;

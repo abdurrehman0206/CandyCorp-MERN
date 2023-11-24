@@ -41,9 +41,15 @@
   }
 
   .blog-image {
+    object-position: center;
     max-width: 100%;
-    height: auto;
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+  }
+  .blog-image-cont {
     margin: 20px 0;
+    height: 300px;
   }
 
   .blog-content {

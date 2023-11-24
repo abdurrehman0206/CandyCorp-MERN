@@ -1,0 +1,5 @@
+.blogs-grid {
+  @include flex-layout(row, center, flex-start);
+  gap: $md;
+  flex-wrap: wrap;
+}
