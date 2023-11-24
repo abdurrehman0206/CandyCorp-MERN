@@ -1,5 +1,7 @@
 .product-card-container {
   max-width: 243px;
+  max-height: 355px;
+
   .product-card {
     border: 1px solid $outline-border-color;
     padding: $sm;
@@ -17,10 +19,14 @@
 .product-card {
   .product-card-header {
     overflow: hidden;
-
     position: relative;
+    width: 100%;
     img {
       display: flex;
+      object-fit: contain;
+      max-width: 100%;
+      width: 100%;
+      height: 225px;
     }
     .product-card-likes-badge,
     .product-card-stock-badge {
@@ -67,7 +73,7 @@
     .product-card-price {
       @include flex-layout(row, center, center);
       gap: $sm;
-      p {
+      .onSale {
         position: relative;
         &::after {
           content: "";

@@ -1,14 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
-function ProductCard() {
+function ProductCard(props) {
+  const nav = useNavigate();
   return (
-    <div className="product-card-container">
+    <div className="product-card-container" onClick={() => nav(`${props._id}`)}>
       <div className="product-card">
         <div className="product-card-header">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNBq0VK0U_vL56TP_oq1HupZDbiTBlnKZxfXdig0YiCfWt59RTyoT-tB_noQg8KZPrPmU&usqp=CAU"
-            alt="product card"
-          />
+          <img src={props.images[0]} alt={props.name + props.description} />
           <span className="product-card-stock-badge instock">IN STOCK</span>
           {/* <span className="product-card-stock-badge outofstock">
             Out Of Stock
@@ -18,11 +17,17 @@ function ProductCard() {
           </span>
         </div>
         <div className="product-card-info">
-          <h1>Twix Bar</h1>
+          <h1>{props.name}</h1>
           <div className="product-card-price">
-            <p>100 CAD</p>
-            <small>90 CAD</small>
-            <small className="product-card-sale">On Sale</small>
+            <p className={props.onSale ? "onSale" : ""}>{props.price} CAD</p>
+            {props.onSale && (
+              <>
+                <small>
+                  {props.price * ((100 - props.salePercentage) / 100)} CAD
+                </small>
+                <small className="product-card-sale">On Sale</small>
+              </>
+            )}
           </div>
         </div>
         <div className="product-card-action">

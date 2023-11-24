@@ -20,7 +20,7 @@ function Navbar() {
   const nav = useNavigate();
   const navItems = [
     { name: "Home", path: "" },
-    { name: "Shop", path: "shop" },
+    { name: "Shop", path: "products" },
     {
       name: "Deals",
       path: "deals",

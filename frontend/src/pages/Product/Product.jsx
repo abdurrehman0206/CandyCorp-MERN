@@ -1,21 +1,55 @@
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import { ProductDetail } from "../../components/imports";
 // import Logo from "../../assets/Logo.png";
 import productimg from "../../assets/candy2.jpeg";
 import { NavLink, Outlet } from "react-router-dom";
 function Product() {
+  const [productData, setProductData] = useState("");
+  const { user } = useAuthContext();
+  const { productId } = useParams();
+
+  useLayoutEffect(() => {
+    const fetchProduct = async () => {
+      if (!user) {
+        console.log("User not logged in");
+        return;
+      } else {
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/api/products/${productId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        const json = await response.json();
+        if (json.success) {
+          setProductData(json.data);
+        } else {
+          console.log(json.error);
+        }
+      }
+    };
+    fetchProduct();
+  }, [user, productId]);
+  if (!productData) {
+    return;
+  }
+  console.log(productData);
   return (
     <div className="product-wrapper">
       <div className="product">
         <ProductDetail
-          productName={"Bublix"}
-          productImg={productimg}
-          productPrice={14}
-          productInfo={
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis."
-          }
+          productName={productData.name}
+          productImg={productData.images[0]}
+          productPrice={productData.price}
+          productInfo={productData.description}
           productCategory={"Gumms"}
-          productId={345345}
+          productId={productData._id}
         />
 
         <section className="product-desc-review-container">

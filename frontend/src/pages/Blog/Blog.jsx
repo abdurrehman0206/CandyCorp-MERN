@@ -7,7 +7,7 @@ function Blog() {
   const [blogData, setBlogData] = useState("");
   const { user } = useAuthContext();
   const { blogId } = useParams();
-  console.log("🚀 ~ file: Blog.jsx:7 ~ Blog ~ blogId:", blogId);
+ 
 
   useLayoutEffect(() => {
     const fetchBlog = async () => {

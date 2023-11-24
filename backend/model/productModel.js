@@ -9,6 +9,8 @@ const productSchema = new Schema(
     price: { type: Number },
     quantity: { type: Number },
     inStock: { type: Boolean },
+    onSale: { type: Boolean, default: false },
+    salePercentage: { type: Number, default: 0, min: 0, max: 100 },
     images: [{ type: String }],
     reviews: [
       {
@@ -18,8 +20,7 @@ const productSchema = new Schema(
       },
     ],
   },
-  { timestamps: true },
-  
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("PRODUCT", productSchema);
