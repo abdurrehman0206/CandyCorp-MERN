@@ -586,6 +586,14 @@ body {
   color: #45474b;
   margin-left: 2rem;
 }
+.nav-responsive .nav-user-icon img {
+  width: 25px;
+  height: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #bc131f;
+}
 .nav-responsive .nav-bottom {
   margin-top: 10px;
 }
@@ -615,6 +623,13 @@ body {
 }
 .nav-responsive .nav-cpy {
   font-size: 12px;
+}
+.nav-responsive li svg {
+  transition: 0.2s ease-in-out;
+}
+.nav-responsive li svg:hover {
+  transition: 0.2s ease-in-out;
+  color: #bc131f;
 }
 
 .nav-link {

@@ -36,7 +36,7 @@ function Navbar() {
     },
     {
       name: "Blog",
-      path: "blog",
+      path: "blogs",
     },
     { name: "Contact", path: "contact" },
     {
@@ -145,8 +145,12 @@ function Navbar() {
           </Link>
 
           <ul>
-            <li>
-              <CgProfile />
+            <li className="nav-user-icon">
+              {user ? (
+                <img src={user.image} alt={user.username} />
+              ) : (
+                <CgProfile />
+              )}
             </li>
             <li>
               <AiOutlineHeart />
@@ -155,7 +159,25 @@ function Navbar() {
               <AiOutlineShoppingCart />
             </li>
           </ul>
-          <button className="btn-box-primary">Sign in</button>
+          {user ? (
+            <button
+              className="btn-box-outline"
+              onClick={() => {
+                logout();
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              className="btn-box-primary"
+              onClick={() => {
+                nav("/login");
+              }}
+            >
+              Sign in
+            </button>
+          )}
         </div>
         <div className="nav-bottom">
           {/* Nav  Items */}

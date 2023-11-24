@@ -300,7 +300,15 @@
       margin-left: 2rem;
     }
   }
-
+  .nav-user-icon {
+    img {
+      width: 25px;
+      height: 25px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid $theme-accent1;
+    }
+  }
   .nav-bottom {
     margin-top: 10px;
     ul {
@@ -329,6 +337,15 @@
   }
   .nav-cpy {
     font-size: 12px;
+  }
+  li {
+    svg {
+      transition: $transition;
+      &:hover {
+        transition: $transition;
+        color: $theme-accent1;
+      }
+    }
   }
 }
 
