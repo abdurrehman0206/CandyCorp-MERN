@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import SearchBar from "../Common/SearchBar";
 import Links from "./Links";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -78,48 +78,57 @@ function Navbar() {
         <div className="nav-right">
           <ul>
             <li>
-              <AiOutlineHeart />
+              <NavLink>
+                <AiOutlineHeart />
+              </NavLink>
             </li>
             <li>
-              <AiOutlineShoppingCart />
+              <NavLink to="cart" className="navbar-cart-icon">
+                <AiOutlineShoppingCart />
+                <span className="cart-quantity-counter">
+                  {/* Cart Counter goes here */}2
+                </span>
+              </NavLink>
             </li>
             <li className="nav-user-icon">
-              {user ? (
-                <img src={user.image} alt={user.username} />
-              ) : (
-                <CgProfile />
-              )}
+              <NavLink>
+                {user ? (
+                  <img src={user.image} alt={user.username} />
+                ) : (
+                  <CgProfile />
+                )}
 
-              <div className="dropdown-wrapper show-profile-menu ">
-                <div className="dropdown">
-                  <ul className="dropdown-content">
-                    {/*  */}
-                    <li>
-                      <Link to="account">My Account</Link>
-                    </li>
-                    <li>Orders</li>
-                  </ul>
-                  {user ? (
-                    <button
-                      className="btn-box-outline"
-                      onClick={() => {
-                        logout();
-                      }}
-                    >
-                      Logout
-                    </button>
-                  ) : (
-                    <button
-                      className="btn-box-primary"
-                      onClick={() => {
-                        nav("/login");
-                      }}
-                    >
-                      Sign in
-                    </button>
-                  )}
+                <div className="dropdown-wrapper show-profile-menu ">
+                  <div className="dropdown">
+                    <ul className="dropdown-content">
+                      {/*  */}
+                      <li>
+                        <Link to="account">My Account</Link>
+                      </li>
+                      <li>Orders</li>
+                    </ul>
+                    {user ? (
+                      <button
+                        className="btn-box-outline"
+                        onClick={() => {
+                          logout();
+                        }}
+                      >
+                        Logout
+                      </button>
+                    ) : (
+                      <button
+                        className="btn-box-primary"
+                        onClick={() => {
+                          nav("/login");
+                        }}
+                      >
+                        Sign in
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </NavLink>
             </li>
           </ul>
           <span className="hamburger">
@@ -146,17 +155,30 @@ function Navbar() {
 
           <ul>
             <li className="nav-user-icon">
-              {user ? (
-                <img src={user.image} alt={user.username} />
-              ) : (
-                <CgProfile />
-              )}
+              <NavLink to="account" onClick={hideSideBarMenu}>
+                {user ? (
+                  <img src={user.image} alt={user.username} />
+                ) : (
+                  <CgProfile />
+                )}
+              </NavLink>
             </li>
             <li>
-              <AiOutlineHeart />
+              <NavLink>
+                <AiOutlineHeart />
+              </NavLink>
             </li>
             <li>
-              <AiOutlineShoppingCart />
+              <NavLink
+                to="cart"
+                onClick={hideSideBarMenu}
+                className="navbar-cart-icon-resp"
+              >
+                <AiOutlineShoppingCart />
+                <span className="cart-quantity-counter-resp">
+                  {/* Cart Counter goes here */}2
+                </span>
+              </NavLink>
             </li>
           </ul>
           {user ? (

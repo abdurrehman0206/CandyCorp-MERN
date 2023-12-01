@@ -16,9 +16,7 @@ function ProductDetail({
   return (
     <div className="product-detail-wrapper">
       <section className="product-detail">
-        {/* Product Image */}
         <div className="product-detail-img">
-          {/* <img src={productImg} alt="Candy Corp Logo" /> */}
           <ReactImageMagnify
             {...{
               smallImage: {
@@ -36,25 +34,6 @@ function ProductDetail({
             hoverOffDelayInMs={0}
             // className="product-image"
           />
-          {/* <ReactImageMagnify
-            {...{
-              smallImage: {
-                alt: "Wristwatch by Versace",
-                isFluidWidth: true,
-                src: productImg,
-                srcSet: productImg,
-                sizes:
-                  "(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px",
-              },
-              largeImage: {
-                src: productImg,
-                width: 1426,
-                height: 2000,
-              },
-              lensStyle: { backgroundColor: "rgba(0,0,0,.6)" },
-            }}
-            {...rimProps}
-          /> */}
         </div>
 
         {/* Product Details */}
@@ -101,10 +80,6 @@ function ProductDetail({
               <li>
                 <h4>Category : </h4>
                 <span>{productCategory}</span>
-              </li>
-              <li>
-                <h4>Product Id : </h4>
-                <span>{productId}</span>
               </li>
             </ul>
           </div>
