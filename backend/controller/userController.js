@@ -315,6 +315,117 @@ const deleteAddress = async (req, res) => {
     });
   }
 };
+const addToCart = async (req, res) => {
+  const { productId, quantity } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const user = await USER.findById(userId);
+
+    const existingCartItem = USER.shoppingCart.find(
+      (item) => item.productId.toString() === productId
+    );
+
+    if (existingCartItem) {
+      existingCartItem.quantity += quantity || 1;
+    } else {
+      user.shoppingCart.push({ productId, quantity: quantity || 1 });
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Product added to the cart successfully",
+      data: user.shoppingCart,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Error",
+      error: error.message,
+    });
+  }
+};
+
+const getCart = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const user = await USER.findById(userId).populate("shoppingCart.productId");
+
+    res.status(200).json({
+      success: true,
+      message: "Shopping cart fetched successfully",
+      data: user.shoppingCart,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Error",
+      error: error.message,
+    });
+  }
+};
+
+const updateCartItem = async (req, res) => {
+  const { productId, quantity } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const user = await USER.findById(userId);
+
+    const existingCartItem = user.shoppingCart.find(
+      (item) => item.productId.toString() === productId
+    );
+
+    if (existingCartItem) {
+    
+      existingCartItem.quantity = quantity || 1;
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Shopping cart item updated successfully",
+      data: user.shoppingCart,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Error",
+      error: error.message,
+    });
+  }
+};
+
+const removeFromCart = async (req, res) => {
+  const { productId } = req.params;
+  const userId = req.user.id;
+
+  try {
+    const user = await USER.findById(userId);
+
+    user.shoppingCart = user.shoppingCart.filter(
+      (item) => item.productId.toString() !== productId
+    );
+
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Product removed from the cart successfully",
+      data: user.shoppingCart,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Error",
+      error: error.message,
+    });
+  }
+};
 
 module.exports = {
   signup,
@@ -323,4 +434,8 @@ module.exports = {
   updateAddress,
   deleteAddress,
   verifyToken,
+  addToCart,
+  getCart,
+  updateCartItem,
+  removeFromCart,
 };

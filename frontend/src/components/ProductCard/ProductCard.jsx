@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
 function ProductCard(props) {
   const nav = useNavigate();
+  const addProductToCart = async (productId) => {
+    console.log(productId);
+  };
   return (
-    <div className="product-card-container" onClick={() => nav(`${props._id}`)}>
+    <div className="product-card-container" >
       <div className="product-card">
-        <div className="product-card-header">
+        <div className="product-card-header" onClick={() => nav(`${props._id}`)}>
           <img src={props.images[0]} alt={props.name + props.description} />
           <span className="product-card-stock-badge instock">IN STOCK</span>
           {/* <span className="product-card-stock-badge outofstock">
@@ -31,7 +34,12 @@ function ProductCard(props) {
           </div>
         </div>
         <div className="product-card-action">
-          <button className="btn-box-primary">Add To Cart</button>
+          <button
+            className="btn-box-primary"
+            onClick={() => addProductToCart(props._id)}
+          >
+            Add To Cart
+          </button>
         </div>
       </div>
     </div>

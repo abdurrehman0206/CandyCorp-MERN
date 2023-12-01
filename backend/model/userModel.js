@@ -18,7 +18,12 @@ const userSchema = new Schema(
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     image: { type: String },
-    shoppingCart: [{ type: String }],
+    shoppingCart: [
+      {
+        productId: { type: mongoose.Types.ObjectId, ref: "PRODUCT" },
+        quantity: { type: Number, default: 1 },
+      },
+    ],
     addresses: [addressSchema],
   },
 

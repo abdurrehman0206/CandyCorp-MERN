@@ -128,84 +128,7 @@ const updateProduct = async (req, res) => {
   }
 };
 
-const addProductToCart = async (req, res) => {
-  const { id } = req.params;
-  const { ProductUserId } = req.body;
-  //TODO: Fix this
-  if (
-    !mongoose.Types.ObjectId.isValid(id) ||
-    !mongoose.Types.ObjectId.isValid(id)
-  ) {
-    return res.status(404).json({
-      success: false,
-      message: "Product not found",
-      error: "Invalid Id",
-    });
-  }
-  try {
-    const user = await USER.findById(req.user.id).select("shoppingCart");
 
-    const isAlreadyInCart = user.shoppingCart.find((item) => item === id);
-    if (isAlreadyInCart) {
-      return res.status(400).json({
-        success: false,
-        message: "Unable to add to cart",
-        error: "Product already in cart",
-      });
-    } else {
-      user.shoppingCart.push(id);
-      user.save();
-
-      res.status(200).json({
-        success: true,
-        message: "Product added to cart successfully",
-        data: user.shoppingCart,
-      });
-    }
-  } catch (error) {
-    res.status(404).json({
-      success: false,
-      message: "Product not found",
-      error: error.message,
-    });
-  }
-};
-const removeProductFromCart = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({
-      success: false,
-      message: "Product not found",
-      error: "Invalid Id",
-    });
-  }
-  try {
-    const user = await USER.findById(req.user.id).select("shoppingCart");
-    const isInCart = user.shoppingCart.find((item) => item === id);
-    if (!isInCart) {
-      return res.status(400).json({
-        success: false,
-        message: "Unable to remove from cart",
-        error: "Product not in cart",
-      });
-    } else {
-      user.shoppingCart = user.shoppingCart.filter((item) => item !== id);
-      user.save();
-
-      res.status(200).json({
-        success: true,
-        message: "Product removed from cart successfully",
-        data: user.shoppingCart,
-      });
-    }
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-      error: error.message,
-    });
-  }
-};
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -336,8 +259,6 @@ module.exports = {
   getProducts,
   getProduct,
   updateProduct,
-  addProductToCart,
-  removeProductFromCart,
   deleteProduct,
   addUserReview,
   updateUserReview,
