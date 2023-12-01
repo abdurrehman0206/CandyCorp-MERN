@@ -155,7 +155,7 @@ function Navbar() {
 
           <ul>
             <li className="nav-user-icon">
-              <NavLink>
+              <NavLink to="account" onClick={hideSideBarMenu}>
                 {user ? (
                   <img src={user.image} alt={user.username} />
                 ) : (
