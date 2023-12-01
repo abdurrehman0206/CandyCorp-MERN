@@ -39,7 +39,7 @@ function Product() {
   if (!productData) {
     return;
   }
-  console.log(productData);
+ 
   return (
     <div className="product-wrapper">
       <div className="product">

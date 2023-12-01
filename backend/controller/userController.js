@@ -1,5 +1,6 @@
 const USER = require("../model/userModel");
 const JWT = require("jsonwebtoken");
+const { userInfo } = require("os");
 const validator = require("validator");
 
 const generateToken = (email, id) => {
@@ -322,7 +323,7 @@ const addToCart = async (req, res) => {
   try {
     const user = await USER.findById(userId);
 
-    const existingCartItem = USER.shoppingCart.find(
+    const existingCartItem = user.shoppingCart.find(
       (item) => item.productId.toString() === productId
     );
 
