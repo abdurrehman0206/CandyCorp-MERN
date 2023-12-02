@@ -1,19 +1,24 @@
 .cart {
   display: grid;
   grid-template-columns: 3fr 1fr;
+  gap: $xl;
   .cart-summary {
-    margin-top: 5.7rem;
     padding: $xl;
+    border-radius: 5px;
     // background-color: $theme-accent3;
     @include flex-layout(column, start, center);
     // color: $text-color;
     gap: 1rem;
     width: 100%;
-    box-shadow: $box-shadow-hover;
+    box-shadow: $box-shadow;
+    border: 1px solid $outline-border-color;
+    border: 2px solid $theme-accent1;
+
     width: 100%;
     h4 {
       // background-color: $theme-accent1;
-      padding: 0.5rem;
+      // padding: $sm;
+      text-align: center;
       border-radius: 5px;
       font-size: $xl;
       font-weight: 1000;
@@ -38,21 +43,25 @@
         margin-top: 0.5rem;
         font-weight: 1000;
       }
+      hr {
+        border: 1px solid $theme-accent1;
+      }
     }
     .checkout-btn {
-      width: 70%;
+      width: 100%;
+    }
+    transition: $transition;
+    &:hover {
+      transition: $transition;
+      box-shadow: $box-shadow-hover;
     }
   }
   .cart-items {
-    // box-shadow: $box-shadow;
-    padding: $md;
     .cart-items-header {
-      // background-color: $theme-accent3;
-
       span {
         opacity: 0.7;
-        padding: 0.5rem;
-        // background-color: $theme-accent1;
+        padding: $sm;
+
         border-radius: 5px;
         &:nth-child(2),
         &:nth-child(5) {
@@ -61,7 +70,6 @@
         }
       }
 
-      // color: $text-color;
       padding: $md;
       display: grid;
       grid-template-columns: auto 3fr 1fr 1fr 1fr;
@@ -84,6 +92,7 @@
       }
     }
     .cart-item-container {
+      border-radius: 5px;
       margin-bottom: 1rem;
       padding: $md;
       display: grid;
@@ -93,14 +102,15 @@
       align-items: center;
       gap: 2rem;
       box-shadow: $box-shadow;
+      transition: $transition;
       &:hover {
+        transition: $transition;
         box-shadow: $box-shadow-hover;
       }
       .item-name {
         h4 {
           font-weight: 800;
           font-size: $xl;
-          //   background-color: red;
         }
         span {
           font-weight: 600;

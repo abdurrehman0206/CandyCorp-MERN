@@ -86,7 +86,7 @@ function Navbar() {
               <NavLink to="cart" className="navbar-cart-icon">
                 <AiOutlineShoppingCart />
                 <span className="cart-quantity-counter">
-                  {/* Cart Counter goes here */}2
+                  {/* Cart Counter goes here */}{user ? user.shoppingCart.length : 0}
                 </span>
               </NavLink>
             </li>

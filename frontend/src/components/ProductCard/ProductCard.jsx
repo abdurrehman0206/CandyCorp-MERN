@@ -1,17 +1,45 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
+import { useAuthContext } from "../../hooks/useAuthContext";
 function ProductCard(props) {
   const nav = useNavigate();
+  const { user, dispatch } = useAuthContext();
   const addProductToCart = async (productId) => {
-    console.log(productId);
+    if (!user) {
+      console.log("User not logged in");
+      return;
+    } else {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/users/add-to-cart`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({ productId, quantity: 1 }),
+        }
+      );
+      const json = await response.json();
+      if (json.success) {
+        dispatch({ type: "ADD_TO_CART", payload: json.data });
+      } else {
+        console.log(json.error);
+      }
+    }
   };
   return (
-    <div className="product-card-container" >
+    <div className="product-card-container">
       <div className="product-card">
-        <div className="product-card-header" onClick={() => nav(`${props._id}`)}>
+        <div
+          className="product-card-header"
+          onClick={() => nav(`${props._id}`)}
+        >
           <img src={props.images[0]} alt={props.name + props.description} />
-          <span className="product-card-stock-badge instock">IN STOCK</span>
+          <span className="product-card-stock-badge instock">
+            {props.quantity} IN STOCK
+          </span>
           {/* <span className="product-card-stock-badge outofstock">
             Out Of Stock
           </span> */}
