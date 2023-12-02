@@ -37,7 +37,7 @@ function Product() {
   if (!productData) {
     return;
   }
- 
+
   return (
     <div className="product-wrapper">
       <div className="product">
@@ -48,6 +48,7 @@ function Product() {
           productInfo={productData.description}
           productCategory={"Gumms"}
           productId={productData._id}
+          productMaxQuantity={productData.quantity}
         />
 
         <section className="product-desc-review-container">

@@ -3,6 +3,7 @@ import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
 function Cart() {
+  const [quantity, setQuantity] = useState(1);
   const { user, dispatch } = useAuthContext();
   const [cartItems, setCartItems] = useState(null);
   const [bill, setBill] = useState({
@@ -11,7 +12,6 @@ function Cart() {
     tax: 0,
   });
   useLayoutEffect(() => {
-
     const fetchCart = async () => {
       if (!user) {
         console.log("User not logged in");
@@ -99,11 +99,19 @@ function Cart() {
                     <span>${item.productId.price}</span>
                   </div>
                   <div className="item-quantity">
-                    <button>
+                    <button
+                      onClick={() => {
+                        setQuantity((prev) => prev - 1);
+                      }}
+                    >
                       <CiSquareMinus />
                     </button>
                     <span>{item.quantity}</span>
-                    <button>
+                    <button
+                      onClick={() => {
+                        setQuantity((prev) => prev + 1);
+                      }}
+                    >
                       <CiSquarePlus />
                     </button>
                   </div>

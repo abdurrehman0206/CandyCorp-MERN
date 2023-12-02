@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Logo from "../../assets/Logo.png";
 import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { FaRegHeart, FaHeart, FaFacebookF, FaInstagram } from "react-icons/fa";
 import ReactImageMagnify from "react-image-magnify";
-import { PhotoProvider, PhotoView } from "react-photo-view";
+import { MdCloseFullscreen } from "react-icons/md";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 // import Slider from "react-slick";
 function ProductDetail({
   productImg,
@@ -11,6 +12,7 @@ function ProductDetail({
   productPrice,
   productInfo,
   productCategory,
+  productMaxQuantity,
 }) {
   const [open, setOpen] = React.useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -38,10 +40,25 @@ function ProductDetail({
           </div>
           <div className="product-image">
             {open && (
-              <div>
-                <img src={productImagePath} alt="product-image" />
+              <div className="product-image-view-container">
+                <button
+                  className="product-image-view-close-btn"
+                  onClick={() => setOpen(false)}
+                >
+                  <MdCloseFullscreen />
+                </button>
+                <TransformWrapper>
+                  <TransformComponent>
+                    <img
+                      src={productImagePath}
+                      alt="product-image"
+                      className="product-image-view"
+                    />
+                  </TransformComponent>
+                </TransformWrapper>
               </div>
             )}
+
             <img
               src={productImagePath}
               alt="product-image"
@@ -95,7 +112,13 @@ function ProductDetail({
               <span className="product-counter">{quantity}</span>
               <button
                 className="product-inc"
-                onClick={() => setQuantity((prev) => prev + 1)}
+                onClick={() => {
+                  if (quantity === productMaxQuantity) {
+                    return;
+                  }
+
+                  setQuantity((prev) => prev + 1);
+                }}
               >
                 <CiSquarePlus />
               </button>
