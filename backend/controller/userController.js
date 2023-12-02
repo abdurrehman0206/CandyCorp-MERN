@@ -1,4 +1,5 @@
 const USER = require("../model/userModel");
+const PRODUCT = require("../model/productModel");
 const JWT = require("jsonwebtoken");
 const { userInfo } = require("os");
 const validator = require("validator");
@@ -322,15 +323,32 @@ const addToCart = async (req, res) => {
 
   try {
     const user = await USER.findById(userId);
-
+    const product = await PRODUCT.findById(productId);
     const existingCartItem = user.shoppingCart.find(
       (item) => item.productId.toString() === productId
     );
 
     if (existingCartItem) {
-      existingCartItem.quantity += quantity || 1;
+      if (
+        existingCartItem.quantity >= product.quantity &&
+        existingCartItem.quantity + quantity > product.quantity
+      ) {
+        return res.status(404).json({
+          success: false,
+          message: "Not enough stock",
+        });
+      } else {
+        existingCartItem.quantity += quantity || 1;
+      }
     } else {
-      user.shoppingCart.push({ productId, quantity: quantity || 1 });
+      if (product.quantity < quantity) {
+        return res.status(404).json({
+          success: false,
+          message: "Not enough stock",
+        });
+      } else {
+        user.shoppingCart.push({ productId, quantity: quantity || 1 });
+      }
     }
 
     await user.save();
@@ -353,8 +371,11 @@ const getCart = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    const user = await USER.findById(userId).populate("shoppingCart.productId");
-
+    const user = await USER.findById(userId).populate({
+      path: "shoppingCart.productId",
+      select: "_id name price quantity inStock onSale salePercentage images",
+    });
+    console.log(user.shoppingCart);
     res.status(200).json({
       success: true,
       message: "Shopping cart fetched successfully",
@@ -381,8 +402,17 @@ const updateCartItem = async (req, res) => {
     );
 
     if (existingCartItem) {
-    
-      existingCartItem.quantity = quantity || 1;
+      if (
+        existingCartItem.quantity >= product.quantity &&
+        existingCartItem.quantity + quantity > product.quantity
+      ) {
+        return res.status(404).json({
+          success: false,
+          message: "Not enough stock",
+        });
+      } else {
+        existingCartItem.quantity += quantity || 1;
+      }
     }
 
     await user.save();

@@ -2,8 +2,6 @@ import React, { useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { ProductDetail } from "../../components/imports";
-// import Logo from "../../assets/Logo.png";
-import productimg from "../../assets/candy2.jpeg";
 import { NavLink, Outlet } from "react-router-dom";
 function Product() {
   const [productData, setProductData] = useState("");

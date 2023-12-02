@@ -37,7 +37,9 @@ function ProductCard(props) {
           onClick={() => nav(`${props._id}`)}
         >
           <img src={props.images[0]} alt={props.name + props.description} />
-          <span className="product-card-stock-badge instock">IN STOCK</span>
+          <span className="product-card-stock-badge instock">
+            {props.quantity} IN STOCK
+          </span>
           {/* <span className="product-card-stock-badge outofstock">
             Out Of Stock
           </span> */}
