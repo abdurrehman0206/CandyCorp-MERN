@@ -11,7 +11,6 @@ function Cart() {
     tax: 0,
   });
   useLayoutEffect(() => {
-    console.log("UseEffect Called");
 
     const fetchCart = async () => {
       if (!user) {

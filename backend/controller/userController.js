@@ -375,7 +375,7 @@ const getCart = async (req, res) => {
       path: "shoppingCart.productId",
       select: "_id name price quantity inStock onSale salePercentage images",
     });
-    console.log(user.shoppingCart);
+
     res.status(200).json({
       success: true,
       message: "Shopping cart fetched successfully",
