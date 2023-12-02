@@ -1,39 +1,72 @@
 import React, { useState } from "react";
-// import Logo from "../../assets/Logo.png";
+import Logo from "../../assets/Logo.png";
 import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { FaRegHeart, FaHeart, FaFacebookF, FaInstagram } from "react-icons/fa";
 import ReactImageMagnify from "react-image-magnify";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+// import Slider from "react-slick";
 function ProductDetail({
   productImg,
   productName,
   productPrice,
   productInfo,
   productCategory,
-  productId,
 }) {
+  const [open, setOpen] = React.useState(false);
   const [quantity, setQuantity] = useState(1);
   const [wishlist, setWishlist] = useState(false);
+  const [imageSwitch, setImageSwitch] = useState(false);
+  const productImagePath = imageSwitch ? Logo : productImg;
+
   return (
     <div className="product-detail-wrapper">
       <section className="product-detail">
         <div className="product-detail-img">
-          <ReactImageMagnify
-            {...{
-              smallImage: {
-                alt: "product-img",
-                isFluidWidth: true,
-                src: productImg,
-              },
-              largeImage: {
-                src: productImg,
-                width: 1000,
-                height: 1000,
-              },
-            }}
-            hoverDelayInMs={0}
-            hoverOffDelayInMs={0}
-            // className="product-image"
-          />
+          <div className="product-images-list">
+            <img
+              src={productImg}
+              alt="product-image-1 "
+              className={!imageSwitch ? "image-active" : ""}
+              onClick={() => setImageSwitch(false)}
+            />
+            <img
+              src={Logo}
+              alt="product-image-1"
+              className={imageSwitch ? "image-active" : ""}
+              onClick={() => setImageSwitch(true)}
+            />
+          </div>
+          <div className="product-image">
+            {open && (
+              <div>
+                <img src={productImagePath} alt="product-image" />
+              </div>
+            )}
+            <img
+              src={productImagePath}
+              alt="product-image"
+              className="product-image-resp"
+              onClick={() => setOpen(true)}
+            />
+
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  alt: "product-image",
+                  isFluidWidth: true,
+                  src: productImagePath,
+                },
+                largeImage: {
+                  src: productImagePath,
+                  width: 1200,
+                  height: 1400,
+                },
+              }}
+              hoverDelayInMs={0}
+              hoverOffDelayInMs={0}
+              className="product-image-magnify"
+            />
+          </div>
         </div>
 
         {/* Product Details */}
