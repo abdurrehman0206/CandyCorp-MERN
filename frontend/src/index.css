@@ -1560,11 +1560,11 @@ body {
   cursor: pointer;
 }
 .product-detail .product-detail-img .product-images-list img:hover {
-  border: 3px solid #bc131f;
+  border: 1px solid #e81a29;
   box-shadow: none;
 }
 .product-detail .product-detail-img .product-images-list .image-active {
-  border: 3px solid #bc131f;
+  border: 3px solid #e81a29;
   box-shadow: none;
 }
 @media (max-width: 767px) {

@@ -65,12 +65,12 @@
 
         cursor: pointer;
         &:hover {
-          border: 3px solid $theme-accent1;
+          border: 1px solid lighten($theme-accent1, 10%);
           box-shadow: none;
         }
       }
       .image-active {
-        border: 3px solid $theme-accent1;
+        border: 3px solid lighten($theme-accent1, 10%);
         box-shadow: none;
       }
     }
