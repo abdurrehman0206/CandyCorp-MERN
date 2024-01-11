@@ -11,7 +11,6 @@ function Cart() {
     tax: 0,
   });
   useLayoutEffect(() => {
-
     const fetchCart = async () => {
       if (!user) {
         console.log("User not logged in");
@@ -31,8 +30,13 @@ function Cart() {
         if (json.success) {
           setCartItems(json.data);
           let subTotal = 0;
-          json.data.forEach(
-            (item) => (subTotal += item.productId.price * item.quantity)
+          json.data.forEach((item) =>
+            !item.productId.onSale
+              ? (subTotal += item.productId.price * item.quantity)
+              : (subTotal +=
+                  item.productId.price *
+                  ((100 - item.productId.salePercentage) / 100) *
+                  item.quantity)
           );
           setBill((prevBill) => ({ ...prevBill, subtotal: subTotal }));
         } else {
@@ -96,7 +100,15 @@ function Cart() {
                   </div>
                   <div className="item-name">
                     <h4>{item.productId.name}</h4>
-                    <span>${item.productId.price}</span>
+                    {item.productId.onSale ? (
+                      <span>
+                        {item.productId.price *
+                          ((100 - item.productId.salePercentage) / 100)}{" "}
+                        CAD
+                      </span>
+                    ) : (
+                      <span>{item.productId.price} CAD</span>
+                    )}
                   </div>
                   <div className="item-quantity">
                     <button>
@@ -108,7 +120,16 @@ function Cart() {
                     </button>
                   </div>
                   <div className="item-total">
-                    <span>{item.productId.price * item.quantity} CAD</span>
+                    {item.productId.onSale ? (
+                      <span>
+                        {item.productId.price *
+                          ((100 - item.productId.salePercentage) / 100) *
+                          item.quantity}{" "}
+                        CAD
+                      </span>
+                    ) : (
+                      <span>{item.productId.price * item.quantity} CAD</span>
+                    )}
                   </div>
                   <button
                     className="item-delete-btn"
