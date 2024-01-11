@@ -4,7 +4,7 @@ import { SlCalender } from "react-icons/sl";
 function BlogCard(props) {
   const nav = useNavigate();
   return (
-    <div className="blog-card-container" onClick={() => nav(`${props._id}`)}>
+    <div className="blog-card-container" onClick={() => nav(`/blogs/${props._id}`)}>
       <div className="blog-card">
         <img src={props.imageUrl} alt={props.title} />
         <div className="blog-card-info">

@@ -4,6 +4,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
 function ProductCard(props) {
   const nav = useNavigate();
+
   const { user, dispatch } = useAuthContext();
   const addProductToCart = async (productId) => {
     if (!user) {
@@ -34,7 +35,12 @@ function ProductCard(props) {
       <div className="product-card">
         <div
           className="product-card-header"
-          onClick={() => nav(`${props._id}`)}
+          onClick={() =>
+            nav(
+             
+                 `/products/${props._id}`
+            )
+          }
         >
           <img src={props.images[0]} alt={props.name + props.description} />
           <span className="product-card-stock-badge instock">

@@ -10,6 +10,7 @@ import UserSetting from "./UserSetting/UserSetting";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import Reviews from "./Reviews/Reviews";
 import ProductDesc from "./ProductDesc/ProductDesc";
+import Grid from "./Grid/Grid";
 export {
   Navbar,
   Footer,
@@ -23,4 +24,5 @@ export {
   ProductDetail,
   Reviews,
   ProductDesc,
+  Grid,
 };

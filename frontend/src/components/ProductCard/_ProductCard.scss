@@ -62,6 +62,8 @@
     }
   }
   .product-card-info {
+    width: 100%;
+    position: relative;
     @include flex-layout(column, center, flex-start);
     gap: $sm;
     h1 {
@@ -86,12 +88,23 @@
           bottom: 50%;
         }
       }
+      small,
+      p {
+        white-space: nowrap;
+      }
       .product-card-sale {
+        // position: absolute;
         background-color: $theme-accent1;
         color: $text-color;
         padding: 0 $sm;
         border-radius: 20px;
         box-shadow: $box-shadow;
+        white-space: nowrap;
+        @include device(mobile) {
+          position: absolute;
+          top: 0%;
+          right: 5%;
+        }
       }
     }
   }

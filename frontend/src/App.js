@@ -47,11 +47,11 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route path="" element={<Home />} />
               <Route path="about" element={<AboutUs />} />
-              <Route path="products" element={<Products />} />
               <Route path="products/:productId" element={<Product />} />
+              <Route path="products" element={<Products />} />
               <Route path="bundles" element={<Bundles />} />
-              <Route path="blogs" element={<Blogs />} />
               <Route path="blogs/:blogId" element={<Blog />} />
+              <Route path="blogs" element={<Blogs />} />
 
               <Route path="account" element={<UserProfile />}>
                 <Route path="myorders" element={<Orders />} />
