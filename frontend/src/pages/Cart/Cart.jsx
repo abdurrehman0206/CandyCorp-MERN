@@ -3,6 +3,7 @@ import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
 function Cart() {
+  const [quantity, setQuantity] = useState(1);
   const { user, dispatch } = useAuthContext();
   const [cartItems, setCartItems] = useState(null);
   const [bill, setBill] = useState({
@@ -111,11 +112,19 @@ function Cart() {
                     )}
                   </div>
                   <div className="item-quantity">
-                    <button>
+                    <button
+                      onClick={() => {
+                        setQuantity((prev) => prev - 1);
+                      }}
+                    >
                       <CiSquareMinus />
                     </button>
                     <span>{item.quantity}</span>
-                    <button>
+                    <button
+                      onClick={() => {
+                        setQuantity((prev) => prev + 1);
+                      }}
+                    >
                       <CiSquarePlus />
                     </button>
                   </div>

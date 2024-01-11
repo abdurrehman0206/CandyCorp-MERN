@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
 import {
   Addresses,
@@ -54,6 +54,7 @@ function App() {
               <Route path="blogs" element={<Blogs />} />
 
               <Route path="account" element={<UserProfile />}>
+                <Route index element={<Navigate to="myorders" replace />} />
                 <Route path="myorders" element={<Orders />} />
                 <Route path="addresses" element={<Addresses />} />
                 <Route path="setting" element={<UserSetting />} />
@@ -62,6 +63,10 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
               <Route path="product" element={<Product />}>
+                {/* <Route
+                  index
+                  element={<Navigate to="product-description" replace />}
+                /> */}
                 <Route path="product-description" element={<ProductDesc />} />
                 <Route path="customer-reviews" element={<Reviews />} />
               </Route>
