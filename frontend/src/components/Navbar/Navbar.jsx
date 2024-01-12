@@ -24,7 +24,7 @@ function Navbar() {
     {
       name: "Deals",
       path: "deals",
-      dd_menu: true,
+      dd_menu: false,
       dd_links: [
         { name: "New Arrivals", path: "deals/new-arrivals" },
         { name: "Best Sellers", path: "deals/best-sellers" },
@@ -86,7 +86,8 @@ function Navbar() {
               <NavLink to="cart" className="navbar-cart-icon">
                 <AiOutlineShoppingCart />
                 <span className="cart-quantity-counter">
-                  {/* Cart Counter goes here */}{user ? user.shoppingCart.length : 0}
+                  {/* Cart Counter goes here */}
+                  {user ? user.shoppingCart.length : 0}
                 </span>
               </NavLink>
             </li>
