@@ -11,6 +11,7 @@ import ProductDetail from "./ProductDetail/ProductDetail";
 import Reviews from "./Reviews/Reviews";
 import ProductDesc from "./ProductDesc/ProductDesc";
 import Grid from "./Grid/Grid";
+
 export {
   Navbar,
   Footer,

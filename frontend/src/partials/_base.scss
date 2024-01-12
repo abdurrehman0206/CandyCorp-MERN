@@ -34,10 +34,14 @@ body {
   color: #45474b;
   height: 100vh;
   max-height: max-content;
+  // overflow: auto;
 }
 ::-webkit-scrollbar {
   display: none;
   // background: transparent;
   // height: 5px;
   // width: 5px;
+}
+.no-scroll {
+  overflow: hidden;
 }
