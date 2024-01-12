@@ -10,7 +10,49 @@ const generateToken = (email, id) => {
   });
   return token;
 };
+const googleLogin = async (req, res) => {
+  const { googleId, email, fullname, username, image } = req.body;
 
+  try {
+    let user = await USER.findOne({ googleId });
+
+    if (!user) {
+
+      user = await USER.signupGoogle(
+        email,
+        fullname,
+        username,
+        image,
+        googleId
+      );
+    }
+
+    const token = generateToken(user.email, user._id);
+    const userPayload = {
+      id: user._id,
+      email: user.email,
+      fullname: user.fullname,
+      username: user.username,
+      image: user.image,
+      shoppingCart: user.shoppingCart,
+      addresses: user.addresses,
+      token,
+    };
+    console.log("🚀 ~ googleLogin ~ userPayload:", userPayload)
+
+    return res.status(200).json({
+      success: true,
+      message: "User logged in successfully",
+      user: userPayload,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
 const signup = async (req, res) => {
   const { email, password, fullname, username, image } = req.body;
   const emptyInputs = [];
@@ -469,4 +511,5 @@ module.exports = {
   getCart,
   updateCartItem,
   removeFromCart,
+  googleLogin,
 };

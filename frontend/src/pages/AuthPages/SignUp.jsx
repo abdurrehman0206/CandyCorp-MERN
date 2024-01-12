@@ -77,7 +77,7 @@ function Signup() {
             onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
-        <button className="btn-box-primary" disabled={loading}>
+        <button className="btn-box-primary" disabled={true}>
           {loading ? "Signing Up" : "Signup"}
         </button>
         <small>
