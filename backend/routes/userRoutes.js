@@ -12,7 +12,13 @@ const {
   getCart,
   updateCartItem,
   removeFromCart,
+  handleSupabaseLogin,
 } = require("../controller/userController");
+router.post("/auth/google-login", async (req, res) => {
+  const { access_token } = req.body;
+  const result = await handleSupabaseLogin(access_token);
+  return res.status(result.success ? 200 : 500).json(result);
+});
 router.get("/verify", verifyToken);
 router.post("/signup", signup);
 router.post("/login", login);

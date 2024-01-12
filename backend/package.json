@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@netlify/functions": "^1.6.0",
+    "@supabase/supabase-js": "^2.39.3",
     "@types/express": "^4.17.17",
     "bcrypt": "^5.1.0",
     "coinbase-commerce-node": "^1.0.4",

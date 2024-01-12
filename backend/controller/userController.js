@@ -1,14 +1,75 @@
 const USER = require("../model/userModel");
 const PRODUCT = require("../model/productModel");
 const JWT = require("jsonwebtoken");
-const { userInfo } = require("os");
-const validator = require("validator");
 
+const validator = require("validator");
+const { supabase } = require("../config/supabase");
 const generateToken = (email, id) => {
   const token = JWT.sign({ email, id }, process.env.SECRET, {
     expiresIn: "365d",
   });
   return token;
+};
+const handleSupabaseLogin = async (access_token) => {
+  try {
+    const { user, error } = await supabase.auth.signIn({
+      provider: "google",
+      token: access_token,
+    });
+
+    if (error) {
+      console.error(error);
+      return {
+        success: false,
+        message: "Supabase login failed",
+        error: error.message,
+      };
+    }
+
+    const existingUser = await USER.findOne({ email: user.email });
+    let newUser;
+
+    if (!existingUser) {
+      newUser = await USER.create({
+        email: user.email,
+        fullname: user.user_metadata.full_name,
+        username: user.user_metadata.user_name,
+        image: user.user_metadata.avatar_url,
+        shoppingCart: [], 
+        addresses: [], 
+      });
+    }
+
+    const token = generateToken(
+      newUser ? newUser.email : existingUser.email,
+      newUser ? newUser._id : existingUser._id
+    );
+
+    const userPayload = {
+      id: newUser ? newUser._id : existingUser._id,
+      email: newUser ? newUser.email : existingUser.email,
+      fullname: newUser ? newUser.fullname : existingUser.fullname,
+      username: newUser ? newUser.username : existingUser.username,
+      image: newUser ? newUser.image : existingUser.image,
+      shoppingCart: newUser ? newUser.shoppingCart : existingUser.shoppingCart,
+      addresses: newUser ? newUser.addresses : existingUser.addresses,
+
+      token,
+    };
+
+    return {
+      success: true,
+      message: "User logged in successfully",
+      user: userPayload,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    };
+  }
 };
 
 const signup = async (req, res) => {
@@ -469,4 +530,5 @@ module.exports = {
   getCart,
   updateCartItem,
   removeFromCart,
+  handleSupabaseLogin,
 };
