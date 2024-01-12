@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import "react-toastify/dist/ReactToastify.css";
+import useGoogleAuth from '../../hooks/useGoogleAuth';
+import GoogleLoginButton from "../../components/GoogleLoginButton/GoogleLoginButton";
 function Login() {
+  const { handleGoogleLogin, loading: googleLoading, error: googleError } = useGoogleAuth();
   document.title = "Login";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,6 +49,8 @@ function Login() {
             value={password || ""}
           />
         </div>
+       <GoogleLoginButton onSuccess={handleGoogleLogin} onFailure={handleGoogleLogin} />
+
         <button className="btn-box-primary" disabled={loading}>
           {loading ? "Logging In" : "Login"}
         </button>

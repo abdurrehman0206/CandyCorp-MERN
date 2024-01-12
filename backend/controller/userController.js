@@ -67,58 +67,103 @@ const signup = async (req, res) => {
     });
   }
 };
+//OLD VERSION
+// const login = async (req, res) => {
+//   const { email, password } = req.body;
+//   const emptyInputs = [];
+//   if (!email) {
+//     emptyInputs.push("email");
+//   }
+//   if (!password) {
+//     emptyInputs.push("password");
+//   }
+
+//   if (emptyInputs.length > 0) {
+//     return res.status(400).json({
+//       success: false,
+//       message: "Empty inputs",
+//       error: "Please fill in all the required fields",
+//       emptyInputs,
+//     });
+//   }
+//   if (!validator.isEmail(email)) {
+//     return res.status(400).json({
+//       success: false,
+//       message: "Invalid email",
+//       error: "Please enter a valid email",
+//     });
+//   }
+//   try {
+//     const user = await USER.login(email, password);
+//     const token = generateToken(user.email, user._id);
+//     const userPayload = {
+//       id: user._id,
+//       email: user.email,
+//       fullname: user.fullname,
+//       username: user.username,
+//       image: user.image,
+//       shoppingCart: user.shoppingCart,
+//       addresses: user.addresses,
+//       token,
+//     };
+//     return res.status(200).json({
+//       success: true,
+//       message: "User logged in successfully",
+//       user: userPayload,
+//     });
+//   } catch (error) {
+//     return res.status(500).json({
+//       success: false,
+//       message: "Internal Server Error",
+//       error: error.message,
+//     });
+//   }
+// };
+// OLD VERSION
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  const emptyInputs = [];
-  if (!email) {
-    emptyInputs.push("email");
-  }
-  if (!password) {
-    emptyInputs.push("password");
+  const { googleId, email } = req.body;
+
+  // Check if it's a Google login
+  if (googleId) {
+    try {
+      const user = await USER.googleLogin(googleId, email, req.user.fullname, req.user.username, req.user.image);
+
+      const token = generateToken(user.email, user._id);
+      const userPayload = {
+        id: user._id,
+        email: user.email,
+        fullname: user.fullname,
+        username: user.username,
+        image: user.image,
+        shoppingCart: user.shoppingCart,
+        addresses: user.addresses,
+        token,
+      };
+
+      return res.status(200).json({
+        success: true,
+        message: "User logged in successfully",
+        user: userPayload,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Internal Server Error",
+        error: error.message,
+      });
+    }
   }
 
-  if (emptyInputs.length > 0) {
-    return res.status(400).json({
-      success: false,
-      message: "Empty inputs",
-      error: "Please fill in all the required fields",
-      emptyInputs,
-    });
-  }
-  if (!validator.isEmail(email)) {
-    return res.status(400).json({
-      success: false,
-      message: "Invalid email",
-      error: "Please enter a valid email",
-    });
-  }
-  try {
-    const user = await USER.login(email, password);
-    const token = generateToken(user.email, user._id);
-    const userPayload = {
-      id: user._id,
-      email: user.email,
-      fullname: user.fullname,
-      username: user.username,
-      image: user.image,
-      shoppingCart: user.shoppingCart,
-      addresses: user.addresses,
-      token,
-    };
-    return res.status(200).json({
-      success: true,
-      message: "User logged in successfully",
-      user: userPayload,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-      error: error.message,
-    });
-  }
+
+  return res.status(400).json({
+    success: false,
+    message: "Invalid login method",
+    error: "Please provide valid login details",
+  });
 };
+
+
 const addAddress = async (req, res) => {
   const {
     firstname,

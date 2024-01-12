@@ -13,6 +13,7 @@ const addressSchema = new Schema({
 });
 const userSchema = new Schema(
   {
+    googleId: { type: String },
     email: { type: String, required: true, unique: true },
     fullname: { type: String, required: true },
     username: { type: String, required: true, unique: true },
@@ -61,6 +62,29 @@ userSchema.statics.login = async function (email, password) {
   if (!isMatch) {
     throw new Error("Incorrect password");
   }
+  return user;
+};
+userSchema.statics.googleLogin = async function (
+  googleId,
+  email,
+  fullname,
+  username,
+  image
+) {
+
+  let user = await this.findOne({ googleId });
+
+  if (!user) {
+
+    user = await this.create({
+      googleId,
+      email,
+      fullname,
+      username,
+      image,
+    });
+  }
+
   return user;
 };
 module.exports = mongoose.model("USER", userSchema);
