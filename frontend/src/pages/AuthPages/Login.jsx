@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
+import GoogleLoginButton from "../../components/GoogleLoginButton/GoogleLoginButton";
 import "react-toastify/dist/ReactToastify.css";
 function Login() {
   document.title = "Login";
@@ -12,6 +13,7 @@ function Login() {
     await login(email, password);
   };
 
+  
   return (
     <div className="auth-wrapper">
       <form
@@ -49,6 +51,7 @@ function Login() {
         <button className="btn-box-primary" disabled={loading}>
           {loading ? "Logging In" : "Login"}
         </button>
+       <GoogleLoginButton />
         <small>
           Don't have an account? <NavLink to="/signup">Register</NavLink>
         </small>

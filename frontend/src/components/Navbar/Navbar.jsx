@@ -121,7 +121,7 @@ function Navbar() {
                       <button
                         className="btn-box-primary"
                         onClick={() => {
-                          nav("/login");
+                          nav("/dlogin");
                         }}
                       >
                         Sign in
