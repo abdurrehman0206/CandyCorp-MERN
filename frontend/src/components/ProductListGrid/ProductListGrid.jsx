@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ProductCard } from "../../components/imports";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { IoFilterSharp } from "react-icons/io5";
@@ -7,14 +7,14 @@ function ProductListGrid({ products, setSidebarFilter }) {
     items: products ? [...products] : [],
   });
 
-//   useEffect(() => {
-//     if (products) {
-//       setState((prevState) => ({
-//         ...prevState,
-//         items: [...prevState.items, ...products],
-//       }));
-//     }
-//   }, [products]);
+  //   useEffect(() => {
+  //     if (products) {
+  //       setState((prevState) => ({
+  //         ...prevState,
+  //         items: [...prevState.items, ...products],
+  //       }));
+  //     }
+  //   }, [products]);
 
   const fetchMoreData = () => {
     setTimeout(() => {
