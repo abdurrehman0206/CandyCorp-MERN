@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ProductCard } from "../../components/imports";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { IoFilterSharp } from "react-icons/io5";

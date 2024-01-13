@@ -107,7 +107,15 @@ function Navbar() {
                           <li>
                             <Link to="account">My Account</Link>
                           </li>
-                          <li>Orders</li>
+                          <li>
+                            <Link to="account/myorders">Orders</Link>
+                          </li>
+                          <li>
+                            <Link to="account/addresses">Addresses</Link>
+                          </li>
+                          <li>
+                            <Link to="account/setting">Settings</Link>
+                          </li>
                         </>
                       )}
                     </ul>
