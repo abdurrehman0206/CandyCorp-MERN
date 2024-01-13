@@ -49,6 +49,7 @@ function Home() {
                     .slice(0, 4)
                 : null
             }
+            path="/deals"
           />
         </div>
         {/* Sweet Wholesale Deals */}
@@ -65,6 +66,7 @@ function Home() {
               blogs ? blogs?.sort(() => Math.random() - 0.5)?.slice(0, 4) : null
             }
             visitBtn={true}
+            path="/blogs"
           />
         </div>
       </div>

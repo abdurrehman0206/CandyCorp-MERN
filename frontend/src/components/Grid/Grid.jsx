@@ -9,6 +9,7 @@ function Grid({
   card = false,
   visitBtn = false,
   items = null,
+  path = "",
 }) {
   const nav = useNavigate();
   return (
@@ -18,7 +19,7 @@ function Grid({
           <div className="btn-see-more">
             <button
               className="btn-box-outline "
-              onClick={() => (visitBtn ? nav("/blogs") : null)}
+              onClick={() => nav(path.toString())}
             >
               {visitBtn ? "Visit" : "See More"} &nbsp; <FaArrowRightLong />
             </button>

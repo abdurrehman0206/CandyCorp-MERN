@@ -48,7 +48,14 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route path="" element={<Home />} />
               <Route path="about" element={<AboutUs />} />
-              <Route path="products/:productId" element={<Product />} />
+              <Route path="products/:productId" element={<Product />}>
+                <Route
+                  index
+                  element={<Navigate to="product-description" replace />}
+                />
+                <Route path="product-description" element={<ProductDesc />} />
+                <Route path="customer-reviews" element={<Reviews />} />
+              </Route>
               <Route path="products" element={<Products />} />
               <Route path="bundles" element={<Bundles />} />
               <Route path="blogs/:blogId" element={<Blog />} />
@@ -63,14 +70,14 @@ function App() {
               <Route path="contact" element={<ContactUs />} />
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
-              <Route path="product" element={<Product />}>
-                {/* <Route
+              {/* <Route path="product" element={<Product />}>
+                <Route
                   index
                   element={<Navigate to="product-description" replace />}
-                /> */}
+                />
                 <Route path="product-description" element={<ProductDesc />} />
                 <Route path="customer-reviews" element={<Reviews />} />
-              </Route>
+              </Route> */}
               <Route path="cart" element={<Cart />} />
             </Route>
           </Routes>
