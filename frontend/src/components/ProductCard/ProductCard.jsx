@@ -35,23 +35,20 @@ function ProductCard(props) {
       <div className="product-card">
         <div
           className="product-card-header"
-          onClick={() =>
-            nav(
-             
-                 `/products/${props._id}`
-            )
-          }
+          onClick={() => nav(`/products/${props._id}`)}
         >
-          <img src={props.images[0]} alt={props.name + props.description} />
-          <span className="product-card-stock-badge instock">
-            {props.quantity} IN STOCK
-          </span>
-          {/* <span className="product-card-stock-badge outofstock">
+          <div className="product-card-badge-header">
+            <span className="product-card-stock-badge instock">
+              {props.quantity} IN STOCK
+            </span>
+            {/* <span className="product-card-stock-badge outofstock">
             Out Of Stock
           </span> */}
-          <span className="product-card-likes-badge">
-            0 <AiFillHeart />
-          </span>
+            <span className="product-card-likes-badge">
+              0 <AiFillHeart />
+            </span>
+          </div>
+          <img src={props.images[0]} alt={props.name + props.description} />
         </div>
         <div className="product-card-info">
           <h1>{props.name}</h1>
@@ -60,7 +57,10 @@ function ProductCard(props) {
             {props.onSale && (
               <>
                 <small>
-                  {props.price * ((100 - props.salePercentage) / 100)} CAD
+                  {(props.price * ((100 - props.salePercentage) / 100)).toFixed(
+                    2
+                  )}{" "}
+                  CAD
                 </small>
                 <small className="product-card-sale">On Sale</small>
               </>

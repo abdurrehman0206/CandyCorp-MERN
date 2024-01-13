@@ -721,7 +721,9 @@ body {
 
 .product-card-container {
   max-width: 243px;
-  max-height: 355px;
+  max-height: 383px;
+  min-width: 243px;
+  min-height: 383px;
 }
 .product-card-container .product-card {
   border: 1px solid #d8d9da;
@@ -755,10 +757,12 @@ body {
 .product-card .product-card-header .product-card-likes-badge,
 .product-card .product-card-header .product-card-stock-badge {
   top: 0.5rem;
-  position: absolute;
 }
 .product-card .product-card-header .product-card-stock-badge {
   left: 0.5rem;
+}
+.product-card .product-card-header .product-card-likes-badge {
+  right: 0.5rem;
 }
 .product-card .product-card-header .product-card-likes-badge {
   font-weight: 600;
@@ -779,7 +783,7 @@ body {
 .product-card .product-card-header .instock {
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
-  background-color: rgba(0, 223, 164, 0.2196078431);
+  background-color: #dffff7;
   color: #00dfa4;
   border: 1px solid #00dfa4;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
@@ -802,9 +806,10 @@ body {
   font-size: 1rem;
 }
 .product-card .product-card-info .product-card-price {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
 }
@@ -826,6 +831,8 @@ body {
   white-space: nowrap;
 }
 .product-card .product-card-info .product-card-price .product-card-sale {
+  position: absolute;
+  right: 0;
   background-color: #bc131f;
   color: #ffffff;
   padding: 0 0.5rem;
@@ -858,6 +865,13 @@ body {
 .product-card .product-card-action button {
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
   flex-basis: 100%;
+}
+
+.product-card-badge-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .landing-hero-container .landing-hero {

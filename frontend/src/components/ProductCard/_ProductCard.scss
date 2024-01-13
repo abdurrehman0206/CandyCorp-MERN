@@ -1,7 +1,8 @@
 .product-card-container {
   max-width: 243px;
-  max-height: 355px;
-
+  max-height: 383px;
+  min-width: 243px;
+  min-height: 383px;
   .product-card {
     border: 1px solid $outline-border-color;
     padding: $sm;
@@ -31,10 +32,13 @@
     .product-card-likes-badge,
     .product-card-stock-badge {
       top: $sm;
-      position: absolute;
+      // position: absolute;
     }
     .product-card-stock-badge {
       left: $sm;
+    }
+    .product-card-likes-badge {
+      right: $sm;
     }
     .product-card-likes-badge {
       font-weight: 600;
@@ -52,7 +56,7 @@
     .instock {
       padding: $xs $sm;
       border-radius: 5px;
-      background-color: #00dfa438;
+      background-color: lighten(#00dfa4, 50%);
       color: #00dfa4;
       border: 1px solid #00dfa4;
       box-shadow: $box-shadow;
@@ -73,7 +77,8 @@
       font-size: $lg;
     }
     .product-card-price {
-      @include flex-layout(row, center, center);
+      width: 100%;
+      @include flex-layout(row, flex-start, center);
       gap: $sm;
       .onSale {
         position: relative;
@@ -93,7 +98,8 @@
         white-space: nowrap;
       }
       .product-card-sale {
-        // position: absolute;
+        position: absolute;
+        right: 0;
         background-color: $theme-accent1;
         color: $text-color;
         padding: 0 $sm;
@@ -122,4 +128,7 @@
       flex-basis: 100%;
     }
   }
+}
+.product-card-badge-header {
+  @include flex-layout(row, space-between, center);
 }

@@ -5,7 +5,6 @@ const paymentController = require("../controller/paymentController");
 router.post("/coinbase-webhook", async (req, res) => {
   try {
     const event = req.body;
-    console.log("🚀 ~ router.post ~ event:", event.event.type)
 
     switch (event.event.type) {
       case "charge:confirmed":
