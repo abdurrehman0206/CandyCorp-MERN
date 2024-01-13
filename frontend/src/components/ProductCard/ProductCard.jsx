@@ -51,7 +51,7 @@ function ProductCard(props) {
           <img src={props.images[0]} alt={props.name + props.description} />
         </div>
         <div className="product-card-info">
-          <h1>{props.name}</h1>
+          <h1 className="product-card-name">{props.name}</h1>
           <div className="product-card-price">
             <p className={props.onSale ? "onSale" : ""}>{props.price} CAD</p>
             {props.onSale && (

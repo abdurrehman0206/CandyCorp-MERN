@@ -66,6 +66,12 @@
     }
   }
   .product-card-info {
+    .product-card-name {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 100%;
+    }
     width: 100%;
     position: relative;
     @include flex-layout(column, center, flex-start);

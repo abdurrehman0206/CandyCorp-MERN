@@ -13,7 +13,7 @@ const createProduct = async (req, res) => {
     salePercentage,
     type,
     category,
-    flavour,
+    flavor,
     size,
   } = req.body;
 
@@ -30,7 +30,7 @@ const createProduct = async (req, res) => {
     salePercentage,
     type,
     category,
-    flavour,
+    flavor,
     size,
   });
 
