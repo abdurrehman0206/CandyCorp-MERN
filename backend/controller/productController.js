@@ -13,6 +13,8 @@ const createProduct = async (req, res) => {
     salePercentage,
     type,
     category,
+    flavour,
+    size,
   } = req.body;
 
   const inStock = quantity > 0;
@@ -28,6 +30,8 @@ const createProduct = async (req, res) => {
     salePercentage,
     type,
     category,
+    flavour,
+    size,
   });
 
   try {
