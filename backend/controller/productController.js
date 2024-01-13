@@ -3,8 +3,17 @@ const USER = require("../model/userModel");
 const mongoose = require("mongoose");
 
 const createProduct = async (req, res) => {
-  const { name, description, price, quantity, images, onSale, salePercentage } =
-    req.body;
+  const {
+    name,
+    description,
+    price,
+    quantity,
+    images,
+    onSale,
+    salePercentage,
+    type,
+    category,
+  } = req.body;
 
   const inStock = quantity > 0;
 
@@ -17,6 +26,8 @@ const createProduct = async (req, res) => {
     images,
     onSale,
     salePercentage,
+    type,
+    category,
   });
 
   try {
@@ -127,7 +138,6 @@ const updateProduct = async (req, res) => {
     });
   }
 };
-
 
 const deleteProduct = async (req, res) => {
   const { id } = req.params;

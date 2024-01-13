@@ -12,7 +12,8 @@ const checkOut = async (req, res) => {
   try {
     const user = await USER.findById(userId).populate({
       path: "shoppingCart.productId",
-      select: "_id name price quantity inStock onSale salePercentage images",
+      select:
+        "_id name price quantity inStock onSale salePercentage images type category",
     });
 
     if (!user) {

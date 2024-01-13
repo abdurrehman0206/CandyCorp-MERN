@@ -8,6 +8,8 @@ const productSchema = new Schema(
     description: { type: String },
     price: { type: Number },
     quantity: { type: Number },
+    category: { type: String },
+    type: { type: String },
     inStock: { type: Boolean },
     onSale: { type: Boolean, default: false },
     salePercentage: { type: Number, default: 0, min: 0, max: 100 },
