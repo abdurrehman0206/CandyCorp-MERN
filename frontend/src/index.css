@@ -2131,6 +2131,7 @@ body {
 
 .filter-wrapper {
   margin-right: 1rem;
+  min-width: 300px;
 }
 .filter-wrapper .filter-container {
   border-radius: 0.5rem;
