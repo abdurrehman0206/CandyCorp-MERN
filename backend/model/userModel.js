@@ -13,10 +13,11 @@ const addressSchema = new Schema({
 });
 const userSchema = new Schema(
   {
+    googleId: { type: String },
     email: { type: String, required: true, unique: true },
     fullname: { type: String, required: true },
     username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    password: { type: String },
     image: { type: String },
     shoppingCart: [
       {
@@ -62,5 +63,21 @@ userSchema.statics.login = async function (email, password) {
     throw new Error("Incorrect password");
   }
   return user;
+};
+userSchema.statics.signupGoogle = async function (
+  email,
+  fullname,
+  username,
+  image,
+  googleId
+) {
+  const newUser = await this.create({
+    email,
+    username,
+    fullname,
+    image,
+    googleId,
+  });
+  return newUser;
 };
 module.exports = mongoose.model("USER", userSchema);

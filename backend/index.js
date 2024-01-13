@@ -25,7 +25,8 @@ const productRoutes = require("./routes/productRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const orderRoutes = require("./routes/orderRoutes");
-
+const webhookRouter = require("./webhooks/webhookHandler");
+app.use("/api/webhooks", webhookRouter);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/blogs", blogRoutes);

@@ -102,11 +102,14 @@ function Navbar() {
                 <div className="dropdown-wrapper show-profile-menu ">
                   <div className="dropdown">
                     <ul className="dropdown-content">
-                      {/*  */}
-                      <li>
-                        <Link to="account">My Account</Link>
-                      </li>
-                      <li>Orders</li>
+                      {user && (
+                        <>
+                          <li>
+                            <Link to="account">My Account</Link>
+                          </li>
+                          <li>Orders</li>
+                        </>
+                      )}
                     </ul>
                     {user ? (
                       <button
@@ -177,7 +180,7 @@ function Navbar() {
               >
                 <AiOutlineShoppingCart />
                 <span className="cart-quantity-counter-resp">
-                  {/* Cart Counter goes here */}2
+                  {user ? user.shoppingCart.length : 0}
                 </span>
               </NavLink>
             </li>

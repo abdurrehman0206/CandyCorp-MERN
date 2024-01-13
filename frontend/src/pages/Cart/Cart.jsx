@@ -2,6 +2,7 @@ import React, { useState, useLayoutEffect } from "react";
 import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { toast } from "react-toastify";
 function Cart() {
   const [quantity, setQuantity] = useState(1);
   const { user, dispatch } = useAuthContext();
@@ -72,6 +73,38 @@ function Cart() {
       } else {
         console.log(json.error);
       }
+    }
+  };
+  const handleCheckout = async () => {
+    try {
+      // Calculate the total amount from the cartItems
+      const totalAmount = bill.subtotal + bill.shipping + bill.tax;
+
+      // Make a request to your backend API for checkout
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/payment/checkout`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`, // Include the user's token for authentication
+          },
+          body: JSON.stringify({
+            amount: totalAmount,
+            currency: "USD",
+          }),
+        }
+      );
+
+      const json = await response.json();
+
+      if (json.success) {
+        window.open(json.data.hosted_url, "_blank");
+      } else {
+        toast.error(json.error);
+      }
+    } catch (error) {
+      toast.error("An error occurred during checkout.");
     }
   };
 
@@ -169,7 +202,12 @@ function Cart() {
               Total <span>{bill.subtotal + bill.shipping + bill.tax} CAD</span>
             </li>
           </ul>
-          <button className="btn-box-primary checkout-btn">Check Out</button>
+          <button
+            className="btn-box-primary checkout-btn"
+            onClick={handleCheckout}
+          >
+            Check Out
+          </button>
         </div>
       </div>
     </div>
