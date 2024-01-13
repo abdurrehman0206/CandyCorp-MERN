@@ -1,41 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useProductContext } from "../../hooks/useProductContext";
 import { Filter, ProductListGrid } from "../../components/imports";
-function Products() {
-  const [sidebarFilter, setSidebarFilter] = useState(true);
+
+function Deals() {
+  const [sidebarFilterMenu, setSidebarFilterMenu] = useState(true);
   const { products } = useProductContext();
+  const deals = products?.filter((product) => product?.onSale);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 700) {
-        setSidebarFilter(false);
+        setSidebarFilterMenu(false);
         document.body.classList.remove("no-scroll");
       }
     };
-
     handleResize();
-
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  if (!products) {
-    return;
-  }
   return (
     <div className="products-wrapper">
       <Filter
-        products={products}
-        sidebarFilter={sidebarFilter}
-        setSidebarFilter={setSidebarFilter}
+        products={deals}
+        sidebarFilter={sidebarFilterMenu}
+        setSidebarFilter={setSidebarFilterMenu}
       />
       <ProductListGrid
-        products={products}
-        setSidebarFilter={setSidebarFilter}
+        products={deals}
+        setSidebarFilter={setSidebarFilterMenu}
       />
     </div>
   );
 }
 
-export default Products;
+export default Deals;

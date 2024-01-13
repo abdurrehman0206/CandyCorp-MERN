@@ -23,6 +23,7 @@ import {
   Blogs,
   Blog,
   Cart,
+  Deals,
 } from "./pages/imports";
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
               <Route path="bundles" element={<Bundles />} />
               <Route path="blogs/:blogId" element={<Blog />} />
               <Route path="blogs" element={<Blogs />} />
-
+              <Route path="deals" element={<Deals />} />
               <Route path="account" element={<UserProfile />}>
                 <Route index element={<Navigate to="myorders" replace />} />
                 <Route path="myorders" element={<Orders />} />

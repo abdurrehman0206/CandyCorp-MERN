@@ -2,10 +2,10 @@ import React, { useLayoutEffect, useState } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
 import { useProductContext } from "../../hooks/useProductContext";
-function Filter({ sidebarFilter, setSidebarFilter }) {
+function Filter({ products, sidebarFilter, setSidebarFilter }) {
   //colors selection
   const [selectedColor, setSelectedColor] = useState(null);
-  const { products } = useProductContext();
+  // const { products } = useProductContext();
   console.log("🚀 ~ Filter ~ products:", products);
   useLayoutEffect(() => {}, []);
   const handleColorChange = (color) => {
@@ -13,7 +13,7 @@ function Filter({ sidebarFilter, setSidebarFilter }) {
   };
   const countProductsByProperty = (property) => {
     const uniqueValues = [
-      ...new Set(products.map((product) => product[property])),
+      ...new Set(products?.map((product) => product[property])),
     ];
 
     const counts = uniqueValues.map((value) => ({

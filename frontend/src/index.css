@@ -3017,6 +3017,21 @@ body {
   }
 }
 
+.Deals-wrapper {
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+.Deals-wrapper .product-grid-wrapper {
+  align-self: start;
+}
+.Deals-wrapper .filter-wrapper {
+  align-self: start;
+}
+
 .App-container {
   height: 100vh;
   width: 100vw;

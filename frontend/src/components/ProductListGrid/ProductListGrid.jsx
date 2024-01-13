@@ -12,11 +12,11 @@ function ProductListGrid({ products, setSidebarFilter }) {
   const productsPerPage = 12;
   useEffect(() => {
     products = sortProducts(products, sortSelection);
-    setItems({ items: products.slice(0, productsPerPage) });
+    setItems({ items: products?.slice(0, productsPerPage) });
   }, [products, sortSelection]);
   const fetchMoreData = () => {
     setTimeout(() => {
-      const currentLength = items.items.length;
+      const currentLength = items.items?.length;
       const nextProducts = sortProducts(products, sortSelection);
       setItems((prev) => ({
         items: [
@@ -29,20 +29,20 @@ function ProductListGrid({ products, setSidebarFilter }) {
   const sortProducts = (products, sortOption) => {
     switch (sortOption) {
       case "asc":
-        return products.slice().sort((a, b) => a.name.localeCompare(b.name));
+        return products?.slice().sort((a, b) => a.name.localeCompare(b.name));
       case "desc":
-        return products.slice().sort((a, b) => b.name.localeCompare(a.name));
+        return products?.slice().sort((a, b) => b.name.localeCompare(a.name));
       case "LTH":
-        return products.slice().sort((a, b) => a.price - b.price);
+        return products?.slice().sort((a, b) => a.price - b.price);
       case "HTL":
-        return products.slice().sort((a, b) => b.price - a.price);
+        return products?.slice().sort((a, b) => b.price - a.price);
       case "OTN":
         return products
-          .slice()
+          ?.slice()
           .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       case "NTO":
         return products
-          .slice()
+          ?.slice()
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       default:
         return products;
@@ -55,7 +55,7 @@ function ProductListGrid({ products, setSidebarFilter }) {
         <div className="products-grid">
           <div className="products-header">
             <div className="products-header-top">
-              <div className="total-products">{products.length} Products</div>
+              <div className="total-products">{products?.length} Products</div>
               <div
                 className="filter-btn"
                 onClick={() => {
@@ -88,7 +88,7 @@ function ProductListGrid({ products, setSidebarFilter }) {
             </div>
           </div>
           <InfiniteScroll
-            dataLength={items.items ? items.items.length : 0}
+            dataLength={items.items ? items.items?.length : 0}
             next={fetchMoreData}
             hasMore={true}
             className="products-grid-scroll"
@@ -97,7 +97,7 @@ function ProductListGrid({ products, setSidebarFilter }) {
               <ProductCard {...product} key={index} />
             ))}
           </InfiniteScroll>
-          {items.items.length < products.length && <Spinner />}
+          {items.items?.length < products?.length && <Spinner />}
         </div>
       </section>
     </div>
