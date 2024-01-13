@@ -43,7 +43,7 @@ function Product() {
       <div className="product">
         <ProductDetail
           productName={productData.name}
-          productImg={productData.images[0]}
+          productImg={productData.images}
           productPrice={productData.price}
           productInfo={productData.description}
           productCategory={"Gumms"}
