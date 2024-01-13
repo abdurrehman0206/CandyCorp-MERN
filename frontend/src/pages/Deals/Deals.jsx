@@ -5,7 +5,7 @@ import { Filter, ProductListGrid } from "../../components/imports";
 function Deals() {
   const [sidebarFilterMenu, setSidebarFilterMenu] = useState(true);
   const { products } = useProductContext();
-  const deals = products?.filter((product) => product?.onSale);
+  let deals = products?.filter((product) => product?.onSale);
 
   useEffect(() => {
     const handleResize = () => {
