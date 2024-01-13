@@ -5,14 +5,14 @@ const paymentController = require("../controller/paymentController");
 router.post("/coinbase-webhook", async (req, res) => {
   try {
     const event = req.body;
-    console.log("🚀 ~ router.post ~ event:", event)
+    console.log("🚀 ~ router.post ~ event:", event.event.type)
 
-    switch (event.type) {
+    switch (event.event.type) {
       case "charge:confirmed":
         try {
-          await paymentController.createOrderAndClearCart(event.data.id);
+          await paymentController.createOrderAndClearCart(event.event.data.id);
           console.log(
-            `Order created and cart cleared for charge ID: ${event.data.id}`
+            `Order created and cart cleared for charge ID: ${event.event.data.id}`
           );
         } catch (error) {
           console.error(
@@ -22,7 +22,7 @@ router.post("/coinbase-webhook", async (req, res) => {
         break;
 
       default:
-        console.log(`Unhandled event type: ${event.type}`);
+        console.log(`Unhandled event type: ${event.event.type}`);
     }
 
     res.status(200).end();
