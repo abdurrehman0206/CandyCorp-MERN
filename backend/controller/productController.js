@@ -1,5 +1,4 @@
 const PRODUCT = require("../model/productModel");
-const USER = require("../model/userModel");
 const mongoose = require("mongoose");
 
 const createProduct = async (req, res) => {
@@ -268,6 +267,39 @@ const updateUserReview = async (req, res) => {
     });
   }
 };
+const applyGlobalDiscount = async (req, res) => {
+  const { discountPercentage } = req.body;
+
+  try {
+    if (discountPercentage < 0 || discountPercentage > 100) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid discount percentage",
+      });
+    }
+
+    const products = await PRODUCT.find();
+
+    products.forEach(async (product) => {
+      product.onSale = discountPercentage > 0;
+      product.salePercentage = discountPercentage;
+
+      await product.save();
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `Global discount of ${discountPercentage}% applied successfully`,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createProduct,
   getProducts,
@@ -276,4 +308,5 @@ module.exports = {
   deleteProduct,
   addUserReview,
   updateUserReview,
+  applyGlobalDiscount
 };

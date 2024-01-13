@@ -10,6 +10,7 @@ const {
   deleteProduct,
   addUserReview,
   updateUserReview,
+  applyGlobalDiscount
 } = require("../controller/productController");
 
 router.use(requireAuth);
@@ -20,4 +21,5 @@ router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 router.post("/:id/reviews", addUserReview);
 router.put("/:id/reviews/:reviewId", updateUserReview);
+router.post("/apply-global-discount", applyGlobalDiscount);
 module.exports = router;
