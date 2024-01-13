@@ -46,7 +46,7 @@ function Grid({
             {items?.map((item, i) => {
               return (
                 <div className="grid-box">
-                  <img src={item} alt="feature-brand-image" key={i} />
+                  <img src={item} alt="feature-brand" key={i} />
                 </div>
               );
             })}

@@ -6,7 +6,7 @@
     width: 25%;
     min-height: 100%;
     border: 1px solid $outline-border-color;
-
+    border-radius: $sm;
     margin-right: $md;
     padding: $md;
     .sidebarfilter-close-btn {
@@ -181,6 +181,7 @@
     margin: auto;
     .products-grid {
       .products-header {
+        border-radius: $sm;
         border: 1px solid $outline-border-color;
         @include flex-layout(row, space-between, center);
 
