@@ -79,6 +79,7 @@ function Cart() {
   const [quantity, setQuantity] = useState(1);
   const { user, dispatch } = useAuthContext();
   const [cartItems, setCartItems] = useState(null);
+ 
   const [bill, setBill] = useState({
     subtotal: 0,
     shipping: 0,
@@ -135,13 +136,14 @@ function Cart() {
     fetchCart();
   }, [user]);
 
-  const removeItemFromCart = async (itemId, itemType) => {
+  const removeItemFromCart = async (itemId) => {
+    
     if (!user) {
       console.log("User not logged in");
       return;
     } else {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/users/remove-from-cart/${itemId}?type=${itemType}`,
+        `${process.env.REACT_APP_BASE_URL}/api/users/remove-from-cart/${itemId}`,
         {
           method: "DELETE",
           headers: {
@@ -164,17 +166,15 @@ function Cart() {
   };
   const handleCheckout = async () => {
     try {
-      // Calculate the total amount from the cartItems
       const totalAmount = bill.subtotal + bill.shipping + bill.tax;
 
-      // Make a request to your backend API for checkout
       const response = await fetch(
         `${process.env.REACT_APP_BASE_URL}/api/payment/checkout`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`, // Include the user's token for authentication
+            Authorization: `Bearer ${user.token}`,
           },
           body: JSON.stringify({
             amount: totalAmount,
@@ -268,7 +268,7 @@ function Cart() {
                   </div>
                   <button
                     className="item-delete-btn"
-                    onClick={() => removeItemFromCart(item.productId?._id)}
+                    onClick={() => removeItemFromCart(item._id)}
                   >
                     <AiTwotoneDelete />
                   </button>

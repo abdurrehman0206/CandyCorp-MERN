@@ -23,7 +23,7 @@ router.delete("/delete-address/:addressId", requireAuth, deleteAddress);
 router.post("/add-to-cart", requireAuth, addToCart);
 router.get("/get-cart", requireAuth, getCart);
 router.put("/update-cart-item", requireAuth, updateCartItem);
-router.delete("/remove-from-cart/:productId", requireAuth, removeFromCart);
+router.delete("/remove-from-cart/:itemId", requireAuth, removeFromCart);
 router.post("/google-login", googleLogin);
 
 module.exports = router;

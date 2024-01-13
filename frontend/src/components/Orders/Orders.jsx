@@ -22,10 +22,7 @@ function Orders() {
         const json = await response.json();
         if (json.success) {
           setOrders(json.data);
-          console.log(
-            "🚀 ~ file: Orders.jsx:25 ~ getOrders ~ data:",
-            json.data
-          );
+         
         } else {
           console.log(json.error);
         }
