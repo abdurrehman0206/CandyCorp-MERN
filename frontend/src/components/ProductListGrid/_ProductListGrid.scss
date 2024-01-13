@@ -1,0 +1,103 @@
+.product-grid-wrapper {
+  width: 100%;
+  .products {
+    // background: gray;
+    align-self: start;
+    min-width: 75%;
+    margin: auto;
+    .products-grid {
+      .products-header {
+        border: 1px solid $outline-border-color;
+        @include flex-layout(row, space-between, center);
+
+        padding: $md $lg;
+
+        // margin: 0 $lg;
+        margin-bottom: $lg;
+        font-weight: bold;
+        .filter-btn {
+          display: none;
+        }
+        .sort-by {
+          @include flex-layout(row, space-between, center);
+          label {
+            white-space: nowrap;
+          }
+          select {
+            padding: 5px;
+            font-size: 14px;
+            color: $theme-accent1;
+            background-color: $theme-accent2;
+            option {
+              padding: $md;
+              color: $text-color-dark;
+            }
+          }
+
+          @include device(mobile) {
+            width: 100%;
+            select {
+              width: 100%;
+              option {
+                width: 100%;
+              }
+            }
+          }
+        }
+        @include device(mobile) {
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: start;
+          gap: $md;
+
+          .products-header-top {
+            min-width: 100%;
+            @include flex-layout(row, space-between, center);
+          }
+          .filter-btn {
+            display: block;
+            @include flex-layout(row, center, center);
+            svg {
+              font-size: $xl;
+            }
+          }
+        }
+      }
+      .products-grid-scroll {
+        min-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: $lg;
+
+        .product-card-container:nth-child(3n - 2) {
+          justify-self: start;
+        }
+        .product-card-container:nth-child(3n -1) {
+          justify-self: center;
+        }
+        .product-card-container:nth-child(3n) {
+          justify-self: end;
+        }
+
+        @include device(mobile) {
+          grid-template-columns: repeat(2, auto);
+          .product-card-container:nth-child(2n -1) {
+            justify-self: start;
+          }
+          .product-card-container:nth-child(2n) {
+            justify-self: end;
+          }
+        }
+        @include device(tablet) {
+          grid-template-columns: repeat(2, auto);
+          .product-card-container:nth-child(2n -1) {
+            justify-self: start;
+          }
+          .product-card-container:nth-child(2n) {
+            justify-self: end;
+          }
+        }
+      }
+    }
+  }
+}
