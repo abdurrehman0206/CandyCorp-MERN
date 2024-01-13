@@ -5,6 +5,7 @@ import { FaRegHeart, FaHeart, FaFacebookF, FaInstagram } from "react-icons/fa";
 import ReactImageMagnify from "react-image-magnify";
 import { MdCloseFullscreen } from "react-icons/md";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { useAddToCart } from "../../hooks/useAddToCart";
 // import Slider from "react-slick";
 function ProductDetail({
   productImg,
@@ -16,7 +17,9 @@ function ProductDetail({
   productSize,
   productCategory,
   productMaxQuantity,
+  productId,
 }) {
+  const { addProductToCart } = useAddToCart();
   const [open, setOpen] = React.useState(false);
   const [quantity, setQuantity] = useState(1);
   const [wishlist, setWishlist] = useState(false);
@@ -101,19 +104,19 @@ function ProductDetail({
           <div className="product-info">
             <ul>
               <li>
-                <h4>Category  </h4>
+                <h4>Category </h4>
                 <span>{productCategory}</span>
               </li>
               <li>
-                <h4>Type  </h4>
+                <h4>Type </h4>
                 <span>{productType}</span>
               </li>
               <li>
-                <h4>Size  </h4>
+                <h4>Size </h4>
                 <span>{productSize}</span>
               </li>
               <li>
-                <h4>Flavor  </h4>
+                <h4>Flavor </h4>
                 <span>{productFlavor}</span>
               </li>
             </ul>
@@ -146,7 +149,12 @@ function ProductDetail({
                 <CiSquarePlus />
               </button>
             </div>
-            <button className="btn-primary ">Add To Cart</button>
+            <button
+              className="btn-primary "
+              onClick={() => addProductToCart(productId)}
+            >
+              Add To Cart
+            </button>
             <button
               className="product-wishlist"
               onClick={() => setWishlist((prev) => !prev)}
@@ -154,7 +162,7 @@ function ProductDetail({
               {wishlist ? <FaHeart /> : <FaRegHeart />}
             </button>
           </div>
-          
+
           <div className="product-share">
             <i>Share with your friends</i>
             <div className="product-share-links">
