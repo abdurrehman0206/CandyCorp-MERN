@@ -365,7 +365,6 @@ const removeFromCart = async (req, res) => {
 
   try {
     const user = await USER.findById(userId);
-
     const cartItemIndex = user.shoppingCart.findIndex(
       (item) => item._id.toString() === itemId
     );
@@ -383,7 +382,7 @@ const removeFromCart = async (req, res) => {
     await user.save();
 
     const updatedUser = await USER.findById(userId).populate({
-      path: "shoppingCart.productId bundleId",
+      path: "shoppingCart.productId shoppingCart.bundleId",
       select: "_id name price quantity inStock onSale salePercentage images",
     });
 
