@@ -18,7 +18,7 @@ function ProductDetail({
   const [quantity, setQuantity] = useState(1);
   const [wishlist, setWishlist] = useState(false);
   const [imageSwitch, setImageSwitch] = useState(false);
-  const productImagePath = imageSwitch ? Logo : productImg;
+  const productImagePath = imageSwitch ? productImg[1] : productImg[0];
 
   return (
     <div className="product-detail-wrapper">
@@ -26,14 +26,14 @@ function ProductDetail({
         <div className="product-detail-img">
           <div className="product-images-list">
             <img
-              src={productImg}
+              src={productImg[0]}
               alt="product-image-1 "
               className={!imageSwitch ? "image-active" : ""}
               onClick={() => setImageSwitch(false)}
             />
             <img
-              src={Logo}
-              alt="product-image-1"
+              src={productImg[1]}
+              alt="product-image-2"
               className={imageSwitch ? "image-active" : ""}
               onClick={() => setImageSwitch(true)}
             />

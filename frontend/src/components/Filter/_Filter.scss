@@ -1,0 +1,192 @@
+.filter-wrapper {
+  margin-right: $lg;
+  .filter-container {
+    align-self: start;
+    min-height: 100%;
+    border: 1px solid $outline-border-color;
+
+    // margin-right: $md;
+    padding: $md;
+    .sidebarfilter-close-btn {
+      margin-left: auto;
+      margin-bottom: $lg;
+      padding: $md;
+      svg {
+        font-size: $xl;
+      }
+    }
+    .filter {
+      margin-bottom: $xl;
+
+      .filter-label {
+        cursor: pointer;
+
+        @include flex-layout(row, space-between, center);
+        .filter-label-name {
+          font-size: 18px;
+        }
+        .show-options-btn {
+          margin-right: $lg;
+        }
+      }
+      hr {
+        margin-top: $md;
+        opacity: 0.5;
+      }
+
+      .filter-options-list {
+        font-weight: normal;
+        font-size: $lg;
+        width: 100%;
+        padding: $lg;
+        .see-more-options-btn {
+          color: $theme-accent1;
+          margin-left: auto;
+        }
+        .hide-filter-option {
+          display: none;
+        }
+        .show-filter-option {
+          display: block;
+        }
+        .filter-option {
+          @include flex-layout(row, space-between, center);
+          margin-bottom: $md;
+          .filter-option-input {
+            width: 100%;
+            padding: 0;
+            height: initial;
+            width: initial;
+            margin-bottom: 0;
+            display: none;
+            cursor: pointer;
+            border: 2px solid $outline-border-color;
+
+            &:checked + .filter-option-label:before {
+              border: 2px solid $theme-accent1;
+            }
+            &:checked + .filter-option-label:after {
+              content: "";
+              display: block;
+              position: absolute;
+              top: 4px;
+              left: 7px;
+
+              width: 4px;
+              height: 10px;
+              border: solid $theme-accent1;
+              border-width: 0 2px 2px 0;
+              transform: rotate(45deg);
+            }
+          }
+          .filter-option-label {
+            white-space: nowrap;
+            width: 100%;
+            position: relative;
+            cursor: pointer;
+            &:before {
+              content: "";
+              // -webkit-appearance: none;
+              background-color: transparent;
+              border: 2px solid $outline-border-color;
+              border-radius: 5px;
+              padding: 8px;
+              display: inline-block;
+              position: relative;
+              vertical-align: middle;
+              cursor: pointer;
+              margin-right: $md;
+            }
+          }
+
+          &:hover {
+            .filter-option-label,
+            .filter-option-quantity {
+              font-weight: bold;
+              color: $theme-accent1;
+            }
+            .filter-option-label:before {
+              border: 2px solid $theme-accent1;
+            }
+          }
+        }
+      }
+    }
+    // Colors Filter
+
+    .colors-filter {
+      margin-bottom: $xl;
+      .color-label {
+        cursor: pointer;
+        @include flex-layout(row, space-between, center);
+        .color-label-name {
+          font-size: 18px;
+        }
+        .show-options-btn {
+          margin-right: $lg;
+        }
+      }
+
+      .colors {
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: $lg;
+        padding: $lg;
+      }
+      .color-container {
+        @include flex-layout(row, center, center);
+
+        .color-input {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          width: 20px;
+          height: 20px;
+          // border: 1px solid $outline-border-color;
+          border-radius: 50%;
+          outline: none;
+          cursor: pointer;
+          transition: background-color 0.3s ease-in-out;
+        }
+        .color-input:checked {
+          border: 2px solid gray;
+        }
+      }
+    }
+    hr {
+      opacity: 0.5;
+    }
+    @include device(mobile) {
+      display: block;
+      background-color: $theme-accent2;
+      font-size: $md;
+      margin-right: 0;
+      animation: fadeIn 0.5s ease forwards;
+      transition: right 0.5s ease;
+      .filter {
+        .filter-label {
+          .filter-label-name {
+            font-size: $lg;
+          }
+        }
+      }
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .blur {
+    opacity: 0.5;
+    // backdrop-filter: blur(5px);
+  }
+  @include device(mobile) {
+    display: none;
+    margin-right: 0;
+  }
+}
