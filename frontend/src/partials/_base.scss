@@ -34,7 +34,7 @@ body {
   color: #45474b;
   height: 100vh;
   max-height: max-content;
-  // overflow: auto;
+  overflow: scroll;
 }
 ::-webkit-scrollbar {
   display: none;
