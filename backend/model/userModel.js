@@ -21,7 +21,9 @@ const userSchema = new Schema(
     image: { type: String },
     shoppingCart: [
       {
+        type: { type: String, enum: ["product", "bundle"], required: true },
         productId: { type: mongoose.Types.ObjectId, ref: "PRODUCT" },
+        bundleId: { type: mongoose.Types.ObjectId, ref: "BUNDLE" },
         quantity: { type: Number, default: 1 },
       },
     ],

@@ -4,6 +4,78 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { toast } from "react-toastify";
 function Cart() {
+  // const [quantity, setQuantity] = useState(1);
+  // const { user, dispatch } = useAuthContext();
+  // const [cartItems, setCartItems] = useState(null);
+  // const [bill, setBill] = useState({
+  //   subtotal: 0,
+  //   shipping: 0,
+  //   tax: 0,
+  // });
+  // useLayoutEffect(() => {
+  //   const fetchCart = async () => {
+  //     if (!user) {
+  //       console.log("User not logged in");
+  //       return;
+  //     } else {
+  //       const response = await fetch(
+  //         `${process.env.REACT_APP_BASE_URL}/api/users/get-cart`,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             Authorization: `Bearer ${user.token}`,
+  //           },
+  //         }
+  //       );
+  //       const json = await response.json();
+  //       if (json.success) {
+  //         setCartItems(json.data);
+  //         let subTotal = 0;
+  //         json.data.forEach((item) =>
+  //           !item.productId?.onSale
+  //             ? (subTotal += item.productId?.price * item.quantity)
+  //             : (subTotal +=
+  //                 item.productId?.price *
+  //                 ((100 - item.productId.salePercentage) / 100) *
+  //                 item.quantity)
+  //         );
+
+  //         setBill((prevBill) => ({ ...prevBill, subtotal: subTotal }));
+  //       } else {
+  //         console.log(json.error);
+  //       }
+  //     }
+  //   };
+  //   fetchCart();
+  // }, [user]);
+  // const removeItemFromCart = async (productId) => {
+  //   if (!user) {
+  //     console.log("User not logged in");
+  //     return;
+  //   } else {
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_BASE_URL}/api/users/remove-from-cart/${productId}`,
+  //       {
+  //         method: "DELETE",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${user.token}`,
+  //         },
+  //       }
+  //     );
+  //     const json = await response.json();
+  //     if (json.success) {
+  //       if (json.data) {
+  //         dispatch({ type: "REMOVE_FROM_CART", payload: json.data });
+  //       } else {
+  //         console.log("Cart items data is undefined");
+  //       }
+  //     } else {
+  //       console.log(json.error);
+  //     }
+  //   }
+  // };
   const [quantity, setQuantity] = useState(1);
   const { user, dispatch } = useAuthContext();
   const [cartItems, setCartItems] = useState(null);
@@ -12,6 +84,7 @@ function Cart() {
     shipping: 0,
     tax: 0,
   });
+
   useLayoutEffect(() => {
     const fetchCart = async () => {
       if (!user) {
@@ -32,14 +105,26 @@ function Cart() {
         if (json.success) {
           setCartItems(json.data);
           let subTotal = 0;
-          json.data.forEach((item) =>
-            !item.productId?.onSale
-              ? (subTotal += item.productId?.price * item.quantity)
-              : (subTotal +=
-                  item.productId?.price *
-                  ((100 - item.productId.salePercentage) / 100) *
-                  item.quantity)
-          );
+          json.data.forEach((item) => {
+            if (item.type === "product") {
+              !item.productId?.onSale
+                ? (subTotal += item.productId?.price * item.quantity)
+                : (subTotal +=
+                    item.productId?.price *
+                    ((100 - item.productId.salePercentage) / 100) *
+                    item.quantity);
+            } else if (item.type === "bundle") {
+              // Logic for bundles
+              let bundleSubtotal = 0;
+              item.bundleId.products.forEach((product) => {
+                bundleSubtotal +=
+                  product.price *
+                  ((100 - product.salePercentage) / 100) *
+                  item.quantity;
+              });
+              subTotal += bundleSubtotal;
+            }
+          });
 
           setBill((prevBill) => ({ ...prevBill, subtotal: subTotal }));
         } else {
@@ -49,13 +134,14 @@ function Cart() {
     };
     fetchCart();
   }, [user]);
-  const removeItemFromCart = async (productId) => {
+
+  const removeItemFromCart = async (itemId, itemType) => {
     if (!user) {
       console.log("User not logged in");
       return;
     } else {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/users/remove-from-cart/${productId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/users/remove-from-cart/${itemId}?type=${itemType}`,
         {
           method: "DELETE",
           headers: {
