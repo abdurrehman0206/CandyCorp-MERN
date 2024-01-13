@@ -46,7 +46,10 @@ function Product() {
           productImg={productData.images}
           productPrice={productData.price}
           productInfo={productData.description}
-          productCategory={"Gumms"}
+          productCategory={productData.category}
+          productType={productData.type}
+          productSize={productData.size}
+          productFlavor={productData.flavor}
           productId={productData._id}
           productMaxQuantity={productData.quantity}
         />

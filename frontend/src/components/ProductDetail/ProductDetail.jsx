@@ -11,6 +11,9 @@ function ProductDetail({
   productName,
   productPrice,
   productInfo,
+  productType,
+  productFlavor,
+  productSize,
   productCategory,
   productMaxQuantity,
 }) {
@@ -95,6 +98,26 @@ function ProductDetail({
 
             <p className="product-info-heading">{productInfo}</p>
           </div>
+          <div className="product-info">
+            <ul>
+              <li>
+                <h4>Category  </h4>
+                <span>{productCategory}</span>
+              </li>
+              <li>
+                <h4>Type  </h4>
+                <span>{productType}</span>
+              </li>
+              <li>
+                <h4>Size  </h4>
+                <span>{productSize}</span>
+              </li>
+              <li>
+                <h4>Flavor  </h4>
+                <span>{productFlavor}</span>
+              </li>
+            </ul>
+          </div>
           <div className="product-add-to-cart">
             <div className="product-quantity">
               <button
@@ -131,14 +154,7 @@ function ProductDetail({
               {wishlist ? <FaHeart /> : <FaRegHeart />}
             </button>
           </div>
-          <div className="product-info">
-            <ul>
-              <li>
-                <h4>Category : </h4>
-                <span>{productCategory}</span>
-              </li>
-            </ul>
-          </div>
+          
           <div className="product-share">
             <i>Share with your friends</i>
             <div className="product-share-links">
