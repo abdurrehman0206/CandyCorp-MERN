@@ -414,7 +414,7 @@ function Products() {
             next={fetchMoreData}
             hasMore={true}
             loader={<h4>Loading...</h4>}
-            scrollThreshold="200px"
+            // scrollThreshold="200px"
             className="products-grid-scroll"
           >
             {state.items?.map((product, index) => (
