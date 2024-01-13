@@ -23,7 +23,7 @@ function Filter({ sidebarFilter, setSidebarFilter }) {
         "New Candy",
         "Other",
       ],
-      open: false,
+      open: true,
       showMore: false,
     },
     {
@@ -40,7 +40,7 @@ function Filter({ sidebarFilter, setSidebarFilter }) {
         "Peg Bag",
         "Others",
       ],
-      open: false,
+      open: true,
       showMore: false,
     },
     {
@@ -53,7 +53,7 @@ function Filter({ sidebarFilter, setSidebarFilter }) {
         "Collectibles",
         "Snacks",
       ],
-      open: false,
+      open: true,
       showMore: false,
     },
     {

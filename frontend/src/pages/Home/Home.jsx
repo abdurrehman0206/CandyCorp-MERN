@@ -6,6 +6,7 @@ import { useBlogContext } from "../../hooks/useBlogContext";
 
 function Home() {
   const { products } = useProductContext();
+
   const { blogs } = useBlogContext();
   return (
     <div className="home-wrapper">
@@ -15,7 +16,7 @@ function Home() {
         {/* Latest Arrivals */}
         <div className="new-candy">
           <h2>Latest Arrivals </h2>
-          <Grid card={true} products={products} />
+          <Grid card={true} products={products ? products.slice(0, 4) : null} />
         </div>
         {/* Featured Brands Section */}
         <div className="featured-brands">
@@ -26,17 +27,21 @@ function Home() {
         {/* Exclusive Offers */}
         <div className="sweet-deals">
           <h2>Exclusive Offers</h2>
-          <Grid card={true} products={products} />
+          <Grid card={true} products={products ? products.slice(0, 4) : null} />
         </div>
         {/* Sweet Wholesale Deals */}
         <div className="bulk-candy">
           <h2>Sweet Wholesale Deals</h2>
-          <Grid card={true} products={products} />
+          <Grid card={true} products={products ? products.slice(0, 4) : null} />
         </div>
         {/* Blogs */}
         <div className="blog-post">
           <h2>Blog Post</h2>
-          <Grid card={false} blogs={blogs} visitBtn={true} />
+          <Grid
+            card={false}
+            blogs={blogs ? blogs.slice(0, 4) : null}
+            visitBtn={true}
+          />
         </div>
       </div>
     </div>
