@@ -11,6 +11,7 @@ import Product from "./Product/Product";
 import Products from "./Products/Products";
 import Home from "./Home/Home";
 import ContactUs from "./ContactUs/ContactUs";
+import Deals from "./Deals/Deals";
 export {
   AboutUs,
   Login,
@@ -24,5 +25,6 @@ export {
   Product,
   Products,
   Home,
-  ContactUs
+  ContactUs,
+  Deals,
 };

@@ -2,10 +2,10 @@ import React, { useLayoutEffect, useState } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
 import { useProductContext } from "../../hooks/useProductContext";
-function Filter({ sidebarFilter, setSidebarFilter }) {
+function Filter({ products, sidebarFilter, setSidebarFilter }) {
   //colors selection
   const [selectedColor, setSelectedColor] = useState(null);
-  const { products } = useProductContext();
+  // const { products } = useProductContext();
   console.log("🚀 ~ Filter ~ products:", products);
   useLayoutEffect(() => {}, []);
   const handleColorChange = (color) => {
@@ -13,7 +13,7 @@ function Filter({ sidebarFilter, setSidebarFilter }) {
   };
   const countProductsByProperty = (property) => {
     const uniqueValues = [
-      ...new Set(products.map((product) => product[property])),
+      ...new Set(products?.map((product) => product[property])),
     ];
 
     const counts = uniqueValues.map((value) => ({
@@ -27,23 +27,6 @@ function Filter({ sidebarFilter, setSidebarFilter }) {
   };
 
   const [filterMenu, setFilterMenu] = useState([
-    // {
-    //   name: "Top Rated",
-    //   options: [
-    //     "Novelty",
-    //     "Retro",
-    //     "Gum",
-    //     "Sour",
-    //     "Gummy",
-    //     "Hard Candy",
-    //     "Lollipops",
-    //     "Drinks",
-    //     "New Candy",
-    //     "Other",
-    //   ],
-    //   open: true,
-    //   showMore: false,
-    // },
     {
       name: "Size",
       options: [...countProductsByProperty("size")],
@@ -56,49 +39,6 @@ function Filter({ sidebarFilter, setSidebarFilter }) {
       open: true,
       showMore: false,
     },
-    // {
-    //   name: "Variety",
-    //   options: [
-    //     "Milk Chocolate",
-    //     "Dark Chocolate",
-    //     "White Chocolate",
-    //     "Cotton Candy",
-    //     "Gummy",
-    //     "Jelly Beans",
-    //     "Licorice",
-    //     "Lollipops",
-    //     "Marshmallows",
-    //     "Nougat",
-    //     "Popping",
-    //     "Taffy",
-    //     "Toffee",
-    //     "Drink Mix",
-    //     "Drink",
-    //     "Spread",
-    //     "Chips",
-    //     "Cereal",
-    //     "Cookie",
-    //     "Baked Goods",
-    //     "Seeds",
-    //     "Nuts",
-    //     "Condiment",
-    //     "Gum",
-    //     "Mints",
-    //     "Powder Candy",
-    //     "Chocolate Covered",
-    //     "Hard Candy",
-    //     "Fudge",
-    //     "Scented Candle",
-    //     "Baking Ingredients",
-    //     "Spray",
-    //     "Popcorn",
-    //     "Liquid-Filled",
-    //     "Syrup",
-    //     "Other",
-    //   ],
-    //   open: true,
-    //   showMore: false,
-    // },
     {
       name: "Flavour",
       options: [...countProductsByProperty("flavor")],
