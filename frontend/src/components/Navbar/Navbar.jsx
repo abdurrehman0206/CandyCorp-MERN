@@ -92,7 +92,9 @@ function Navbar() {
               </NavLink>
             </li>
             <li className="nav-user-icon">
-              <NavLink>
+
+              {/*TODO:Link to user profile*/ }
+              <div>
                 {user ? (
                   <img src={user.image} alt={user.username} />
                 ) : (
@@ -140,7 +142,7 @@ function Navbar() {
                     )}
                   </div>
                 </div>
-              </NavLink>
+              </div>
             </li>
           </ul>
           <span className="hamburger">

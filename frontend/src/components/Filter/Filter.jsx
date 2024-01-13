@@ -6,7 +6,7 @@ function Filter({ products, sidebarFilter, setSidebarFilter }) {
   //colors selection
   const [selectedColor, setSelectedColor] = useState(null);
   // const { products } = useProductContext();
-  console.log("🚀 ~ Filter ~ products:", products);
+  
   useLayoutEffect(() => {}, []);
   const handleColorChange = (color) => {
     setSelectedColor(color);

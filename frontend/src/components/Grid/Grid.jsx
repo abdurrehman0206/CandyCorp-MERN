@@ -50,8 +50,8 @@ function Grid({
           <div className="box-section">
             {items?.map((item, i) => {
               return (
-                <div className="grid-box">
-                  <img src={item} alt="feature-brand" key={i} />
+                <div className="grid-box" key={i}>
+                  <img src={item} alt="feature-brand" />
                 </div>
               );
             })}
