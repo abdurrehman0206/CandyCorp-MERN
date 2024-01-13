@@ -881,6 +881,12 @@ body {
   align-items: flex-start;
   gap: 0.5rem;
 }
+.product-card .product-card-info .product-card-name {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+}
 .product-card .product-card-info h1 {
   font-size: 1rem;
 }
@@ -3017,7 +3023,7 @@ body {
   z-index: 1;
   width: 90%;
   height: 100%;
-  max-width: 1200px;
+  max-width: 1240px;
   padding: 1rem;
   margin: 0 auto;
 }

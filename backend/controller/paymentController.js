@@ -13,7 +13,7 @@ const checkOut = async (req, res) => {
     const user = await USER.findById(userId).populate({
       path: "shoppingCart.productId",
       select:
-        "_id name price quantity inStock onSale salePercentage images type category flavour size",
+        "_id name price quantity inStock onSale salePercentage images type category flavor size",
     });
 
     if (!user) {

@@ -1,157 +1,107 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
+import { useProductContext } from "../../hooks/useProductContext";
 function Filter({ sidebarFilter, setSidebarFilter }) {
   //colors selection
   const [selectedColor, setSelectedColor] = useState(null);
-
+  const { products } = useProductContext();
+  console.log("🚀 ~ Filter ~ products:", products);
+  useLayoutEffect(() => {}, []);
   const handleColorChange = (color) => {
     setSelectedColor(color);
   };
+  const countProductsByProperty = (property) => {
+    const uniqueValues = [
+      ...new Set(products.map((product) => product[property])),
+    ];
+
+    const counts = uniqueValues.map((value) => ({
+      propertyName: value,
+      countOfPropertyName: products.filter(
+        (product) => product[property] === value
+      ).length,
+    }));
+
+    return counts;
+  };
+
   const [filterMenu, setFilterMenu] = useState([
-    {
-      name: "Top Rated",
-      options: [
-        "Novelty",
-        "Retro",
-        "Gum",
-        "Sour",
-        "Gummy",
-        "Hard Candy",
-        "Lollipops",
-        "Drinks",
-        "New Candy",
-        "Other",
-      ],
-      open: true,
-      showMore: false,
-    },
+    // {
+    //   name: "Top Rated",
+    //   options: [
+    //     "Novelty",
+    //     "Retro",
+    //     "Gum",
+    //     "Sour",
+    //     "Gummy",
+    //     "Hard Candy",
+    //     "Lollipops",
+    //     "Drinks",
+    //     "New Candy",
+    //     "Other",
+    //   ],
+    //   open: true,
+    //   showMore: false,
+    // },
     {
       name: "Size",
-      options: [
-        "Giant",
-        "Fun Size",
-        "Movie Theatre Box",
-        "Squeeze Tube",
-        "Share Bag",
-        "King Size",
-        "Bulk Bag",
-        "Pantry Size",
-        "Peg Bag",
-        "Others",
-      ],
+      options: [...countProductsByProperty("size")],
       open: true,
       showMore: false,
     },
     {
       name: "Product Type",
-      options: [
-        "Bulk",
-        "Candy",
-        "Candy Funhouse",
-        "Chocolate",
-        "Collectibles",
-        "Snacks",
-      ],
+      options: [...countProductsByProperty("type")],
       open: true,
       showMore: false,
     },
-    {
-      name: "Variety",
-      options: [
-        "Milk Chocolate",
-        "Dark Chocolate",
-        "White Chocolate",
-        "Cotton Candy",
-        "Gummy",
-        "Jelly Beans",
-        "Licorice",
-        "Lollipops",
-        "Marshmallows",
-        "Nougat",
-        "Popping",
-        "Taffy",
-        "Toffee",
-        "Drink Mix",
-        "Drink",
-        "Spread",
-        "Chips",
-        "Cereal",
-        "Cookie",
-        "Baked Goods",
-        "Seeds",
-        "Nuts",
-        "Condiment",
-        "Gum",
-        "Mints",
-        "Powder Candy",
-        "Chocolate Covered",
-        "Hard Candy",
-        "Fudge",
-        "Scented Candle",
-        "Baking Ingredients",
-        "Spray",
-        "Popcorn",
-        "Liquid-Filled",
-        "Syrup",
-        "Other",
-      ],
-      open: true,
-      showMore: false,
-    },
+    // {
+    //   name: "Variety",
+    //   options: [
+    //     "Milk Chocolate",
+    //     "Dark Chocolate",
+    //     "White Chocolate",
+    //     "Cotton Candy",
+    //     "Gummy",
+    //     "Jelly Beans",
+    //     "Licorice",
+    //     "Lollipops",
+    //     "Marshmallows",
+    //     "Nougat",
+    //     "Popping",
+    //     "Taffy",
+    //     "Toffee",
+    //     "Drink Mix",
+    //     "Drink",
+    //     "Spread",
+    //     "Chips",
+    //     "Cereal",
+    //     "Cookie",
+    //     "Baked Goods",
+    //     "Seeds",
+    //     "Nuts",
+    //     "Condiment",
+    //     "Gum",
+    //     "Mints",
+    //     "Powder Candy",
+    //     "Chocolate Covered",
+    //     "Hard Candy",
+    //     "Fudge",
+    //     "Scented Candle",
+    //     "Baking Ingredients",
+    //     "Spray",
+    //     "Popcorn",
+    //     "Liquid-Filled",
+    //     "Syrup",
+    //     "Other",
+    //   ],
+    //   open: true,
+    //   showMore: false,
+    // },
     {
       name: "Flavour",
-      options: [
-        "Sour",
-        "Spicy",
-        "Banana",
-        "Blue Raspberry",
-        "Caramel",
-        "Cherry",
-        "Cinnamon",
-        "Coconut",
-        "Coffee",
-        "Fruit Punch",
-        "Grape",
-        "Mint",
-        "Orange",
-        "Peach",
-        "Peanut",
-        "Peanut Butter",
-        "Peppermint",
-        "Pineapple",
-        "Strawberry",
-        "Vanilla",
-        "Watermelon",
-        "Unique",
-        "Tropical",
-        "Assorted",
-        "Cotton Candy",
-        "Lemon",
-        "Lime",
-        "Cola",
-        "Mango",
-        "Berry",
-        "Chocolate",
-        "Bubble Gum",
-        "BBQ",
-        "Fruity",
-        "Ranch",
-        "Dill Pickle",
-        "Blueberry",
-        "Chili",
-        "Green Apple",
-        "Apple",
-        "Cookies n Cream",
-        "Marshmallow",
-        "Pink Lemonade",
-        "Raspberry",
-        "Black Currant",
-        "Hazelnut",
-        "Honey",
-        "Cheese",
-        "Other",
-      ],
+      options: [...countProductsByProperty("flavor")],
       open: false,
       showMore: false,
     },
@@ -256,15 +206,17 @@ function Filter({ sidebarFilter, setSidebarFilter }) {
                         <input
                           className="filter-option-input"
                           type="checkbox"
-                          id={`filter-${option}`}
+                          id={`filter-${option.propertyName + m.name}`}
                         />
                         <label
                           className="filter-option-label"
-                          htmlFor={`filter-${option}`}
+                          htmlFor={`filter-${option.propertyName + m.name}`}
                         >
-                          {option}
+                          {option.propertyName}
                         </label>
-                        <small className="filter-option-quantity">10</small>
+                        <small className="filter-option-quantity">
+                          {option.countOfPropertyName}
+                        </small>
                       </li>
                     );
                   })}
