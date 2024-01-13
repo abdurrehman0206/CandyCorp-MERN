@@ -13,6 +13,7 @@ import ProductDesc from "./ProductDesc/ProductDesc";
 import Grid from "./Grid/Grid";
 import ProductListGrid from "./ProductListGrid/ProductListGrid";
 import Filter from "./Filter/Filter";
+
 export {
   Navbar,
   Footer,

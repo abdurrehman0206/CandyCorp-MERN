@@ -59,7 +59,7 @@
       }
     }
 
-    @media (max-width: 768px) {
+    @include device(mobile) {
       .blogs-section {
         // row-gap: 20px;
         grid-template-columns: 1fr;
@@ -69,8 +69,6 @@
         grid-template-columns: repeat(2, 1fr);
       }
       .box-section {
-        // grid-template-rows: repeat(2, 2fr);
-        // row-gap: 20px;
         grid-template-columns: repeat(2, 1fr);
       }
     }

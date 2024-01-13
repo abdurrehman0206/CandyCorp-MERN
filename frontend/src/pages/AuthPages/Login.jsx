@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import "react-toastify/dist/ReactToastify.css";
 import { useGoogleLogin } from "../../hooks/useGoogleLogin";
+import { FaGoogle } from "react-icons/fa";
 function Login() {
   document.title = "Login";
   const {
@@ -57,10 +58,11 @@ function Login() {
         </button>
 
         <button
-          className="btn-box-primary"
+          className="btn-box-outline"
           onClick={handleGoogleLogin}
           disabled={googleLoading}
         >
+          <FaGoogle /> &nbsp; &nbsp;
           {googleLoading ? "Logging In with Google" : "Login with Google"}
         </button>
         {googleError && <p className="error-message">{googleError}</p>}
