@@ -1,6 +1,7 @@
 .filter-wrapper {
   margin-right: $lg;
   .filter-container {
+    border-radius: $sm;
     align-self: start;
     min-height: 100%;
     border: 1px solid $outline-border-color;

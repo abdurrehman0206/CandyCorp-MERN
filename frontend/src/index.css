@@ -720,9 +720,9 @@ body {
 }
 
 .product-card-container {
-  max-width: 243px;
+  max-width: 283px;
   max-height: 383px;
-  min-width: 243px;
+  min-width: 283px;
   min-height: 383px;
 }
 .product-card-container .product-card {
@@ -1934,6 +1934,7 @@ body {
   margin: auto;
 }
 .product-grid-wrapper .products .products-grid .products-header {
+  border-radius: 0.5rem;
   border: 1px solid #d8d9da;
   display: flex;
   flex-direction: row;
@@ -2043,6 +2044,7 @@ body {
   margin-right: 1rem;
 }
 .filter-wrapper .filter-container {
+  border-radius: 0.5rem;
   align-self: start;
   min-height: 100%;
   border: 1px solid #d8d9da;
