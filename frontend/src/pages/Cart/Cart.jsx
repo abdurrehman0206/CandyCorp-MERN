@@ -33,10 +33,10 @@ function Cart() {
           setCartItems(json.data);
           let subTotal = 0;
           json.data.forEach((item) =>
-            !item.productId.onSale
-              ? (subTotal += item.productId.price * item.quantity)
+            !item.productId?.onSale
+              ? (subTotal += item.productId?.price * item.quantity)
               : (subTotal +=
-                  item.productId.price *
+                  item.productId?.price *
                   ((100 - item.productId.salePercentage) / 100) *
                   item.quantity)
           );
@@ -127,24 +127,24 @@ function Cart() {
                   <div className="product-image-container">
                     <img
                       src={
-                        (item.productId.images && item.productId.images[0]) ||
+                        (item.productId?.images && item.productId?.images[0]) ||
                         ""
                       }
                       alt=""
                     />
                   </div>
                   <div className="item-name">
-                    <h4>{item.productId.name}</h4>
-                    {item.productId.onSale ? (
+                    <h4>{item.productId?.name}</h4>
+                    {item.productId?.onSale ? (
                       <span>
                         {(
-                          item.productId.price *
-                          ((100 - item.productId.salePercentage) / 100)
+                          item.productId?.price *
+                          ((100 - item.productId?.salePercentage) / 100)
                         ).toFixed(2)}{" "}
                         CAD
                       </span>
                     ) : (
-                      <span>{item.productId.price.toFixed(2)} CAD</span>
+                      <span>{item.productId?.price.toFixed(2)} CAD</span>
                     )}
                   </div>
                   <div className="item-quantity">
@@ -165,24 +165,24 @@ function Cart() {
                     </button>
                   </div>
                   <div className="item-total">
-                    {item.productId.onSale ? (
+                    {item.productId?.onSale ? (
                       <span>
                         {(
                           item.productId.price *
-                          ((100 - item.productId.salePercentage) / 100) *
+                          ((100 - item.productId?.salePercentage) / 100) *
                           item.quantity
                         ).toFixed(2)}{" "}
                         CAD
                       </span>
                     ) : (
                       <span>
-                        {(item.productId.price * item.quantity).toFixed(2)} CAD
+                        {(item.productId?.price * item.quantity).toFixed(2)} CAD
                       </span>
                     )}
                   </div>
                   <button
                     className="item-delete-btn"
-                    onClick={() => removeItemFromCart(item.productId._id)}
+                    onClick={() => removeItemFromCart(item.productId?._id)}
                   >
                     <AiTwotoneDelete />
                   </button>

@@ -30,7 +30,7 @@ function UserSetting() {
               <Input
                 className={!edit ? "user-detail-inp" : ""}
                 type="text"
-                value={user.fullname}
+                value={user?.fullname}
                 onChange={changeHandle}
                 name="fullName"
                 readOnly={!edit}
@@ -41,7 +41,7 @@ function UserSetting() {
               <Input
                 className={!edit ? "user-detail-inp" : ""}
                 type="text"
-                value={user.username}
+                value={user?.username}
                 onChange={changeHandle}
                 name="userName"
                 readOnly={!edit}
@@ -52,7 +52,7 @@ function UserSetting() {
               <Input
                 className={!edit ? "user-detail-inp" : ""}
                 type="text"
-                value={user.email}
+                value={user?.email}
                 onChange={changeHandle}
                 name="email"
                 readOnly={!edit}
@@ -91,7 +91,7 @@ function UserSetting() {
           {/* <h4>Profile Image</h4> */}
           <div className="profile-img-container">
             <img
-              src={user.image}
+              src={user?.image}
               alt="user-profile"
               className="profile-img border-ac3"
             />

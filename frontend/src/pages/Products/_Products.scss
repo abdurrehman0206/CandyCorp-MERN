@@ -1,5 +1,6 @@
 .products-wrapper {
   min-width: 100%;
+  min-height: 100%;
   @include flex-layout(row, start, center);
   .product-grid-wrapper {
     align-self: start;

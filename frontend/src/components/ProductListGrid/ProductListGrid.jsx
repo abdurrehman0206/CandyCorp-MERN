@@ -2,26 +2,28 @@ import React, { useEffect, useState } from "react";
 import { ProductCard } from "../../components/imports";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { IoFilterSharp } from "react-icons/io5";
+import Spinner from "../Common/Spinner";
 function ProductListGrid({ products, setSidebarFilter }) {
   const [state, setState] = useState({
-    items: products ? [...products] : [],
+    items: [],
   });
-
-//   useEffect(() => {
-//     if (products) {
-//       setState((prevState) => ({
-//         ...prevState,
-//         items: [...prevState.items, ...products],
-//       }));
-//     }
-//   }, [products]);
-
+  const [loader, setLoader] = useState(false);
+  const productsPerPage = 12;
+  useEffect(() => {
+    const initialProducts = products;
+    setState({ items: initialProducts.slice(0, productsPerPage) });
+  }, []);
   const fetchMoreData = () => {
     setTimeout(() => {
+      const currentLength = state.items.length;
+      const nextProducts = products;
       setState((prev) => ({
-        items: [...prev.items, ...products],
+        items: [
+          ...prev.items,
+          ...nextProducts.slice(currentLength, currentLength + productsPerPage),
+        ],
       }));
-    }, 1500);
+    }, 2500);
   };
   return (
     <div className="product-grid-wrapper">
@@ -30,7 +32,7 @@ function ProductListGrid({ products, setSidebarFilter }) {
         <div className="products-grid">
           <div className="products-header">
             <div className="products-header-top">
-              <div className="total-products">500 Products</div>
+              <div className="total-products">{products.length} items</div>
               <div
                 className="filter-btn"
                 onClick={() => {
@@ -62,14 +64,13 @@ function ProductListGrid({ products, setSidebarFilter }) {
             dataLength={state.items ? state.items.length : 0}
             next={fetchMoreData}
             hasMore={true}
-            loader={<h4>Loading...</h4>}
-            // scrollThreshold="100%"
             className="products-grid-scroll"
           >
             {state.items?.map((product, index) => (
               <ProductCard {...product} key={index} />
             ))}
           </InfiniteScroll>
+          {state.items.length < products.length && <Spinner />}
         </div>
       </section>
     </div>
