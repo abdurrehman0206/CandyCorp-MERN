@@ -1,7 +1,8 @@
 .navbar-container {
   background-color: $theme-accent2;
   min-width: 100%;
-  margin-bottom: $xxxl;
+  margin-bottom: $xxxl !important ;
+
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   span {
     button {
