@@ -6,8 +6,8 @@ import { useBlogContext } from "../../hooks/useBlogContext";
 
 function Home() {
   const { products } = useProductContext();
-
   const { blogs } = useBlogContext();
+  // console.log(products);
   return (
     <div className="home-wrapper">
       <div className="home">
@@ -16,18 +16,40 @@ function Home() {
         {/* Latest Arrivals */}
         <div className="new-candy">
           <h2>Latest Arrivals </h2>
-          <Grid card={true} products={products ? products.slice(0, 4) : null} />
+          <Grid
+            card={true}
+            products={
+              products
+                ? products
+                    ?.slice()
+                    .sort(
+                      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                    )
+                    .slice(0, 4)
+                : null
+            }
+          />
         </div>
         {/* Featured Brands Section */}
         <div className="featured-brands">
           <h2>Featured Brands</h2>
           <Grid card={false} items={[Candy, Candy, Candy, Candy]} />
+          {/* <Grid card={true} products={products ? products.slice(0, 4) : null} /> */}
         </div>
 
         {/* Exclusive Offers */}
         <div className="sweet-deals">
           <h2>Exclusive Offers</h2>
-          <Grid card={true} products={products ? products.slice(0, 4) : null} />
+          <Grid
+            card={true}
+            products={
+              products
+                ? products
+                    ?.filter((product) => product?.onSale && product?.price < 6)
+                    .slice(0, 4)
+                : null
+            }
+          />
         </div>
         {/* Sweet Wholesale Deals */}
         <div className="bulk-candy">
@@ -39,7 +61,9 @@ function Home() {
           <h2>Blog Post</h2>
           <Grid
             card={false}
-            blogs={blogs ? blogs.slice(0, 4) : null}
+            blogs={
+              blogs ? blogs?.sort(() => Math.random() - 0.5)?.slice(0, 4) : null
+            }
             visitBtn={true}
           />
         </div>

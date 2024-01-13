@@ -2,6 +2,7 @@ import React from "react";
 import { ProductCard } from "../../components/imports";
 import { FaArrowRightLong } from "react-icons/fa6";
 import BlogCard from "../../components/BlogCard/BlogCard";
+import { useNavigate } from "react-router-dom";
 function Grid({
   products = null,
   blogs = null,
@@ -9,12 +10,16 @@ function Grid({
   visitBtn = false,
   items = null,
 }) {
+  const nav = useNavigate();
   return (
     <div className="grid-container">
       <section className="grid">
         {(card || visitBtn) && (
           <div className="btn-see-more">
-            <button className="btn-box-outline ">
+            <button
+              className="btn-box-outline "
+              onClick={() => (visitBtn ? nav("/blogs") : null)}
+            >
               {visitBtn ? "Visit" : "See More"} &nbsp; <FaArrowRightLong />
             </button>
           </div>
