@@ -178,13 +178,15 @@
     // background: gray;
     align-self: start;
     min-width: 75%;
+    margin: auto;
     .products-grid {
       .products-header {
-        // position: relative;
         border: 1px solid $outline-border-color;
         @include flex-layout(row, space-between, center);
 
-        padding: $md;
+        padding: $md $lg;
+
+        // margin: 0 $lg;
         margin-bottom: $lg;
         font-weight: bold;
         .filter-btn {
@@ -238,11 +240,14 @@
       .products-grid-scroll {
         min-width: 100%;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        place-items: center;
+        grid-template-columns: repeat(3, 1fr);
+        place-items: start center;
         gap: $md;
 
         @include device(mobile) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @include device(tablet) {
           grid-template-columns: repeat(2, 1fr);
         }
       }
