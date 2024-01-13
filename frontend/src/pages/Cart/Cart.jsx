@@ -40,6 +40,7 @@ function Cart() {
                   ((100 - item.productId.salePercentage) / 100) *
                   item.quantity)
           );
+
           setBill((prevBill) => ({ ...prevBill, subtotal: subTotal }));
         } else {
           console.log(json.error);
@@ -187,7 +188,7 @@ function Cart() {
           <h4>Summary</h4>
           <ul>
             <li>
-              Subtotal <span>{bill.subtotal} CAD</span>
+              Subtotal <span>{bill.subtotal.toFixed(2)} CAD</span>
             </li>
             <li>
               Taxes <span>{bill.tax} CAD</span>
@@ -199,7 +200,10 @@ function Cart() {
             <hr />
 
             <li>
-              Total <span>{bill.subtotal + bill.shipping + bill.tax} CAD</span>
+              Total{" "}
+              <span>
+                {(bill.subtotal + bill.shipping + bill.tax).toFixed(2)} CAD
+              </span>
             </li>
           </ul>
           <button
