@@ -4,26 +4,49 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { IoFilterSharp } from "react-icons/io5";
 import Spinner from "../Common/Spinner";
 function ProductListGrid({ products, setSidebarFilter }) {
-  const [state, setState] = useState({
+  const [items, setItems] = useState({
     items: [],
   });
-  const [loader, setLoader] = useState(false);
+  // const [loader, setLoader] = useState(false);
+  const [sortSelection, setSortSelection] = useState("asc");
   const productsPerPage = 12;
   useEffect(() => {
-    const initialProducts = products;
-    setState({ items: initialProducts.slice(0, productsPerPage) });
-  }, []);
+    products = sortProducts(products, sortSelection);
+    setItems({ items: products.slice(0, productsPerPage) });
+  }, [products, sortSelection]);
   const fetchMoreData = () => {
     setTimeout(() => {
-      const currentLength = state.items.length;
-      const nextProducts = products;
-      setState((prev) => ({
+      const currentLength = items.items.length;
+      const nextProducts = sortProducts(products, sortSelection);
+      setItems((prev) => ({
         items: [
           ...prev.items,
           ...nextProducts.slice(currentLength, currentLength + productsPerPage),
         ],
       }));
     }, 2500);
+  };
+  const sortProducts = (products, sortOption) => {
+    switch (sortOption) {
+      case "asc":
+        return products.slice().sort((a, b) => a.name.localeCompare(b.name));
+      case "desc":
+        return products.slice().sort((a, b) => b.name.localeCompare(a.name));
+      case "LTH":
+        return products.slice().sort((a, b) => a.price - b.price);
+      case "HTL":
+        return products.slice().sort((a, b) => b.price - a.price);
+      case "OTN":
+        return products
+          .slice()
+          .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      case "NTO":
+        return products
+          .slice()
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      default:
+        return products;
+    }
   };
   return (
     <div className="product-grid-wrapper">
@@ -46,31 +69,35 @@ function ProductListGrid({ products, setSidebarFilter }) {
 
             <div className="sort-by">
               <label htmlFor="products-sort">Sort By : </label>
-              <select id="products-sort" name="products">
-                <option value="Featured">Featured</option>
-                <option value="TopRated">Top-Rated</option>
-                <option value="Ascending">In alphabetical order (A-Z)</option>
-                <option value="Descending">
+              <select
+                id="products-sort"
+                name="products"
+                onChange={(e) => {
+                  setSortSelection(e.target.value);
+                }}
+              >
+                <option value="asc">In alphabetical order (A-Z)</option>
+                <option value="desc">
                   In reverse alphabetical order (Z-A)
                 </option>
-                <option value="low to high">Lowest to highest price</option>
-                <option value="low to high">Highest to Lowest price</option>
-                <option value="old to new date">Oldest to newest date</option>
-                <option value="new to old date">Newest to oldest date</option>
+                <option value="LTH">Lowest to highest price</option>
+                <option value="HTL">Highest to Lowest price</option>
+                <option value="OTN">Oldest to newest date</option>
+                <option value="NTO">Newest to oldest date</option>
               </select>
             </div>
           </div>
           <InfiniteScroll
-            dataLength={state.items ? state.items.length : 0}
+            dataLength={items.items ? items.items.length : 0}
             next={fetchMoreData}
             hasMore={true}
             className="products-grid-scroll"
           >
-            {state.items?.map((product, index) => (
+            {items.items?.map((product, index) => (
               <ProductCard {...product} key={index} />
             ))}
           </InfiniteScroll>
-          {state.items.length < products.length && <Spinner />}
+          {items.items.length < products.length && <Spinner />}
         </div>
       </section>
     </div>
