@@ -264,7 +264,7 @@ function Products() {
           <button
             className="sidebarfilter-close-btn"
             onClick={() => {
-              document;
+              
 
               document.body.classList.remove("no-scroll");
               setSidebarFilter(false);
