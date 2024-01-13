@@ -73,7 +73,7 @@ function UserSetting() {
                 className="btn-box-primary change-password-btn"
                 onClick={() => setChangePassword(!changePassword)}
               >
-                Change password
+                {changePassword ? "Cancel" : " Change password"}
               </button>
               <button className="btn-box-primary upload-img-btn">
                 Upload Image
