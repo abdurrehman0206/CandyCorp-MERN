@@ -240,15 +240,36 @@
       .products-grid-scroll {
         min-width: 100%;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        place-items: start center;
-        gap: $md;
+        grid-template-columns: repeat(3, auto);
+        gap: $lg;
+
+        .product-card-container:nth-child(3n - 2) {
+          justify-self: start;
+        }
+        .product-card-container:nth-child(3n -1) {
+          justify-self: center;
+        }
+        .product-card-container:nth-child(3n) {
+          justify-self: end;
+        }
 
         @include device(mobile) {
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(2, auto);
+          .product-card-container:nth-child(2n -1) {
+            justify-self: start;
+          }
+          .product-card-container:nth-child(2n) {
+            justify-self: end;
+          }
         }
         @include device(tablet) {
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(2, auto);
+          .product-card-container:nth-child(2n -1) {
+            justify-self: start;
+          }
+          .product-card-container:nth-child(2n) {
+            justify-self: end;
+          }
         }
       }
     }
