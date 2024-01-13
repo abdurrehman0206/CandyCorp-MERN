@@ -30,7 +30,7 @@ function ProductListGrid({ products, setSidebarFilter }) {
         <div className="products-grid">
           <div className="products-header">
             <div className="products-header-top">
-              <div className="total-products">500 Products</div>
+              <div className="total-products">{products.length} Products</div>
               <div
                 className="filter-btn"
                 onClick={() => {
