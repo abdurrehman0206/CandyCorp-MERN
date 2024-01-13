@@ -206,11 +206,11 @@ function Filter({ sidebarFilter, setSidebarFilter }) {
                         <input
                           className="filter-option-input"
                           type="checkbox"
-                          id={`filter-${option}`}
+                          id={`filter-${option.propertyName + m.name}`}
                         />
                         <label
                           className="filter-option-label"
-                          htmlFor={`filter-${option}`}
+                          htmlFor={`filter-${option.propertyName + m.name}`}
                         >
                           {option.propertyName}
                         </label>
