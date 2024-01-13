@@ -137,12 +137,14 @@ function Cart() {
                     <h4>{item.productId.name}</h4>
                     {item.productId.onSale ? (
                       <span>
-                        {item.productId.price *
-                          ((100 - item.productId.salePercentage) / 100)}{" "}
+                        {(
+                          item.productId.price *
+                          ((100 - item.productId.salePercentage) / 100)
+                        ).toFixed(2)}{" "}
                         CAD
                       </span>
                     ) : (
-                      <span>{item.productId.price} CAD</span>
+                      <span>{item.productId.price.toFixed(2)} CAD</span>
                     )}
                   </div>
                   <div className="item-quantity">
@@ -165,13 +167,17 @@ function Cart() {
                   <div className="item-total">
                     {item.productId.onSale ? (
                       <span>
-                        {item.productId.price *
+                        {(
+                          item.productId.price *
                           ((100 - item.productId.salePercentage) / 100) *
-                          item.quantity}{" "}
+                          item.quantity
+                        ).toFixed(2)}{" "}
                         CAD
                       </span>
                     ) : (
-                      <span>{item.productId.price * item.quantity} CAD</span>
+                      <span>
+                        {(item.productId.price * item.quantity).toFixed(2)} CAD
+                      </span>
                     )}
                   </div>
                   <button
