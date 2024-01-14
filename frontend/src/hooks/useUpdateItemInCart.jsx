@@ -1,36 +1,41 @@
 import { useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { toast } from "react-toastify";
-export const useAddToCart = () => {
+export const useUpdateItemInCart = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { user, dispatch } = useAuthContext();
-  const addProductToCart = async (itemId) => {
+  const updateItemInCart = async (itemId, quantity) => {
     if (!user) {
       console.log("User not logged in");
       return;
     } else {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/users/add-to-cart`,
+        `${process.env.REACT_APP_BASE_URL}/api/users/update-cart-item/`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${user.token}`,
           },
-          body: JSON.stringify({ itemId, quantity: 1 }),
+          body: JSON.stringify({ itemId, quantity }),
         }
       );
       const json = await response.json();
       if (json.success) {
-        toast.success(json.message);
-        dispatch({ type: "ADD_TO_CART", payload: json.data });
+        if (json.data) {
+          toast.success(json.message);
+          dispatch({ type: "UPDATE_CART", payload: json.data });
+        } else {
+          console.log("Cart items data is undefined");
+        }
       } else {
-        toast.error(json.message);
         setError(json.error);
+        toast.error(json.message);
         console.log(json.error);
       }
     }
   };
-  return { addProductToCart, loading, error };
+
+  return { updateItemInCart, loading, error };
 };

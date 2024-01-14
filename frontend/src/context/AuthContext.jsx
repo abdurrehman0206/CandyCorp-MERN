@@ -33,6 +33,17 @@ export const userReducer = (state, action) => {
           shoppingCart: action.payload,
         },
       };
+      case "UPDATE_CART":
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...state.user, shoppingCart: action.payload })
+      );
+      return {
+        user: {
+          ...state.user,
+          shoppingCart: action.payload,
+        },
+      };
     case "ADD_ADDRESS":
       localStorage.setItem(
         "user",

@@ -2,6 +2,7 @@
 @import "./components/Common/style";
 @import "./components/Navbar/Navbar";
 @import "./components/ProductCard/ProductCard";
+@import "./components/BundleCard/BundleCard";
 @import "./components/LandingHero/LandingHero";
 @import "./components/BlogCard/BlogCard";
 @import "./components/Footer/Footer";
@@ -14,6 +15,7 @@
 @import "./components/ProductDesc/ProductDesc";
 @import "./components/Grid/Grid";
 @import "./components/ProductListGrid/ProductListGrid";
+@import "./components/BundleListGrid/BundleListGrid";
 @import "./components/Filter/Filter";
 //pages
 @import "./pages/AboutUs/AboutUs";
@@ -25,6 +27,7 @@
 @import "./pages/Home/Home";
 @import "./pages/Products/Products";
 @import "./pages/Product/Product";
+@import "./pages/Bundles/Bundles";
 @import "./pages/Cart/Cart";
 @import "./pages/Deals/Deals";
 .App-container {

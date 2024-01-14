@@ -1,22 +1,85 @@
 // bundleController.js
 const BUNDLE = require("../model/bundleModel");
+const PRODUCT = require("../model/productModel");
 const mongoose = require("mongoose");
 
 const createBundle = async (req, res) => {
-  const { name, description, products, price, onSale, salePercentage } =
-    req.body;
+  const {
+    name,
+    description,
+    price,
+    products,
+    images,
+    onSale,
+    salePercentage,
+    type,
+    category,
+    flavor,
+    size,
+  } = req.body;
+
+  let productDoc;
+  const productsWithObjectId = await Promise.all(
+    products.map(async (product) => {
+      productDoc = await PRODUCT.findById(product.product);
+
+      if (!productDoc) {
+        return null;
+      }
+
+      return {
+        product: productDoc,
+        quantity: product.quantity || 1,
+      };
+    })
+  );
+
+  const validProducts = productsWithObjectId.filter(
+    (product) => product !== null
+  );
+
+  
+  const bundleQuantity = Math.min(
+    ...validProducts.map((product) => product.quantity)
+  );
+
+
+
+
+  
+  const newPrice = validProducts.reduce((total, product) => {
+    return total + product.quantity * product.product.price;
+  }, 0);
+
 
   const bundle = new BUNDLE({
     name,
     description,
+    price: newPrice || price,
     products,
-    price,
+    quantity: bundleQuantity,
+    inStock : bundleQuantity == 0 ? false : true,
+    images,
     onSale,
     salePercentage,
+    type,
+    category,
+    flavor,
+    size,
   });
 
   try {
     const newBundle = await BUNDLE.create(bundle);
+
+    
+    const productImages = validProducts.reduce((images, product) => {
+      return [...images, ...product.product.images];
+    }, []);
+
+    newBundle.images = productImages;
+
+    await newBundle.save();
+
     res.status(201).json({
       success: true,
       message: "Bundle created successfully",
@@ -30,10 +93,15 @@ const createBundle = async (req, res) => {
     });
   }
 };
-
 const getBundles = async (req, res) => {
   try {
-    const bundles = await BUNDLE.find().sort({ createdAt: -1 });
+    const bundles = await BUNDLE.find()
+      .populate({
+        path: "products.product",
+        select: "_id name price quantity inStock onSale salePercentage images",
+      })
+      .sort({ createdAt: -1 });
+
     res.status(200).json({
       success: true,
       message: "Bundles fetched successfully",
@@ -59,7 +127,11 @@ const getBundle = async (req, res) => {
   }
 
   try {
-    const bundle = await BUNDLE.findById(id);
+    const bundle = await BUNDLE.findById(id).populate({
+      path: "products.product",
+      model: "PRODUCT",
+      select: "_id name price quantity inStock onSale salePercentage images",
+    });
     if (!bundle) {
       return res.status(404).json({
         success: false,
