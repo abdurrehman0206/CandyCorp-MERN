@@ -1,0 +1,18 @@
+.bundles-desc-wrapper {
+  .bundles-desc {
+    color: $text-color-dark;
+    margin-top: 3rem;
+    @include flex-layout(column, center, start);
+    gap: 2rem;
+    span {
+      svg {
+        width: 50px;
+        height: 50px;
+        opacity: 0.7;
+      }
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+}

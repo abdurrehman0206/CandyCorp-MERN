@@ -1,0 +1,58 @@
+.bundle-wrapper {
+  .bundle-desc-review-container {
+    //  background: red;
+    margin-top: 5rem;
+    .bundle-desc-review-navbar {
+      color: $text-color-dark;
+      width: 50%;
+      border-bottom: 1px solid gray;
+      // padding: 0 $md;
+      z-index: 1;
+      @include device(mobile) {
+        width: 70%;
+      }
+      ul {
+        @include flex-layout(row, center, center);
+        gap: 1rem;
+        li {
+          justify-content: flex-start;
+          margin: 0;
+          margin: $sm 0;
+          width: 100%;
+          font-size: 16px;
+          font-weight: 600;
+          // color: $text-color;
+          a {
+            padding: $md 0;
+            display: block;
+            width: 100%;
+            border-radius: 5px;
+
+            text-align: center;
+            &:hover {
+              z-index: 2;
+              position: relative;
+              color: $theme-accent2;
+              background-color: $theme-accent1;
+              transition: $transition;
+            }
+            &.bundle-navlink-active {
+              z-index: 2;
+              position: relative;
+              color: $theme-accent2;
+              background-color: $theme-accent1;
+              transition: $transition;
+            }
+          }
+        }
+      }
+    }
+  }
+  .related-product-container {
+    margin-top: 5rem;
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

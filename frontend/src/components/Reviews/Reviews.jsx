@@ -14,6 +14,7 @@ function Reviews() {
   const [comment, setComment] = useState("");
   const [title, setTitle] = useState("");
   const [addReview, setAddReview] = useState(false);
+
   const [productData, setProductData] = useState();
   useLayoutEffect(() => {
     const fetchProduct = async () => {
@@ -79,6 +80,7 @@ function Reviews() {
   if (!productData) {
     return;
   }
+
   return (
     <div className="reviews-wrapper">
       <section className="reviews">

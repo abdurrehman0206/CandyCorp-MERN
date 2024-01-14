@@ -8,7 +8,6 @@ function ProductCard(props) {
 
   const { user, dispatch } = useAuthContext();
   const { addProductToCart } = useAddToCart();
-
   return (
     <div className="product-card-container">
       <div className="product-card">
@@ -24,7 +23,7 @@ function ProductCard(props) {
             Out Of Stock
           </span> */}
             <span className="product-card-likes-badge">
-              {props.likes.length} <AiFillHeart />
+              {props.likes?.length} <AiFillHeart />
             </span>
           </div>
           <img src={props.images[0]} alt={props.name + props.description} />

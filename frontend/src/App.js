@@ -2,6 +2,8 @@ import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
 import {
   Addresses,
+  BundleDesc,
+  BundleProducts,
   Layout,
   Orders,
   ProductDesc,
@@ -24,6 +26,7 @@ import {
   Blog,
   Cart,
   Deals,
+  Bundle,
 } from "./pages/imports";
 
 function App() {
@@ -56,6 +59,14 @@ function App() {
                 <Route path="product-description" element={<ProductDesc />} />
                 <Route path="customer-reviews" element={<Reviews />} />
               </Route>
+              <Route path="bundles/:bundleId" element={<Bundle />}>
+                <Route
+                  index
+                  element={<Navigate to="bundle-products" replace />}
+                />
+                <Route path="bundle-products" element={<BundleProducts />} />
+                <Route path="bundle-description" element={<BundleDesc />} />
+              </Route>
               <Route path="products" element={<Products />} />
               <Route path="bundles" element={<Bundles />} />
               <Route path="blogs/:blogId" element={<Blog />} />
@@ -70,15 +81,8 @@ function App() {
               <Route path="contact" element={<ContactUs />} />
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
-              {/* <Route path="product" element={<Product />}>
-                <Route
-                  index
-                  element={<Navigate to="product-description" replace />}
-                />
-                <Route path="product-description" element={<ProductDesc />} />
-                <Route path="customer-reviews" element={<Reviews />} />
-              </Route> */}
               <Route path="cart" element={<Cart />} />
+              {/* <Route path="bundle" element={<Bundle />}></Route> */}
             </Route>
           </Routes>
         </BrowserRouter>

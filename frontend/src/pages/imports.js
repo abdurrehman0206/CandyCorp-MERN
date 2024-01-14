@@ -12,6 +12,7 @@ import Products from "./Products/Products";
 import Home from "./Home/Home";
 import ContactUs from "./ContactUs/ContactUs";
 import Deals from "./Deals/Deals";
+import Bundle from "./Bundle/Bundle";
 export {
   AboutUs,
   Login,
@@ -26,5 +27,6 @@ export {
   Products,
   Home,
   ContactUs,
+  Bundle,
   Deals,
 };

@@ -1,11 +1,12 @@
 .product-wrapper {
   .product {
     .product-desc-review-container {
+      margin-top: 5rem;
       .product-desc-review-navbar {
         color: $text-color-dark;
         width: 50%;
         border-bottom: 1px solid gray;
-        padding: 0 $md;
+        // padding: 0 $md;
         z-index: 1;
         @include device(mobile) {
           width: 70%;

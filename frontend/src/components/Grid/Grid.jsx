@@ -10,6 +10,8 @@ function Grid({
   visitBtn = false,
   items = null,
   path = "",
+  seeMore = true,
+  className,
 }) {
   const nav = useNavigate();
   return (
@@ -17,17 +19,19 @@ function Grid({
       <section className="grid">
         {(card || visitBtn) && (
           <div className="btn-see-more">
-            <button
-              className="btn-box-outline "
-              onClick={() => nav(path.toString())}
-            >
-              {visitBtn ? "Visit" : "See More"} &nbsp; <FaArrowRightLong />
-            </button>
+            {seeMore && (
+              <button
+                className="btn-box-outline "
+                onClick={() => nav(path.toString())}
+              >
+                {visitBtn ? "Visit" : "See More"} &nbsp; <FaArrowRightLong />
+              </button>
+            )}
           </div>
         )}
         <div className="grid-row">
           {/* Product cards */}
-          <div className="products-section">
+          <div className={`products-section ${className}`}>
             {card &&
               products?.map((product, i) => {
                 return (
