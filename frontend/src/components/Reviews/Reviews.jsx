@@ -76,42 +76,7 @@ function Reviews() {
       console.error(error);
     }
   };
-  // const customerReviews = [
-  //   {
-  //     customer_name: "jhon smith",
-  //     customer_profile_image: Profile,
-  //     customer_rating: 4,
-  //     customer_review_date: new Date(),
-  //     customer_review_header: "Gummies",
-  //     customer_review_desc: "Very good customer service ",
-  //   },
-  //   {
-  //     customer_name: "jhon phlip",
-  //     customer_profile_image: Profile,
-  //     customer_rating: 1,
-  //     customer_review_date: new Date(),
-  //     customer_review_header: "Gummies",
-  //     customer_review_desc:
-  //       "I have had a lot of different gummy bears before and these are by far the best I have ever had. They are super fresh and have lots of different flavours. I also find the bag is huge so they last a while. Very soft and just sooooo good.",
-  //   },
-  //   {
-  //     customer_name: "jhon smith",
-  //     customer_profile_image: Profile,
-  //     customer_rating: 5,
-  //     customer_review_date: new Date(),
-  //     customer_review_header: "Gummies",
-  //     customer_review_desc: "Very good customer service",
-  //   },
-  //   {
-  //     customer_name: "jhon smith",
-  //     customer_profile_image: Profile,
-  //     customer_rating: 2,
-  //     customer_review_date: new Date(),
-  //     customer_review_header: "Gummies",
-  //     customer_review_desc: "Very good customer service",
-  //   },
-  // ];
-  // // console.log(rating, comment, title);
+
   if (!productData) {
     return;
   }
@@ -157,7 +122,6 @@ function Reviews() {
         )}
         {/* customer review */}
         {productData.reviews.map((customer, i) => {
-          console.log("🚀 ~ {productData.reviews.map ~ customer:", customer)
           return (
             <section className="customer-review" key={i}>
               <div className="customer-review-header">

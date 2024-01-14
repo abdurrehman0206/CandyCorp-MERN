@@ -14,7 +14,8 @@
       width: 100%;
       padding: 1rem;
       border: 1px solid;
-      border-color: lighten(gray, 40%);
+      border-color: $outline-border-color;
+      border-radius: $sm;
     }
     .customer-review-header {
       @include flex-layout(row, start, center);
@@ -27,7 +28,7 @@
       }
       .customer-name {
         font-weight: 900;
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
 
       .customer-rating-stars {
@@ -44,7 +45,7 @@
     .customer-review-desc {
       h4 {
         font-weight: 900;
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
       p {
         font-weight: normal;

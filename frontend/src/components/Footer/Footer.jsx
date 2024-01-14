@@ -54,9 +54,11 @@ function Footer() {
           <div className="footer-bottom-company-name">
             <h3>Candy Corp</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-              voluptatem tempora eius adipisci ratione aspernatur sint
-              repellendus quis itaque error.
+              At Candy Corp.LTD, our story is as colorful as the candies we
+              adore. Our journey began with a simple yet irresistible idea - to
+              share the joy of sweets with the world. From the very first day,
+              we've been unwavering in our commitment to delivering happiness,
+              one delectable treat at a time
             </p>
           </div>
           {footerItems.map((item) => {

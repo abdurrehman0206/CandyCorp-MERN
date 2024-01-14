@@ -2002,7 +2002,8 @@ body {
   width: 100%;
   padding: 1rem;
   border: 1px solid;
-  border-color: #e6e6e6;
+  border-color: #d8d9da;
+  border-radius: 0.5rem;
 }
 .reviews-wrapper .reviews .customer-review-header {
   display: flex;
@@ -2018,7 +2019,7 @@ body {
 }
 .reviews-wrapper .reviews .customer-review-header .customer-name {
   font-weight: 900;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .reviews-wrapper .reviews .customer-review-header .customer-rating-stars {
   margin-right: 0.5rem;
@@ -2032,7 +2033,7 @@ body {
 }
 .reviews-wrapper .reviews .customer-review-desc h4 {
   font-weight: 900;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .reviews-wrapper .reviews .customer-review-desc p {
   font-weight: normal;
