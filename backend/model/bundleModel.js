@@ -6,13 +6,13 @@ const bundleSchema = new Schema(
   {
     name: { type: String, required: true },
     description: { type: String },
+    price: { type: Number },
     products: [
       {
         product: { type: mongoose.Schema.Types.ObjectId, ref: "PRODUCT" },
         quantity: { type: Number, default: 1 },
       },
     ],
-    price: { type: Number, required: true },
     onSale: { type: Boolean, default: false },
     salePercentage: { type: Number, default: 0, min: 0, max: 100 },
   },

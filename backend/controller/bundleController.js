@@ -1,10 +1,38 @@
 // bundleController.js
 const BUNDLE = require("../model/bundleModel");
+const PRODUCT = require("../model/productModel");
 const mongoose = require("mongoose");
 
 const createBundle = async (req, res) => {
-  const { name, description, products, price, onSale, salePercentage } =
-    req.body;
+  const { name, description, products, onSale, salePercentage } = req.body;
+
+  // Convert product type values to ObjectId instances
+  let productDoc;
+  const productsWithObjectId = await Promise.all(
+    products.map(async (product) => {
+      productDoc = await PRODUCT.findById(
+        product.type
+      );
+      if (!productDoc) {
+        return null; // Handle non-existent product
+      }
+
+      return {
+        product: product.type,
+        quantity: product.quantity || 1,
+      };
+    })
+  );
+
+  // Filter out null values (non-existent products)
+  const validProducts = productsWithObjectId.filter(
+    (product) => product !== null
+  );
+
+  // Calculate bundle price by summing up the prices of the products
+  const price = validProducts.reduce((total, product) => {
+    return total + product.quantity * productDoc.price; // Assuming productDoc contains the price field
+  }, 0);
 
   const bundle = new BUNDLE({
     name,
@@ -33,7 +61,13 @@ const createBundle = async (req, res) => {
 
 const getBundles = async (req, res) => {
   try {
-    const bundles = await BUNDLE.find().sort({ createdAt: -1 });
+    const bundles = await BUNDLE.find()
+      .populate({
+        path: "products.product",
+        select: "_id name price quantity inStock onSale salePercentage images",
+      })
+      .sort({ createdAt: -1 });
+
     res.status(200).json({
       success: true,
       message: "Bundles fetched successfully",
@@ -59,7 +93,11 @@ const getBundle = async (req, res) => {
   }
 
   try {
-    const bundle = await BUNDLE.findById(id);
+    const bundle = await BUNDLE.findById(id).populate({
+      path: "products.product",
+      model: "PRODUCT",
+      select: "_id name price quantity inStock onSale salePercentage images",
+    });
     if (!bundle) {
       return res.status(404).json({
         success: false,
