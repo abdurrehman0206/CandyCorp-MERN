@@ -17,7 +17,14 @@ export const bundleReducer = (state, action) => {
       return {
         bundles: null,
       };
-
+    case "UPDATE_BUNDLE_LIKES":
+      return {
+        bundles: state.bundles.map((bundle) =>
+          bundle._id === action.payload.bundleId
+            ? { ...bundle, likes: action.payload.likes }
+            : bundle
+        ),
+      };
     default:
       return state;
   }

@@ -8,6 +8,7 @@ function Bundle() {
   const [bundleData, setBundleData] = useState("");
   const { user } = useAuthContext();
   const { bundleId } = useParams();
+  const [refetch, setRefetch] = useState(false);
   // console.log(bundleId);
   useLayoutEffect(() => {
     const fetchBundle = async () => {
@@ -34,7 +35,7 @@ function Bundle() {
       }
     };
     fetchBundle();
-  }, [user, bundleId]);
+  }, [user, bundleId, refetch]);
   if (!bundleData) {
     return;
   }
@@ -54,7 +55,9 @@ function Bundle() {
             bundleFlavor={bundleData.flavor}
             bundleId={bundleData._id}
             bundleMaxQuantity={bundleData.quantity}
+            bundleLikes={bundleData.likes}
             products={bundleData.products}
+            setRefetch={setRefetch}
           />
         ) : (
           <p>No bundles available</p>

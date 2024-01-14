@@ -22,7 +22,7 @@ function BundleCard(props) {
               {props.quantity} IN STOCK
             </span>
             <span className="bundle-card-likes-badge">
-              0 <AiFillHeart />
+              {props.likes.length} <AiFillHeart />
             </span>
           </div>
 
