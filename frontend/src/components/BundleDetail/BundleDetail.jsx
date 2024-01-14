@@ -173,7 +173,7 @@ function BundleDetail({
               Add To Cart
             </button>
             <button
-              className="product-wishlist"
+              className="bundle-wishlist"
               onClick={() => setWishlist((prev) => !prev)}
             >
               {wishlist ? <FaHeart /> : <FaRegHeart />}
