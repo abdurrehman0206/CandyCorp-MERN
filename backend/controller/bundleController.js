@@ -2,7 +2,43 @@
 const BUNDLE = require("../model/bundleModel");
 const PRODUCT = require("../model/productModel");
 const mongoose = require("mongoose");
+const likeBundle = async (req, res) => {
+  const { bundleId } = req.params;
+  const userId = req.user.id;
 
+  try {
+    const bundle = await BUNDLE.findById(bundleId);
+
+    if (!bundle) {
+      return res.status(404).json({
+        success: false,
+        message: "Bundle not found",
+      });
+    }
+
+    const likedIndex = bundle.likes.indexOf(userId);
+
+    if (likedIndex === -1) {
+      bundle.likes.push(userId);
+    } else {
+      bundle.likes.splice(likedIndex, 1);
+    }
+
+    await bundle.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Bundle liked/unliked successfully",
+      data: bundle,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error liking/unliking bundle",
+      error: error.message,
+    });
+  }
+};
 const createBundle = async (req, res) => {
   const {
     name,
@@ -38,19 +74,13 @@ const createBundle = async (req, res) => {
     (product) => product !== null
   );
 
-  
   const bundleQuantity = Math.min(
     ...validProducts.map((product) => product.quantity)
   );
 
-
-
-
-  
   const newPrice = validProducts.reduce((total, product) => {
     return total + product.quantity * product.product.price;
   }, 0);
-
 
   const bundle = new BUNDLE({
     name,
@@ -58,7 +88,7 @@ const createBundle = async (req, res) => {
     price: newPrice || price,
     products,
     quantity: bundleQuantity,
-    inStock : bundleQuantity == 0 ? false : true,
+    inStock: bundleQuantity == 0 ? false : true,
     images,
     onSale,
     salePercentage,
@@ -71,7 +101,6 @@ const createBundle = async (req, res) => {
   try {
     const newBundle = await BUNDLE.create(bundle);
 
-    
     const productImages = validProducts.reduce((images, product) => {
       return [...images, ...product.product.images];
     }, []);
@@ -329,4 +358,5 @@ module.exports = {
   deleteBundle,
   addProductToBundle,
   removeProductFromBundle,
+  likeBundle,
 };

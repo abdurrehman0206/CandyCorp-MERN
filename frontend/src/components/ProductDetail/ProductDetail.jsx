@@ -1,31 +1,60 @@
-import React, { useRef, useState } from "react";
-import Logo from "../../assets/Logo.png";
+import React, { useState } from "react";
 import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { FaRegHeart, FaHeart, FaFacebookF, FaInstagram } from "react-icons/fa";
 import ReactImageMagnify from "react-image-magnify";
 import { MdCloseFullscreen } from "react-icons/md";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { useAddToCart } from "../../hooks/useAddToCart";
-// import Slider from "react-slick";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useProductContext } from "../../hooks/useProductContext";
 function ProductDetail({
   productImg,
   productName,
   productPrice,
   productInfo,
   productType,
+  productLikes,
   productFlavor,
   productSize,
   productCategory,
   productMaxQuantity,
   productId,
+  setRefetch,
 }) {
+  const { dispatch } = useProductContext();
   const { addProductToCart } = useAddToCart();
   const [open, setOpen] = React.useState(false);
   const [quantity, setQuantity] = useState(1);
-  const [wishlist, setWishlist] = useState(false);
   const [imageSwitch, setImageSwitch] = useState(false);
   const productImagePath = imageSwitch ? productImg[1] : productImg[0];
+  const { user } = useAuthContext();
+  const handleLikeButtonClick = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/products/${productId}/like`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      const json = await response.json();
 
+      if (json.success) {
+        dispatch({
+          type: "UPDATE_PRODUCT_LIKES",
+          payload: { productId, likes: json.data.likes },
+        });
+        setRefetch((prev) => !prev);
+      } else {
+        console.error(json.error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="product-detail-wrapper">
       <section className="product-detail">
@@ -33,13 +62,13 @@ function ProductDetail({
           <div className="product-images-list">
             <img
               src={productImg[0]}
-              alt="product-image-1 "
+              alt="product-1 "
               className={!imageSwitch ? "image-active" : ""}
               onClick={() => setImageSwitch(false)}
             />
             <img
               src={productImg[1]}
-              alt="product-image-2"
+              alt="product-2"
               className={imageSwitch ? "image-active" : ""}
               onClick={() => setImageSwitch(true)}
             />
@@ -57,7 +86,7 @@ function ProductDetail({
                   <TransformComponent>
                     <img
                       src={productImagePath}
-                      alt="product-image"
+                      alt="product"
                       className="product-image-view"
                     />
                   </TransformComponent>
@@ -67,7 +96,7 @@ function ProductDetail({
 
             <img
               src={productImagePath}
-              alt="product-image"
+              alt="product"
               className="product-image-resp"
               onClick={() => setOpen(true)}
             />
@@ -155,11 +184,16 @@ function ProductDetail({
             >
               Add To Cart
             </button>
+            <span>{productLikes.length}</span>
             <button
               className="product-wishlist"
-              onClick={() => setWishlist((prev) => !prev)}
+              onClick={() => handleLikeButtonClick()}
             >
-              {wishlist ? <FaHeart /> : <FaRegHeart />}
+              {productLikes.find((like) => user.id === like) ? (
+                <FaHeart />
+              ) : (
+                <FaRegHeart />
+              )}
             </button>
           </div>
 

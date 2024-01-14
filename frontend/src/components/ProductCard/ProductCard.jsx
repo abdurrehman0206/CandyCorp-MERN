@@ -24,7 +24,7 @@ function ProductCard(props) {
             Out Of Stock
           </span> */}
             <span className="product-card-likes-badge">
-              0 <AiFillHeart />
+              {props.likes.length} <AiFillHeart />
             </span>
           </div>
           <img src={props.images[0]} alt={props.name + props.description} />

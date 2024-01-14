@@ -1,6 +1,43 @@
 const PRODUCT = require("../model/productModel");
 const mongoose = require("mongoose");
 
+const likeProduct = async (req, res) => {
+  const { productId } = req.params;
+  const userId = req.user.id;
+
+  try {
+    const product = await PRODUCT.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    const likedIndex = product.likes.indexOf(userId);
+
+    if (likedIndex === -1) {
+      product.likes.push(userId);
+    } else {
+      product.likes.splice(likedIndex, 1);
+    }
+
+    await product.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Product liked/unliked successfully",
+      data: product,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error liking/unliking product",
+      error: error.message,
+    });
+  }
+};
 const createProduct = async (req, res) => {
   const {
     name,
@@ -308,5 +345,6 @@ module.exports = {
   deleteProduct,
   addUserReview,
   updateUserReview,
-  applyGlobalDiscount
+  applyGlobalDiscount,
+  likeProduct,
 };

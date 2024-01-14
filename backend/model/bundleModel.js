@@ -14,6 +14,7 @@ const bundleSchema = new Schema(
     flavor: { type: String },
     size: { type: String },
     images: [{ type: String }],
+    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "USER" }],
     products: [
       {
         product: { type: mongoose.Schema.Types.ObjectId, ref: "PRODUCT" },

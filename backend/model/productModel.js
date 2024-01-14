@@ -15,6 +15,7 @@ const productSchema = new Schema(
     inStock: { type: Boolean },
     onSale: { type: Boolean, default: false },
     salePercentage: { type: Number, default: 0, min: 0, max: 100 },
+    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "USER" }],
     images: [{ type: String }],
     reviews: [
       {
