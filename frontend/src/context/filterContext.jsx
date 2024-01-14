@@ -1,4 +1,3 @@
-// YourContextFile.js
 import React, { createContext, useReducer } from "react";
 
 export const filterContext = createContext();
@@ -7,6 +6,7 @@ const initialValue = {
   size: [],
   type: [],
   flavor: [],
+  category: [],
 };
 
 export const filterReducer = (state, action) => {
@@ -26,6 +26,11 @@ export const filterReducer = (state, action) => {
         ...state,
         flavor: [...state.flavor, action.payload],
       };
+    case "Category":
+      return {
+        ...state,
+        category: [...state.category, action.payload],
+      };
     case "Del_Size":
       return {
         ...state,
@@ -40,6 +45,11 @@ export const filterReducer = (state, action) => {
       return {
         ...state,
         flavor: state.flavor.filter((item) => item !== action.payload),
+      };
+    case "Del_Category":
+      return {
+        ...state,
+        category: state.category.filter((item) => item !== action.payload),
       };
     case "reset":
       return initialValue;

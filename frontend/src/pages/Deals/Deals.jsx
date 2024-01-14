@@ -32,14 +32,16 @@ function Deals() {
     if (
       state.size.length > 0 ||
       state.type.length > 0 ||
-      state.flavor.length > 0
+      state.flavor.length > 0 ||
+      state.category.length > 0
     ) {
       const filteredDeals = products?.filter((deal) => {
         if (deal.onSale) {
           if (
             state.size.includes(String(deal.size)) ||
             state.flavor.includes(String(deal.flavor)) ||
-            state.type.includes(String(deal.type))
+            state.type.includes(String(deal.type)) ||
+            state.category.includes(String(deal.category))
           ) {
             return true;
           } else {

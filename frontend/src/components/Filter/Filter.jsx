@@ -33,7 +33,7 @@ function Filter({ products = null, sidebarFilter, setSidebarFilter }) {
       showMore: false,
     },
     {
-      name: "Product Type",
+      name: "Type",
       options: [...countProductsByProperty("type")],
       open: true,
       showMore: false,
@@ -44,24 +44,30 @@ function Filter({ products = null, sidebarFilter, setSidebarFilter }) {
       open: true,
       showMore: false,
     },
+    {
+      name: "Category",
+      options: [...countProductsByProperty("category")],
+      open: true,
+      showMore: false,
+    },
   ]);
-  const [colorMenu, setColorMenu] = useState({
-    name: "Colors",
-    colors: [
-      "#3B3486",
-      "#D63484",
-      "#7E2553",
-      "#FF004D",
-      "#33186B",
-      "#392467",
-      "#00A8E8",
-      "#006C7F",
-      "#F6AE2D",
-      "#8E5572",
-      "#00A676",
-    ],
-    open: false,
-  });
+  // const [colorMenu, setColorMenu] = useState({
+  //   name: "Colors",
+  //   colors: [
+  //     "#3B3486",
+  //     "#D63484",
+  //     "#7E2553",
+  //     "#FF004D",
+  //     "#33186B",
+  //     "#392467",
+  //     "#00A8E8",
+  //     "#006C7F",
+  //     "#F6AE2D",
+  //     "#8E5572",
+  //     "#00A676",
+  //   ],
+  //   open: false,
+  // });
 
   // show options handler
   const showOptionsHandler = (m) => {
@@ -85,21 +91,9 @@ function Filter({ products = null, sidebarFilter, setSidebarFilter }) {
 
   const selectionHandler = (e) => {
     if (e.target.checked) {
-      if (e.target.name == "Product Type") {
-        const regex = /Type/;
-        const extractedString = e.target.name.match(regex)[0];
-        dispatch({ type: extractedString, payload: e.target.value });
-      } else {
-        dispatch({ type: e.target.name, payload: e.target.value });
-      }
+      dispatch({ type: e.target.name, payload: e.target.value });
     } else {
-      if (e.target.name == "Product Type") {
-        const regex = /Type/;
-        const extractedString = e.target.name.match(regex)[0];
-        dispatch({ type: "Del_" + extractedString, payload: e.target.value });
-      } else {
-        dispatch({ type: "Del_" + e.target.name, payload: e.target.value });
-      }
+      dispatch({ type: "Del_" + e.target.name, payload: e.target.value });
     }
   };
 
@@ -116,9 +110,6 @@ function Filter({ products = null, sidebarFilter, setSidebarFilter }) {
       }
       for (const v of state[key]) {
         key = key.charAt(0).toUpperCase() + key.slice(1);
-        if (key === "Type") {
-          key = "Product Type";
-        }
         const radio = document.querySelector(
           `input[name="${key}"][value="${v}"]`
         );
@@ -224,9 +215,9 @@ function Filter({ products = null, sidebarFilter, setSidebarFilter }) {
         })}
         {/* Colors Filter  */}
         {/* <div className="colors-filter"> */}
-          {/* <span className="filter-label-name">Colors</span> */}
+        {/* <span className="filter-label-name">Colors</span> */}
 
-          {/* <div
+        {/* <div
             className="color-label"
             onClick={() => {
               setColorMenu((prev) => {

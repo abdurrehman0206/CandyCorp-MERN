@@ -7,7 +7,7 @@ function Products() {
   const [sidebarFilter, setSidebarFilter] = useState(true);
   const { products } = useProductContext();
   const [allproducts, setAllProducts] = useState(products);
-
+  // console.log(products);
   const { state } = useContext(filterContext);
 
   useEffect(() => {
@@ -31,13 +31,15 @@ function Products() {
     if (
       state.size.length > 0 ||
       state.type.length > 0 ||
-      state.flavor.length > 0
+      state.flavor.length > 0 ||
+      state.category.length > 0
     ) {
       const filteredProducts = products?.filter((product) => {
         if (
           state.size.includes(String(product.size)) ||
           state.flavor.includes(String(product.flavor)) ||
-          state.type.includes(String(product.type))
+          state.type.includes(String(product.type)) ||
+          state.category.includes(String(product.category))
         ) {
           return true;
         } else {
