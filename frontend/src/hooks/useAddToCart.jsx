@@ -5,7 +5,7 @@ export const useAddToCart = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { user, dispatch } = useAuthContext();
-  const addProductToCart = async (itemId) => {
+  const addProductToCart = async (itemId, quantity = 1) => {
     if (!user) {
       console.log("User not logged in");
       return;
@@ -18,7 +18,7 @@ export const useAddToCart = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${user.token}`,
           },
-          body: JSON.stringify({ itemId, quantity: 1 }),
+          body: JSON.stringify({ itemId, quantity }),
         }
       );
       const json = await response.json();

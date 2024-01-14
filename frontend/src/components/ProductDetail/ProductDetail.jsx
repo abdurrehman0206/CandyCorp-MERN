@@ -180,7 +180,7 @@ function ProductDetail({
             </div>
             <button
               className="btn-primary "
-              onClick={() => addProductToCart(productId)}
+              onClick={() => addProductToCart(productId, quantity)}
             >
               Add To Cart
             </button>
