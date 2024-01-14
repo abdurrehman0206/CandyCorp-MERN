@@ -13,6 +13,7 @@ import Home from "./Home/Home";
 import ContactUs from "./ContactUs/ContactUs";
 import Deals from "./Deals/Deals";
 import Bundle from "./Bundle/Bundle";
+import BundleDeals from "./BundleDeals/BundleDeals";
 export {
   AboutUs,
   Login,
@@ -29,4 +30,5 @@ export {
   ContactUs,
   Bundle,
   Deals,
+  BundleDeals,
 };

@@ -40,8 +40,14 @@ function Links({
           {name}
         </NavLink>
 
-        {dd_menu && (
-          <button>
+        {dd_menu && sidebarMenu && (
+          <button
+            onClick={() => {
+              resetValue();
+              // hideSideBarMenu();
+              setShowMenu(false);
+            }}
+          >
             {showMenu ? <AiOutlineCaretUp /> : <AiOutlineCaretDown />}
           </button>
         )}
@@ -56,9 +62,18 @@ function Links({
           <div className="dropdown">
             <ul className="dropdown-content">
               {dd_menu &&
-                dd_links.map((link) => (
-                  <li key={link.name}>
-                    <Link onClick={() => setShowMenu(false)}>{link.name}</Link>
+                dd_links.map((link, key) => (
+                  <li key={key}>
+                    <NavLink
+                      to={link.path}
+                      onClick={() => {
+                        resetValue();
+                        hideSideBarMenu();
+                        // setShowMenu(false);
+                      }}
+                    >
+                      {link.name}
+                    </NavLink>
                   </li>
                 ))}
             </ul>

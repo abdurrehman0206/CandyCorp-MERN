@@ -1,12 +1,13 @@
 import React from "react";
 import { Grid, LandingHero } from "../../components/imports";
-import Candy from "../../assets/candy.jpeg";
 import { useProductContext } from "../../hooks/useProductContext";
 import { useBlogContext } from "../../hooks/useBlogContext";
+import { useBundleContext } from "../../hooks/useBundleContext";
 
 function Home() {
   const { products } = useProductContext();
   const { blogs } = useBlogContext();
+  const { bundles } = useBundleContext();
   // console.log(products);
   return (
     <div className="home-wrapper">
@@ -28,6 +29,7 @@ function Home() {
                     .slice(0, 4)
                 : null
             }
+            path="/products"
           />
         </div>
 
@@ -46,10 +48,20 @@ function Home() {
             path="/deals"
           />
         </div>
-        {/* Sweet Wholesale Deals */}
-        <div className="bulk-candy">
-          <h2>Sweet Wholesale Deals</h2>
-          <Grid card={true} products={products ? products.slice(0, 4) : null} />
+        {/* Bundles Offers */}
+        <div className="sweet-deals">
+          <h2>Exclusive Bundles Deals</h2>
+          <Grid
+            card={true}
+            products={
+              bundles
+                ? bundles
+                    ?.filter((bundle) => bundle?.onSale && bundle?.price < 50)
+                    .slice(0, 4)
+                : null
+            }
+            path="/bundles-deals"
+          />
         </div>
         {/* Blogs */}
         <div className="blog-post">

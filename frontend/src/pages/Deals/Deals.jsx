@@ -6,7 +6,7 @@ import { filterContext } from "../../context/filterContext";
 function Deals() {
   const { state } = useContext(filterContext);
   const { products } = useProductContext();
-  const [sidebarFilterMenu, setSidebarFilterMenu] = useState(true);
+  const [sidebarFilterMenu, setSidebarFilterMenu] = useState(false);
   const [deals, setDeals] = useState(
     products?.filter((product) => product.onSale)
   );

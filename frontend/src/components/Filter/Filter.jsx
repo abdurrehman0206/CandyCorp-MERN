@@ -5,10 +5,10 @@ import { filterContext } from "../../context/filterContext";
 
 function Filter({ products = null, sidebarFilter, setSidebarFilter }) {
   const { state, dispatch } = useContext(filterContext);
-  const [selectedColor, setSelectedColor] = useState(null);
-  const handleColorChange = (color) => {
-    setSelectedColor(color);
-  };
+  // const [selectedColor, setSelectedColor] = useState(null);/
+  // const handleColorChange = (color) => {
+  //   setSelectedColor(color);
+  // };
 
   const countProductsByProperty = (property) => {
     const uniqueValues = [
