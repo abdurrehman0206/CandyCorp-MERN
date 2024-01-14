@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useProductContext } from "../../hooks/useProductContext";
 import { Filter, ProductListGrid } from "../../components/imports";
 import { filterContext } from "../../context/filterContext";
-
+import Spinner from "../../components/Common/Spinner";
 function Products() {
   const [sidebarFilter, setSidebarFilter] = useState(true);
   const { products } = useProductContext();
@@ -52,7 +52,7 @@ function Products() {
     }
   }, [state, products]);
   if (!products || !allproducts) {
-    return;
+    return <Spinner />;
   }
   return (
     <div className="products-wrapper">

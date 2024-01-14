@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid, LandingHero } from "../../components/imports";
-import Candy from "../../assets/candy.jpeg";
 import { useProductContext } from "../../hooks/useProductContext";
 import { useBlogContext } from "../../hooks/useBlogContext";
 

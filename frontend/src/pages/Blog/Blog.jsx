@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import Spinner from "../../components/Common/Spinner";
 function Blog() {
   const [blogData, setBlogData] = useState("");
   const { user } = useAuthContext();
   const { blogId } = useParams();
- 
 
   useLayoutEffect(() => {
     const fetchBlog = async () => {
@@ -36,7 +36,7 @@ function Blog() {
     fetchBlog();
   }, [user, blogId]);
   if (!blogData) {
-    return;
+    return <Spinner />;
   }
   return (
     <div className="blog-wrapper">

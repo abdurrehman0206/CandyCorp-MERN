@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useBundleContext } from "../../hooks/useBundleContext";
 import { Filter, BundleListGrid } from "../../components/imports";
 import { filterContext } from "../../context/filterContext";
-
+import Spinner from "../../components/Common/Spinner";
 function Bundles() {
   const [sidebarFilter, setSidebarFilter] = useState(true);
   const { bundles } = useBundleContext();
@@ -51,9 +51,9 @@ function Bundles() {
     } else {
       setAllBundles(bundles);
     }
-  }, [state]);
-  if (!bundles) {
-    return null; // or some loading state if needed
+  }, [state, bundles]);
+  if (!bundles || !allBundles) {
+    return <Spinner />;
   }
 
   return (

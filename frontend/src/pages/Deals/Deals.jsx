@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useProductContext } from "../../hooks/useProductContext";
 import { Filter, ProductListGrid } from "../../components/imports";
 import { filterContext } from "../../context/filterContext";
-
+import Spinner from "../../components/Common/Spinner";
 function Deals() {
   const { state } = useContext(filterContext);
   const { products } = useProductContext();
@@ -57,7 +57,7 @@ function Deals() {
     }
   }, [state, products]);
   if (!deals || !products) {
-    return;
+    return <Spinner />;
   }
   return (
     <div className="products-wrapper">

@@ -862,12 +862,33 @@ body {
   gap: 0.25rem;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
 }
+.product-card .product-card-header .product-card-bundle-quantity-badge {
+  display: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  background-color: #dffff7;
+  color: #00dfa4;
+  border: 1px solid #00dfa4;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
 .product-card .product-card-header .instock {
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
   background-color: #dffff7;
   color: #00dfa4;
   border: 1px solid #00dfa4;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+.product-card .product-card-header .outofstock {
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  background-color: #fbd3d6;
+  color: #bc131f;
+  border: 1px solid #bc131f;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
   font-weight: 600;
   font-size: 0.75rem;
@@ -2843,6 +2864,13 @@ body {
 }
 .bundles-desc-wrapper .bundles-desc p {
   font-size: 18px;
+}
+
+.products-view .product-card .btn-box-primary {
+  display: none;
+}
+.products-view .product-card .product-card-bundle-quantity-badge {
+  display: block;
 }
 
 .about-us-wrapper .about-us .about-us-hero {
