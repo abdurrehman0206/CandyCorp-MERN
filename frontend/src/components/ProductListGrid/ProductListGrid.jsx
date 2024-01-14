@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ProductCard } from "../../components/imports";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { IoFilterSharp } from "react-icons/io5";
 import Spinner from "../Common/Spinner";
+import { filterContext } from "../../context/filterContext";
 function ProductListGrid({ products, setSidebarFilter }) {
   const [items, setItems] = useState({
     items: [],
   });
-  // const [loader, setLoader] = useState(false);
   const [sortSelection, setSortSelection] = useState("asc");
   const productsPerPage = 12;
   useEffect(() => {
     products = sortProducts(products, sortSelection);
     setItems({ items: products?.slice(0, productsPerPage) });
-  }, [products, sortSelection]);
+  }, [sortSelection, products]);
   const fetchMoreData = () => {
     setTimeout(() => {
       const currentLength = items.items?.length;

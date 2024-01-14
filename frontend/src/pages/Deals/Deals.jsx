@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useProductContext } from "../../hooks/useProductContext";
 import { Filter, ProductListGrid } from "../../components/imports";
+import { filterContext } from "../../context/filterContext";
 
 function Deals() {
-  const [sidebarFilterMenu, setSidebarFilterMenu] = useState(true);
+  const { state } = useContext(filterContext);
   const { products } = useProductContext();
-  let deals = products?.filter((product) => product?.onSale);
-
+  const [sidebarFilterMenu, setSidebarFilterMenu] = useState(true);
+  const [deals, setDeals] = useState(
+    products?.filter((product) => product.onSale)
+  );
+  // console.log("...", state);
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 700) {
@@ -14,12 +18,42 @@ function Deals() {
         document.body.classList.remove("no-scroll");
       }
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  // Filtering products
+  useEffect(() => {
+    if (
+      state.size.length > 0 ||
+      state.type.length > 0 ||
+      state.flavor.length > 0
+    ) {
+      const filteredDeals = products?.filter((deal) => {
+        if (deal.onSale) {
+          if (
+            state.size.includes(String(deal.size)) ||
+            state.flavor.includes(String(deal.flavor)) ||
+            state.type.includes(String(deal.type))
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      });
+      setDeals(filteredDeals || deals);
+    } else {
+      setDeals(products?.filter((product) => product.onSale));
+    }
+  }, [state]);
   return (
     <div className="products-wrapper">
       <Filter
@@ -27,6 +61,7 @@ function Deals() {
         sidebarFilter={sidebarFilterMenu}
         setSidebarFilter={setSidebarFilterMenu}
       />
+
       <ProductListGrid
         products={deals}
         setSidebarFilter={setSidebarFilterMenu}

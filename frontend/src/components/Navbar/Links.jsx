@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
 import { NavLink, Link } from "react-router-dom";
+import { filterContext } from "../../context/filterContext";
 function Links({
   name = "",
   dd_links = [],
@@ -12,16 +13,17 @@ function Links({
   Children,
 }) {
   const [showMenu, setShowMenu] = useState(false);
+  const { resetValue } = useContext(filterContext);
   return (
     <div
       className={`nav-link-wrapper ${sidebarMenu ? "nav-link-addition" : ""}`}
       onMouseEnter={() => setShowMenu(true)}
       onMouseLeave={() => setShowMenu(false)}
     >
-
       <div className="nav-link-header ">
         <NavLink
           onClick={() => {
+            resetValue();
             hideSideBarMenu();
             setShowMenu(false);
           }}
