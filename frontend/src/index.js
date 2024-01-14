@@ -6,16 +6,19 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { ProductContextProvider } from "./context/ProductContext";
 import { BlogContextProvider } from "./context/BlogContext";
 import { BundleContextProvider } from "./context/BundleContext";
+import { FilterContextProvider } from "./context/filterContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <ProductContextProvider>
-        <BundleContextProvider>
-          <BlogContextProvider>
-            <App />
-          </BlogContextProvider>
-        </BundleContextProvider>
+        <BlogContextProvider>
+          <BundleContextProvider>
+            <FilterContextProvider>
+              <App />
+            </FilterContextProvider>
+          </BundleContextProvider>
+        </BlogContextProvider>
       </ProductContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

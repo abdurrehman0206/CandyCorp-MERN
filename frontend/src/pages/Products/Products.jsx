@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useProductContext } from "../../hooks/useProductContext";
 import { Filter, ProductListGrid } from "../../components/imports";
+import { filterContext } from "../../context/filterContext";
+
 function Products() {
   const [sidebarFilter, setSidebarFilter] = useState(true);
   const { products } = useProductContext();
+  const [allproducts, setAllProducts] = useState(products);
+  // console.log(products);
+  const { state } = useContext(filterContext);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 700) {
@@ -20,18 +26,46 @@ function Products() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  // Filtering products
+  useEffect(() => {
+    if (
+      state.size.length > 0 ||
+      state.type.length > 0 ||
+      state.flavor.length > 0 ||
+      state.category.length > 0
+    ) {
+      const filteredProducts = products?.filter((product) => {
+        if (
+          state.size.includes(String(product.size)) ||
+          state.flavor.includes(String(product.flavor)) ||
+          state.type.includes(String(product.type)) ||
+          state.category.includes(String(product.category))
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      setAllProducts(filteredProducts || products);
+    } else {
+      setAllProducts(products);
+    }
+  }, [state]);
   if (!products) {
     return;
   }
   return (
     <div className="products-wrapper">
       <Filter
-        products={products}
+        products={allproducts}
         sidebarFilter={sidebarFilter}
         setSidebarFilter={setSidebarFilter}
+        // setFilterSelectionList={setFilterSelectionList}
       />
+
       <ProductListGrid
-        products={products}
+        products={allproducts}
         setSidebarFilter={setSidebarFilter}
       />
     </div>

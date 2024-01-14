@@ -1,16 +1,15 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
-import { useProductContext } from "../../hooks/useProductContext";
-function Filter({ products, sidebarFilter, setSidebarFilter }) {
-  //colors selection
+import { filterContext } from "../../context/filterContext";
+
+function Filter({ products = null, sidebarFilter, setSidebarFilter }) {
+  const { state, dispatch } = useContext(filterContext);
   const [selectedColor, setSelectedColor] = useState(null);
-  // const { products } = useProductContext();
-  
-  useLayoutEffect(() => {}, []);
   const handleColorChange = (color) => {
     setSelectedColor(color);
   };
+
   const countProductsByProperty = (property) => {
     const uniqueValues = [
       ...new Set(products?.map((product) => product[property])),
@@ -34,35 +33,41 @@ function Filter({ products, sidebarFilter, setSidebarFilter }) {
       showMore: false,
     },
     {
-      name: "Product Type",
+      name: "Type",
       options: [...countProductsByProperty("type")],
       open: true,
       showMore: false,
     },
     {
-      name: "Flavour",
+      name: "Flavor",
       options: [...countProductsByProperty("flavor")],
-      open: false,
+      open: true,
+      showMore: false,
+    },
+    {
+      name: "Category",
+      options: [...countProductsByProperty("category")],
+      open: true,
       showMore: false,
     },
   ]);
-  const [colorMenu, setColorMenu] = useState({
-    name: "Colors",
-    colors: [
-      "#3B3486",
-      "#D63484",
-      "#7E2553",
-      "#FF004D",
-      "#33186B",
-      "#392467",
-      "#00A8E8",
-      "#006C7F",
-      "#F6AE2D",
-      "#8E5572",
-      "#00A676",
-    ],
-    open: false,
-  });
+  // const [colorMenu, setColorMenu] = useState({
+  //   name: "Colors",
+  //   colors: [
+  //     "#3B3486",
+  //     "#D63484",
+  //     "#7E2553",
+  //     "#FF004D",
+  //     "#33186B",
+  //     "#392467",
+  //     "#00A8E8",
+  //     "#006C7F",
+  //     "#F6AE2D",
+  //     "#8E5572",
+  //     "#00A676",
+  //   ],
+  //   open: false,
+  // });
 
   // show options handler
   const showOptionsHandler = (m) => {
@@ -82,9 +87,38 @@ function Filter({ products, sidebarFilter, setSidebarFilter }) {
           : filter
       )
     );
-    console.log(m.showMore);
   };
 
+  const selectionHandler = (e) => {
+    if (e.target.checked) {
+      dispatch({ type: e.target.name, payload: e.target.value });
+    } else {
+      dispatch({ type: "Del_" + e.target.name, payload: e.target.value });
+    }
+  };
+
+  useEffect(() => {
+    Object.keys(state).forEach((key) => {
+      if (state[key].length > 0) {
+        setFilterMenu((prevFilterMenu) =>
+          prevFilterMenu.map((filter) =>
+            filter.name === key.charAt(0).toUpperCase() + key.slice(1)
+              ? { ...filter, open: true }
+              : filter
+          )
+        );
+      }
+      for (const v of state[key]) {
+        key = key.charAt(0).toUpperCase() + key.slice(1);
+        const radio = document.querySelector(
+          `input[name="${key}"][value="${v}"]`
+        );
+        if (radio) {
+          radio.checked = true;
+        }
+      }
+    });
+  }, []);
   return (
     <div
       className="filter-wrapper"
@@ -147,6 +181,9 @@ function Filter({ products, sidebarFilter, setSidebarFilter }) {
                           className="filter-option-input"
                           type="checkbox"
                           id={`filter-${option.propertyName + m.name}`}
+                          onClick={selectionHandler}
+                          value={option.propertyName}
+                          name={m.name}
                         />
                         <label
                           className="filter-option-label"
@@ -176,13 +213,11 @@ function Filter({ products, sidebarFilter, setSidebarFilter }) {
             </div>
           );
         })}
-
         {/* Colors Filter  */}
+        {/* <div className="colors-filter"> */}
+        {/* <span className="filter-label-name">Colors</span> */}
 
-        <div className="colors-filter">
-          {/* <span className="filter-label-name">Colors</span> */}
-
-          <div
+        {/* <div
             className="color-label"
             onClick={() => {
               setColorMenu((prev) => {
@@ -217,9 +252,9 @@ function Filter({ products, sidebarFilter, setSidebarFilter }) {
                 );
               })}
             </ul>
-          )}
-        </div>
-        <hr />
+          )} */}
+        {/* </div> */}
+        {/* <hr />  */}
       </section>
     </div>
   );

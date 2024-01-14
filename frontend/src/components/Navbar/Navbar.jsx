@@ -92,8 +92,7 @@ function Navbar() {
               </NavLink>
             </li>
             <li className="nav-user-icon">
-
-              {/*TODO:Link to user profile*/ }
+              {/*TODO:Link to user profile*/}
               <div>
                 {user ? (
                   <img src={user.image} alt={user.username} />
