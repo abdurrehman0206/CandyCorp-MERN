@@ -7,7 +7,6 @@ function Products() {
   const [sidebarFilter, setSidebarFilter] = useState(true);
   const { products } = useProductContext();
   const [allproducts, setAllProducts] = useState(products);
-  // console.log(products);
   const { state } = useContext(filterContext);
 
   useEffect(() => {

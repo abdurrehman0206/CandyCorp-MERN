@@ -17,6 +17,9 @@
 @import "./components/ProductListGrid/ProductListGrid";
 @import "./components/BundleListGrid/BundleListGrid";
 @import "./components/Filter/Filter";
+@import "./components/BundleDetail/BundleDetail";
+@import "./components/BundleDesc/BundleDesc";
+@import "./components/BundleProducts/BundleProducts";
 //pages
 @import "./pages/AboutUs/AboutUs";
 @import "./pages/UserProfile/UserProfiles";
@@ -30,6 +33,7 @@
 @import "./pages/Bundles/Bundles";
 @import "./pages/Cart/Cart";
 @import "./pages/Deals/Deals";
+@import "./pages/Bundle/Bundle";
 .App-container {
   height: 100vh;
   width: 100vw;

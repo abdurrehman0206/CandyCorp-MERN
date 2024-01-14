@@ -15,7 +15,9 @@ import Grid from "./Grid/Grid";
 import ProductListGrid from "./ProductListGrid/ProductListGrid";
 import BundleListGrid from "./BundleListGrid/BundleListGrid";
 import Filter from "./Filter/Filter";
-
+import BundleDetail from "./BundleDetail/BundleDetail";
+import BundleDesc from "./BundleDesc/BundleDesc";
+import BundleProducts from "./BundleProducts/BundleProducts";
 export {
   Navbar,
   Footer,
@@ -34,4 +36,7 @@ export {
   ProductListGrid,
   BundleListGrid,
   Filter,
+  BundleDetail,
+  BundleDesc,
+  BundleProducts,
 };

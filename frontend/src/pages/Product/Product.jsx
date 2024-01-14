@@ -7,7 +7,6 @@ function Product() {
   const [productData, setProductData] = useState("");
   const { user } = useAuthContext();
   const { productId } = useParams();
-
   useLayoutEffect(() => {
     const fetchProduct = async () => {
       if (!user) {

@@ -10,6 +10,7 @@ function Reviews() {
   const [comment, setComment] = useState("");
   const [title, setTitle] = useState("");
   const [addReview, setAddReview] = useState(false);
+
   const customerReviews = [
     {
       customer_name: "jhon smith",
@@ -45,7 +46,8 @@ function Reviews() {
       customer_review_desc: "Very good customer service",
     },
   ];
-  console.log(rating, comment, title);
+  // console.log(rating, comment, title);
+
   return (
     <div className="reviews-wrapper">
       <section className="reviews">
