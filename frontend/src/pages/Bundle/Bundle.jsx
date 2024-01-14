@@ -84,16 +84,6 @@ function Bundle() {
                 Description
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="customer-reviews"
-                className={({ isActive }) =>
-                  isActive ? "bundle-navlink-active" : ""
-                }
-              >
-                Reviews
-              </NavLink>
-            </li>
           </ul>
         </nav>
         <div className="bundle-desc-review-content">{<Outlet />}</div>

@@ -4,6 +4,7 @@ import { FaRegHeart, FaHeart, FaFacebookF, FaInstagram } from "react-icons/fa";
 import ReactImageMagnify from "react-image-magnify";
 import { MdCloseFullscreen } from "react-icons/md";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { useAddToCart } from "../../hooks/useAddToCart";
 function BundleDetail({
   bundleName,
   bundleImg,
@@ -23,7 +24,7 @@ function BundleDetail({
   const [wishlist, setWishlist] = useState(false);
   const [imageSwitch, setImageSwitch] = useState(0);
   const bundleImagePath = bundleImg[imageSwitch];
-
+  const { addProductToCart } = useAddToCart();
   return (
     <div className="bundle-detail-wrapper">
       <section className="bundle-detail">
@@ -167,7 +168,7 @@ function BundleDetail({
             </div>
             <button
               className="btn-primary "
-              //   onClick={() => addProductToCart(bundleId)}
+              onClick={() => addProductToCart(bundleId, quantity)}
             >
               Add To Cart
             </button>

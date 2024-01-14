@@ -66,7 +66,6 @@ function App() {
                 />
                 <Route path="bundle-products" element={<BundleProducts />} />
                 <Route path="bundle-description" element={<BundleDesc />} />
-                <Route path="bundle-customer-reviews" element={<Reviews />} />
               </Route>
               <Route path="products" element={<Products />} />
               <Route path="bundles" element={<Bundles />} />

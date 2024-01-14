@@ -4,7 +4,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useParams } from "react-router-dom";
 import Spinner from "../Common/Spinner";
 
-function BundleProducts({ products }) {
+function BundleProducts() {
   const [productData, setProductData] = useState("");
   const { user } = useAuthContext();
   const { bundleId } = useParams();
@@ -46,8 +46,8 @@ function BundleProducts({ products }) {
           <Grid
             card={true}
             products={
-              productData && productData.products.length > 0
-                ? productData.products.map((p) => p.product)
+              productData && productData?.products.length > 0
+                ? productData?.products.map((p) => p.product)
                 : null
             }
             seeMore={false}
