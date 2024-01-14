@@ -7,6 +7,7 @@ function Product() {
   const [productData, setProductData] = useState("");
   const { user } = useAuthContext();
   const { productId } = useParams();
+  const [refetch, setRefetch] = useState(false);
   useLayoutEffect(() => {
     const fetchProduct = async () => {
       if (!user) {
@@ -32,7 +33,7 @@ function Product() {
       }
     };
     fetchProduct();
-  }, [user, productId]);
+  }, [user, productId, refetch]);
   if (!productData) {
     return;
   }
@@ -48,9 +49,11 @@ function Product() {
           productCategory={productData.category}
           productType={productData.type}
           productSize={productData.size}
+          productLikes={productData.likes}
           productFlavor={productData.flavor}
           productId={productData._id}
           productMaxQuantity={productData.quantity}
+          setRefetch={setRefetch}
         />
 
         <section className="product-desc-review-container">

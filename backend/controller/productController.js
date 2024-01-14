@@ -1,6 +1,43 @@
 const PRODUCT = require("../model/productModel");
 const mongoose = require("mongoose");
 
+const likeProduct = async (req, res) => {
+  const { productId } = req.params;
+  const userId = req.user.id;
+
+  try {
+    const product = await PRODUCT.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    const likedIndex = product.likes.indexOf(userId);
+
+    if (likedIndex === -1) {
+      product.likes.push(userId);
+    } else {
+      product.likes.splice(likedIndex, 1);
+    }
+
+    await product.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Product liked/unliked successfully",
+      data: product,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error liking/unliking product",
+      error: error.message,
+    });
+  }
+};
 const createProduct = async (req, res) => {
   const {
     name,
@@ -50,9 +87,10 @@ const createProduct = async (req, res) => {
 };
 const getProducts = async (req, res) => {
   try {
-    const products = await PRODUCT.find()
-      .sort({ createdAt: -1 })
-      .populate("reviews.user");
+    const products = await PRODUCT.find().sort({ createdAt: -1 }).populate({
+      path: "reviews.user",
+      select: "fullname username image -_id",
+    });
     if (!products) {
       return res.status(400).json({
         success: false,
@@ -83,7 +121,10 @@ const getProduct = async (req, res) => {
     });
   }
   try {
-    const Product = await PRODUCT.findById(id);
+    const Product = await PRODUCT.findById(id).populate({
+      path: "reviews.user",
+      select: "fullname username image -_id",
+    });
     if (!Product) {
       return res.status(404).json({
         success: false,
@@ -168,7 +209,8 @@ const deleteProduct = async (req, res) => {
 };
 const addUserReview = async (req, res) => {
   const { id } = req.params;
-  const { userId, rating, comment } = req.body;
+  const { title, rating, comment } = req.body;
+  const userId = req.user.id;
 
   if (
     !mongoose.Types.ObjectId.isValid(id) ||
@@ -193,12 +235,15 @@ const addUserReview = async (req, res) => {
 
     const review = {
       user: userId,
+      title,
       rating,
       comment,
     };
 
     product.reviews.push(review);
     await product.save();
+
+    await product.populate("reviews.user", "fullname username image -_id");
 
     res.status(200).json({
       success: true,
@@ -308,5 +353,6 @@ module.exports = {
   deleteProduct,
   addUserReview,
   updateUserReview,
-  applyGlobalDiscount
+  applyGlobalDiscount,
+  likeProduct,
 };

@@ -50,8 +50,8 @@ function Products() {
     } else {
       setAllProducts(products);
     }
-  }, [state]);
-  if (!products) {
+  }, [state, products]);
+  if (!products || !allproducts) {
     return;
   }
   return (

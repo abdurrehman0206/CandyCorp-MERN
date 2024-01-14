@@ -16,7 +16,14 @@ export const productReducer = (state, action) => {
       return {
         products: null,
       };
-
+    case "UPDATE_PRODUCT_LIKES":
+      return {
+        products: state.products.map((product) =>
+          product._id === action.payload.productId
+            ? { ...product, likes: action.payload.likes }
+            : product
+        ),
+      };
     default:
       return state;
   }

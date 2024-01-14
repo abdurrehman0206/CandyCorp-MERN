@@ -55,7 +55,10 @@ function Deals() {
     } else {
       setDeals(products?.filter((product) => product.onSale));
     }
-  }, [state]);
+  }, [state, products]);
+  if (!deals || !products) {
+    return;
+  }
   return (
     <div className="products-wrapper">
       <Filter
