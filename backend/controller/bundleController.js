@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 const createBundle = async (req, res) => {
   const { name, description, products, onSale, salePercentage } = req.body;
 
-  // Convert product type values to ObjectId instances
   let productDoc;
   const productsWithObjectId = await Promise.all(
     products.map(async (product) => {
@@ -14,7 +13,7 @@ const createBundle = async (req, res) => {
         product.type
       );
       if (!productDoc) {
-        return null; // Handle non-existent product
+        return null; 
       }
 
       return {
@@ -24,14 +23,14 @@ const createBundle = async (req, res) => {
     })
   );
 
-  // Filter out null values (non-existent products)
+
   const validProducts = productsWithObjectId.filter(
     (product) => product !== null
   );
 
-  // Calculate bundle price by summing up the prices of the products
+ 
   const price = validProducts.reduce((total, product) => {
-    return total + product.quantity * productDoc.price; // Assuming productDoc contains the price field
+    return total + product.quantity * productDoc.price; 
   }, 0);
 
   const bundle = new BUNDLE({
