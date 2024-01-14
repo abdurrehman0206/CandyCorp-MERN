@@ -9,7 +9,7 @@ function Footer() {
       links: [
         { name: "Home", path: "/" },
         { name: "Bundles", path: "/bundles" },
-        { name: "Shop", path: "/shop" },
+        { name: "Shop", path: "/products" },
         { name: "About Us", path: "/about" },
       ],
     },
@@ -20,8 +20,8 @@ function Footer() {
     {
       title: "My Account",
       links: [
-        { name: "Sign in", path: "" },
-        { name: "View Cart", path: "" },
+        { name: "Sign in", path: "/login" },
+        { name: "View Cart", path: "/cart" },
         { name: "Help", path: "" },
       ],
     },

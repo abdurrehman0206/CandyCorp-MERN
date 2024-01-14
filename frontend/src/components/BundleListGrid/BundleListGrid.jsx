@@ -9,7 +9,7 @@ function BundleListGrid({ bundles, setSidebarFilter }) {
     items: [],
   });
 
-  const [sortSelection, setSortSelection] = useState("asc");
+  const [sortSelection, setSortSelection] = useState("NTO");
   const bundlesPerPage = 12;
 
   useEffect(() => {
@@ -79,6 +79,7 @@ function BundleListGrid({ bundles, setSidebarFilter }) {
                 onChange={(e) => {
                   setSortSelection(e.target.value);
                 }}
+                value={sortSelection}
               >
                 <option value="asc">In alphabetical order (A-Z)</option>
                 <option value="desc">

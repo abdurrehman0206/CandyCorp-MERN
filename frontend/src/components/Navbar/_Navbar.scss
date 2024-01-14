@@ -253,7 +253,7 @@
   position: absolute;
   top: 100%;
   left: -50%;
-  width: 320px;
+  width: 300px;
   z-index: 999;
 
   .dropdown {
@@ -261,11 +261,23 @@
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
       rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
-    padding: 20px;
+    padding: $lg;
     margin: 10px;
     border-radius: 5px;
     .dropdown-content {
       @include flex_layout(column);
+      li {
+        justify-content: flex-start;
+        padding: $xs 0;
+        margin: 0;
+        width: 100%;
+        font-size: 16px;
+        border-bottom: 1px solid $outline-border-color;
+        &:hover {
+          border-bottom: 1px solid $theme-accent1;
+          color: $theme-accent1;
+        }
+      }
     }
     .dropdown-content-sidebar {
       li {

@@ -27,6 +27,7 @@ import {
   Cart,
   Deals,
   Bundle,
+  BundleDeals,
 } from "./pages/imports";
 
 function App() {
@@ -82,6 +83,7 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<SignUp />} />
               <Route path="cart" element={<Cart />} />
+              <Route path="bundles-deals" element={<BundleDeals />} />
               {/* <Route path="bundle" element={<Bundle />}></Route> */}
             </Route>
           </Routes>

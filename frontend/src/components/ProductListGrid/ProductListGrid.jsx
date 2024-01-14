@@ -1,14 +1,18 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ProductCard } from "../../components/imports";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { IoFilterSharp } from "react-icons/io5";
 import Spinner from "../Common/Spinner";
 import { filterContext } from "../../context/filterContext";
-function ProductListGrid({ products, setSidebarFilter }) {
+function ProductListGrid({
+  products,
+  setSidebarFilter,
+  sidebarFilter = false,
+}) {
   const [items, setItems] = useState({
     items: [],
   });
-  const [sortSelection, setSortSelection] = useState("asc");
+  const [sortSelection, setSortSelection] = useState("NTO");
   const productsPerPage = 12;
   useEffect(() => {
     products = sortProducts(products, sortSelection);
@@ -56,15 +60,17 @@ function ProductListGrid({ products, setSidebarFilter }) {
           <div className="products-header">
             <div className="products-header-top">
               <div className="total-products">{products?.length} Products</div>
-              <div
-                className="filter-btn"
-                onClick={() => {
-                  document.body.classList.add("no-scroll");
-                  setSidebarFilter(true);
-                }}
-              >
-                <IoFilterSharp />
-              </div>
+              {!sidebarFilter && (
+                <div
+                  className="filter-btn"
+                  onClick={() => {
+                    document.body.classList.add("no-scroll");
+                    setSidebarFilter(true);
+                  }}
+                >
+                  <IoFilterSharp />
+                </div>
+              )}
             </div>
 
             <div className="sort-by">
@@ -75,6 +81,7 @@ function ProductListGrid({ products, setSidebarFilter }) {
                 onChange={(e) => {
                   setSortSelection(e.target.value);
                 }}
+                value={sortSelection}
               >
                 <option value="asc">In alphabetical order (A-Z)</option>
                 <option value="desc">

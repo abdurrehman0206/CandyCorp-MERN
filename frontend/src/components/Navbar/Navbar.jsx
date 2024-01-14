@@ -24,18 +24,20 @@ function Navbar() {
     {
       name: "Deals",
       path: "deals",
-      dd_menu: false,
-      dd_links: [
-        { name: "New Arrivals", path: "deals/new-arrivals" },
-        { name: "Best Sellers", path: "deals/best-sellers" },
-      ],
+      // dd_menu: false,
+      // dd_links: [
+      //   { name: "New Arrivals", path: "deals/new-arrivals" },
+      //   { name: "Best Sellers", path: "deals/best-sellers" },
+      // ],
     },
     {
       name: "Bundles",
       path: "bundles",
+      dd_menu: true,
+      dd_links: [{ name: "Deals", path: "bundles-deals" }],
     },
     {
-      name: "Blog",
+      name: "Blogs",
       path: "blogs",
     },
     { name: "Contact", path: "contact" },
