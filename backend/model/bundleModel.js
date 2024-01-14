@@ -5,8 +5,15 @@ const Schema = mongoose.Schema;
 const bundleSchema = new Schema(
   {
     name: { type: String, required: true },
+    inStock: { type: Boolean },
     description: { type: String },
     price: { type: Number },
+    quantity: { type: Number },
+    category: { type: String },
+    type: { type: String },
+    flavor: { type: String },
+    size: { type: String },
+    images: [{ type: String }],
     products: [
       {
         product: { type: mongoose.Schema.Types.ObjectId, ref: "PRODUCT" },

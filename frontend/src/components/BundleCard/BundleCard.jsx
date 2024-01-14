@@ -8,7 +8,7 @@ function BundleCard(props) {
   const nav = useNavigate();
 
   const { user, dispatch } = useAuthContext();
-  const { addBundleToCart } = useAddToCart();
+  const { addProductToCart } = useAddToCart();
 
   return (
     <div className="bundle-card-container">
@@ -18,15 +18,15 @@ function BundleCard(props) {
           onClick={() => nav(`/bundles/${props._id}`)}
         >
           <div className="bundle-card-badge-header">
+            <span className="product-card-stock-badge instock">
+              {props.quantity} IN STOCK
+            </span>
             <span className="bundle-card-likes-badge">
               0 <AiFillHeart />
             </span>
           </div>
-          //TODO: FIX THIS
-          <img
-            src={props.images[0]}
-            alt={`${props.name} Bundle`}
-          />
+
+          <img src={props.images[0]} alt={`${props.name} Bundle`} />
         </div>
         <div className="bundle-card-info">
           <h1 className="bundle-card-name">{props.name}</h1>
@@ -48,7 +48,7 @@ function BundleCard(props) {
         <div className="bundle-card-action">
           <button
             className="btn-box-primary"
-            onClick={() => addBundleToCart(props._id)}
+            onClick={() => addProductToCart(props._id)}
           >
             Add To Cart
           </button>

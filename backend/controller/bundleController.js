@@ -4,46 +4,82 @@ const PRODUCT = require("../model/productModel");
 const mongoose = require("mongoose");
 
 const createBundle = async (req, res) => {
-  const { name, description, products, onSale, salePercentage } = req.body;
+  const {
+    name,
+    description,
+    price,
+    products,
+    images,
+    onSale,
+    salePercentage,
+    type,
+    category,
+    flavor,
+    size,
+  } = req.body;
 
   let productDoc;
   const productsWithObjectId = await Promise.all(
     products.map(async (product) => {
-      productDoc = await PRODUCT.findById(
-        product.type
-      );
+      productDoc = await PRODUCT.findById(product.product);
+
       if (!productDoc) {
-        return null; 
+        return null;
       }
 
       return {
-        product: product.type,
+        product: productDoc,
         quantity: product.quantity || 1,
       };
     })
   );
 
-
   const validProducts = productsWithObjectId.filter(
     (product) => product !== null
   );
 
- 
-  const price = validProducts.reduce((total, product) => {
-    return total + product.quantity * productDoc.price; 
+  
+  const bundleQuantity = Math.min(
+    ...validProducts.map((product) => product.quantity)
+  );
+
+
+
+
+  
+  const newPrice = validProducts.reduce((total, product) => {
+    return total + product.quantity * product.product.price;
   }, 0);
+
 
   const bundle = new BUNDLE({
     name,
     description,
+    price: newPrice || price,
     products,
-    price,
+    quantity: bundleQuantity,
+    inStock : bundleQuantity == 0 ? false : true,
+    images,
     onSale,
     salePercentage,
+    type,
+    category,
+    flavor,
+    size,
   });
 
   try {
     const newBundle = await BUNDLE.create(bundle);
+
+    
+    const productImages = validProducts.reduce((images, product) => {
+      return [...images, ...product.product.images];
+    }, []);
+
+    newBundle.images = productImages;
+
+    await newBundle.save();
+
     res.status(201).json({
       success: true,
       message: "Bundle created successfully",
@@ -57,7 +93,6 @@ const createBundle = async (req, res) => {
     });
   }
 };
-
 const getBundles = async (req, res) => {
   try {
     const bundles = await BUNDLE.find()

@@ -3,83 +3,12 @@ import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { toast } from "react-toastify";
+import { useAddToCart } from "../../hooks/useAddToCart";
 function Cart() {
-  // const [quantity, setQuantity] = useState(1);
-  // const { user, dispatch } = useAuthContext();
-  // const [cartItems, setCartItems] = useState(null);
-  // const [bill, setBill] = useState({
-  //   subtotal: 0,
-  //   shipping: 0,
-  //   tax: 0,
-  // });
-  // useLayoutEffect(() => {
-  //   const fetchCart = async () => {
-  //     if (!user) {
-  //       console.log("User not logged in");
-  //       return;
-  //     } else {
-  //       const response = await fetch(
-  //         `${process.env.REACT_APP_BASE_URL}/api/users/get-cart`,
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${user.token}`,
-  //           },
-  //         }
-  //       );
-  //       const json = await response.json();
-  //       if (json.success) {
-  //         setCartItems(json.data);
-  //         let subTotal = 0;
-  //         json.data.forEach((item) =>
-  //           !item.productId?.onSale
-  //             ? (subTotal += item.productId?.price * item.quantity)
-  //             : (subTotal +=
-  //                 item.productId?.price *
-  //                 ((100 - item.productId.salePercentage) / 100) *
-  //                 item.quantity)
-  //         );
-
-  //         setBill((prevBill) => ({ ...prevBill, subtotal: subTotal }));
-  //       } else {
-  //         console.log(json.error);
-  //       }
-  //     }
-  //   };
-  //   fetchCart();
-  // }, [user]);
-  // const removeItemFromCart = async (productId) => {
-  //   if (!user) {
-  //     console.log("User not logged in");
-  //     return;
-  //   } else {
-  //     const response = await fetch(
-  //       `${process.env.REACT_APP_BASE_URL}/api/users/remove-from-cart/${productId}`,
-  //       {
-  //         method: "DELETE",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${user.token}`,
-  //         },
-  //       }
-  //     );
-  //     const json = await response.json();
-  //     if (json.success) {
-  //       if (json.data) {
-  //         dispatch({ type: "REMOVE_FROM_CART", payload: json.data });
-  //       } else {
-  //         console.log("Cart items data is undefined");
-  //       }
-  //     } else {
-  //       console.log(json.error);
-  //     }
-  //   }
-  // };
+  const { addProductToCart } = useAddToCart();
   const [quantity, setQuantity] = useState(1);
   const { user, dispatch } = useAuthContext();
   const [cartItems, setCartItems] = useState(null);
- 
   const [bill, setBill] = useState({
     subtotal: 0,
     shipping: 0,
@@ -115,14 +44,13 @@ function Cart() {
                     ((100 - item.productId.salePercentage) / 100) *
                     item.quantity);
             } else if (item.type === "bundle") {
-              // Logic for bundles
-              let bundleSubtotal = 0;
-              item.bundleId.products.forEach((product) => {
-                bundleSubtotal +=
-                  product.price *
-                  ((100 - product.salePercentage) / 100) *
-                  item.quantity;
-              });
+              let bundleSubtotal = item.bundleId.price;
+              // item.bundleId.products.forEach((product) => {
+              //   bundleSubtotal +=
+              //     product.price *
+              //     ((100 - product.salePercentage) / 100) *
+              //     item.quantity;
+              // });
               subTotal += bundleSubtotal;
             }
           });
@@ -137,7 +65,6 @@ function Cart() {
   }, [user]);
 
   const removeItemFromCart = async (itemId) => {
-    
     if (!user) {
       console.log("User not logged in");
       return;
@@ -164,6 +91,7 @@ function Cart() {
       }
     }
   };
+
   const handleCheckout = async () => {
     try {
       const totalAmount = bill.subtotal + bill.shipping + bill.tax;
@@ -211,26 +139,48 @@ function Cart() {
               return (
                 <div className="cart-item-container" key={i}>
                   <div className="product-image-container">
-                    <img
-                      src={
-                        (item.productId?.images && item.productId?.images[0]) ||
-                        ""
-                      }
-                      alt=""
-                    />
+                    {item.type === "product" ? (
+                      <img
+                        src={
+                          (item.productId?.images &&
+                            item.productId?.images[0]) ||
+                          ""
+                        }
+                        alt=""
+                      />
+                    ) : (
+                      /* Render bundle image here */
+                      <img
+                        src={
+                          (item.bundleId?.images && item.bundleId?.images[0]) ||
+                          ""
+                        }
+                        alt=""
+                      />
+                    )}
                   </div>
                   <div className="item-name">
-                    <h4>{item.productId?.name}</h4>
-                    {item.productId?.onSale ? (
+                    <h4>
+                      {item.type === "product"
+                        ? item.productId?.name
+                        : item.bundleId?.name}
+                    </h4>
+                    {item.type === "product" ? (
                       <span>
-                        {(
-                          item.productId?.price *
-                          ((100 - item.productId?.salePercentage) / 100)
-                        ).toFixed(2)}{" "}
-                        CAD
+                        {item.productId?.onSale ? (
+                          <>
+                            {(
+                              item.productId?.price *
+                              ((100 - item.productId?.salePercentage) / 100)
+                            ).toFixed(2)}{" "}
+                            CAD
+                          </>
+                        ) : (
+                          <span>{item.productId?.price.toFixed(2)} CAD</span>
+                        )}
                       </span>
                     ) : (
-                      <span>{item.productId?.price.toFixed(2)} CAD</span>
+                      <span>{item.bundleId?.price.toFixed(2)} CAD</span>
                     )}
                   </div>
                   <div className="item-quantity">
@@ -251,18 +201,41 @@ function Cart() {
                     </button>
                   </div>
                   <div className="item-total">
-                    {item.productId?.onSale ? (
+                    {item.type === "product" ? (
                       <span>
-                        {(
-                          item.productId.price *
-                          ((100 - item.productId?.salePercentage) / 100) *
-                          item.quantity
-                        ).toFixed(2)}{" "}
-                        CAD
+                        {item.productId?.onSale ? (
+                          <>
+                            {(
+                              item.productId.price *
+                              ((100 - item.productId?.salePercentage) / 100) *
+                              item.quantity
+                            ).toFixed(2)}{" "}
+                            CAD
+                          </>
+                        ) : (
+                          <span>
+                            {(item.productId?.price * item.quantity).toFixed(2)}{" "}
+                            CAD
+                          </span>
+                        )}
                       </span>
                     ) : (
                       <span>
-                        {(item.productId?.price * item.quantity).toFixed(2)} CAD
+                        {item.productId?.onSale ? (
+                          <>
+                            {(
+                              item.bundleId.price *
+                              ((100 - item.productId?.salePercentage) / 100) *
+                              item.quantity
+                            ).toFixed(2)}{" "}
+                            CAD
+                          </>
+                        ) : (
+                          <span>
+                            {(item.bundleId?.price * item.quantity).toFixed(2)}{" "}
+                            CAD
+                          </span>
+                        )}
                       </span>
                     )}
                   </div>

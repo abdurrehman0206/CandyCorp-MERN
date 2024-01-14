@@ -962,6 +962,167 @@ body {
   align-items: center;
 }
 
+.bundle-card-container {
+  max-width: 283px;
+  max-height: 383px;
+  min-width: 283px;
+  min-height: 383px;
+}
+.bundle-card-container .bundle-card {
+  border: 1px solid #d8d9da;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  transition: 0.2s ease-in-out;
+  gap: 0.75rem;
+}
+.bundle-card-container .bundle-card:hover {
+  transition: 0.2s ease-in-out;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.bundle-card .bundle-card-header {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.bundle-card .bundle-card-header img {
+  display: flex;
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-width: 100%;
+  width: 100%;
+  height: 225px;
+}
+.bundle-card .bundle-card-header .bundle-card-likes-badge,
+.bundle-card .bundle-card-header .bundle-card-stock-badge {
+  top: 0.5rem;
+}
+.bundle-card .bundle-card-header .bundle-card-stock-badge {
+  left: 0.5rem;
+}
+.bundle-card .bundle-card-header .bundle-card-likes-badge {
+  right: 0.5rem;
+}
+.bundle-card .bundle-card-header .bundle-card-likes-badge {
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  right: 0.5rem;
+  border: 1px solid #bc131f;
+  background-color: #fbd3d6;
+  border-radius: 5px;
+  color: #bc131f;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+}
+.bundle-card .bundle-card-header .instock {
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  background-color: #dffff7;
+  color: #00dfa4;
+  border: 1px solid #00dfa4;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+.bundle-card .bundle-card-info {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.bundle-card .bundle-card-info .bundle-card-name {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+}
+.bundle-card .bundle-card-info h1 {
+  font-size: 1rem;
+}
+.bundle-card .bundle-card-info h2 {
+  font-size: 1rem;
+}
+.bundle-card .bundle-card-info .bundle-card-price {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+.bundle-card .bundle-card-info .bundle-card-price .onSale {
+  position: relative;
+}
+.bundle-card .bundle-card-info .bundle-card-price .onSale::after {
+  content: "";
+  width: 102%;
+  height: 2px;
+  background-color: #f1777f;
+  display: block;
+  position: absolute;
+  transform: translateY(50%) rotateZ(-5deg);
+  bottom: 50%;
+}
+.bundle-card .bundle-card-info .bundle-card-price small,
+.bundle-card .bundle-card-info .bundle-card-price p {
+  white-space: nowrap;
+}
+.bundle-card .bundle-card-info .bundle-card-price .bundle-card-sale {
+  position: absolute;
+  right: 0;
+  background-color: #bc131f;
+  color: #ffffff;
+  padding: 0 0.5rem;
+  border-radius: 20px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+@media (max-width: 767px) {
+  .bundle-card .bundle-card-info .bundle-card-price .bundle-card-sale {
+    position: absolute;
+    top: 0%;
+    right: 5%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bundle-card .bundle-card-info .bundle-card-price .bundle-card-sale {
+    position: absolute;
+    top: 0%;
+    right: 5%;
+  }
+}
+.bundle-card .bundle-card-action {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.bundle-card .bundle-card-action button {
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+  flex-basis: 100%;
+}
+
+.bundle-card-badge-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .landing-hero-container .landing-hero {
   border-radius: 5px;
   background: url("https://cdn.pixabay.com/photo/2012/06/27/15/02/candy-50838_1280.jpg");
@@ -2129,6 +2290,122 @@ body {
   }
 }
 
+.bundle-grid-wrapper {
+  width: 100%;
+}
+.bundle-grid-wrapper .bundles {
+  align-self: start;
+  min-width: 75%;
+  margin: auto;
+}
+.bundle-grid-wrapper .bundles .bundles-grid .bundles-header {
+  border-radius: 0.5rem;
+  border: 1px solid #d8d9da;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.bundle-grid-wrapper .bundles .bundles-grid .bundles-header .filter-btn {
+  display: none;
+}
+.bundle-grid-wrapper .bundles .bundles-grid .bundles-header .sort-by {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.bundle-grid-wrapper .bundles .bundles-grid .bundles-header .sort-by label {
+  white-space: nowrap;
+}
+.bundle-grid-wrapper .bundles .bundles-grid .bundles-header .sort-by select {
+  padding: 5px;
+  font-size: 14px;
+  color: #bc131f;
+  background-color: #ffffff;
+}
+.bundle-grid-wrapper .bundles .bundles-grid .bundles-header .sort-by select option {
+  padding: 0.75rem;
+  color: #45474b;
+}
+@media (max-width: 767px) {
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-header .sort-by {
+    width: 100%;
+  }
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-header .sort-by select {
+    width: 100%;
+  }
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-header .sort-by select option {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-header {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    gap: 0.75rem;
+  }
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-header .bundles-header-top {
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-header .filter-btn {
+    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-header .filter-btn svg {
+    font-size: 1.25rem;
+  }
+}
+.bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll {
+  overflow: auto;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 1rem;
+}
+.bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(3n-2) {
+  justify-self: start;
+}
+.bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(3n-1) {
+  justify-self: center;
+}
+.bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(3n) {
+  justify-self: end;
+}
+@media (max-width: 767px) {
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll {
+    grid-template-columns: repeat(1, auto);
+  }
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(n) {
+    justify-self: center;
+  }
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container {
+    min-width: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll {
+    grid-template-columns: repeat(2, auto);
+  }
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(2n-1) {
+    justify-self: start;
+  }
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(2n) {
+    justify-self: end;
+  }
+}
+
 .filter-wrapper {
   width: 25%;
   margin-right: 1rem;
@@ -2825,6 +3102,21 @@ body {
 .product-wrapper .product .related-product-container h2 {
   width: 100%;
   text-align: center;
+}
+
+.bundles-wrapper {
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+.bundles-wrapper .bundle-grid-wrapper {
+  align-self: start;
+}
+.bundles-wrapper .filter-wrapper {
+  align-self: start;
 }
 
 .cart {

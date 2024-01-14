@@ -1,0 +1,117 @@
+.bundle-grid-wrapper {
+ 
+  width: 100%;
+  .bundles {
+    // background: gray;
+    align-self: start;
+    min-width: 75%;
+    margin: auto;
+    .bundles-grid {
+      .bundles-header {
+        border-radius: $sm;
+        border: 1px solid $outline-border-color;
+        @include flex-layout(row, space-between, center);
+
+        padding: $md $lg;
+
+        // margin: 0 $lg;
+        margin-bottom: $lg;
+        font-weight: bold;
+        .filter-btn {
+          display: none;
+        }
+        .sort-by {
+          @include flex-layout(row, space-between, center);
+          label {
+            white-space: nowrap;
+          }
+          select {
+            padding: 5px;
+            font-size: 14px;
+            color: $theme-accent1;
+            background-color: $theme-accent2;
+            option {
+              padding: $md;
+              color: $text-color-dark;
+            }
+          }
+
+          @include device(mobile) {
+            width: 100%;
+            select {
+              width: 100%;
+              option {
+                width: 100%;
+              }
+            }
+          }
+        }
+        @include device(mobile) {
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: start;
+          gap: $md;
+
+          .bundles-header-top {
+            min-width: 100%;
+            @include flex-layout(row, space-between, center);
+          }
+          .filter-btn {
+            display: block;
+            @include flex-layout(row, center, center);
+            svg {
+              font-size: $xl;
+            }
+          }
+        }
+      }
+      .bundles-grid-scroll {
+        overflow: auto;
+        min-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: $lg;
+
+        .bundle-card-container:nth-child(3n - 2) {
+          justify-self: start;
+        }
+        .bundle-card-container:nth-child(3n -1) {
+          justify-self: center;
+        }
+        .bundle-card-container:nth-child(3n) {
+          justify-self: end;
+        }
+
+        @include device(mobile) {
+          grid-template-columns: repeat(1, auto);
+          // .bundle-card-container:nth-child(2n -1) {
+          //   justify-self: start;
+          // }
+          .bundle-card-container:nth-child(n) {
+            justify-self: center;
+          }
+          .bundle-card-container {
+            min-width: 100%;
+          }
+        }
+        @include device(tablet) {
+          grid-template-columns: repeat(2, auto);
+          .bundle-card-container:nth-child(2n -1) {
+            justify-self: start;
+          }
+          .bundle-card-container:nth-child(2n) {
+            justify-self: end;
+          }
+        }
+
+        // .infinite-loader {
+        //   // margin-bottom: 5rem;
+        //   // position: absolute;
+        //   // bottom: -10%;
+        //   // left: 50%;
+        //   // right: 50%;
+        // }
+      }
+    }
+  }
+}
