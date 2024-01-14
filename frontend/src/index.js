@@ -13,15 +13,12 @@ root.render(
     <AuthContextProvider>
       <ProductContextProvider>
         <BlogContextProvider>
-          <FilterContextProvider>
-            <App />
-          </FilterContextProvider>
+          <BundleContextProvider>
+            <FilterContextProvider>
+              <App />
+            </FilterContextProvider>
+          </BundleContextProvider>
         </BlogContextProvider>
-        <BundleContextProvider>
-          <BlogContextProvider>
-            <App />
-          </BlogContextProvider>
-        </BundleContextProvider>
       </ProductContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

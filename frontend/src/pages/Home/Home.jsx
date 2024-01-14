@@ -30,12 +30,6 @@ function Home() {
             }
           />
         </div>
-        {/* Featured Brands Section */}
-        <div className="featured-brands">
-          <h2>Featured Brands</h2>
-          <Grid card={false} items={[Candy, Candy, Candy, Candy]} />
-          {/* <Grid card={true} products={products ? products.slice(0, 4) : null} /> */}
-        </div>
 
         {/* Exclusive Offers */}
         <div className="sweet-deals">
