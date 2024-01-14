@@ -4,8 +4,12 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { toast } from "react-toastify";
 import { useAddToCart } from "../../hooks/useAddToCart";
+import { useRemoveFromCart } from "../../hooks/useRemoveFromCart";
+import { useUpdateItemInCart } from "../../hooks/useUpdateItemInCart";
 function Cart() {
   const { addProductToCart } = useAddToCart();
+  const { removeItemFromCart } = useRemoveFromCart();
+  const { updateItemInCart } = useUpdateItemInCart();
   const [quantity, setQuantity] = useState(1);
   const { user, dispatch } = useAuthContext();
   const [cartItems, setCartItems] = useState(null);
@@ -64,33 +68,33 @@ function Cart() {
     fetchCart();
   }, [user]);
 
-  const removeItemFromCart = async (itemId) => {
-    if (!user) {
-      console.log("User not logged in");
-      return;
-    } else {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/users/remove-from-cart/${itemId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      const json = await response.json();
-      if (json.success) {
-        if (json.data) {
-          dispatch({ type: "REMOVE_FROM_CART", payload: json.data });
-        } else {
-          console.log("Cart items data is undefined");
-        }
-      } else {
-        console.log(json.error);
-      }
-    }
-  };
+  // const removeItemFromCart = async (itemId) => {
+  //   if (!user) {
+  //     console.log("User not logged in");
+  //     return;
+  //   } else {
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_BASE_URL}/api/users/remove-from-cart/${itemId}`,
+  //       {
+  //         method: "DELETE",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${user.token}`,
+  //         },
+  //       }
+  //     );
+  //     const json = await response.json();
+  //     if (json.success) {
+  //       if (json.data) {
+  //         dispatch({ type: "REMOVE_FROM_CART", payload: json.data });
+  //       } else {
+  //         console.log("Cart items data is undefined");
+  //       }
+  //     } else {
+  //       console.log(json.error);
+  //     }
+  //   }
+  // };
 
   const handleCheckout = async () => {
     try {
@@ -186,7 +190,7 @@ function Cart() {
                   <div className="item-quantity">
                     <button
                       onClick={() => {
-                        setQuantity((prev) => prev - 1);
+                        updateItemInCart(item._id, item.quantity - 1);
                       }}
                     >
                       <CiSquareMinus />
@@ -194,7 +198,7 @@ function Cart() {
                     <span>{item.quantity}</span>
                     <button
                       onClick={() => {
-                        setQuantity((prev) => prev + 1);
+                        updateItemInCart(item._id, item.quantity + 1);
                       }}
                     >
                       <CiSquarePlus />

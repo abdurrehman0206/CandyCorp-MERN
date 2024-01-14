@@ -508,6 +508,7 @@ const addToCart = async (req, res) => {
 };
 const updateCartItem = async (req, res) => {
   const { itemId, quantity } = req.body;
+  console.log("🚀 ~ updateCartItem ~ itemId:", itemId)
   const userId = req.user.id;
 
   try {
@@ -516,6 +517,7 @@ const updateCartItem = async (req, res) => {
     const cartItem = user.shoppingCart.find(
       (item) => item._id.toString() === itemId
     );
+    
 
     if (!cartItem) {
       return res.status(404).json({
