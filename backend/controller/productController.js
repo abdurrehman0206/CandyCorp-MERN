@@ -87,9 +87,10 @@ const createProduct = async (req, res) => {
 };
 const getProducts = async (req, res) => {
   try {
-    const products = await PRODUCT.find()
-      .sort({ createdAt: -1 })
-      .populate("reviews.user");
+    const products = await PRODUCT.find().sort({ createdAt: -1 }).populate({
+      path: "reviews.user",
+      select: "fullname username image -_id",
+    });
     if (!products) {
       return res.status(400).json({
         success: false,
@@ -120,7 +121,10 @@ const getProduct = async (req, res) => {
     });
   }
   try {
-    const Product = await PRODUCT.findById(id);
+    const Product = await PRODUCT.findById(id).populate({
+      path: "reviews.user",
+      select: "fullname username image -_id",
+    });
     if (!Product) {
       return res.status(404).json({
         success: false,
@@ -205,7 +209,8 @@ const deleteProduct = async (req, res) => {
 };
 const addUserReview = async (req, res) => {
   const { id } = req.params;
-  const { userId, rating, comment } = req.body;
+  const { title, rating, comment } = req.body;
+  const userId = req.user.id;
 
   if (
     !mongoose.Types.ObjectId.isValid(id) ||
@@ -230,12 +235,15 @@ const addUserReview = async (req, res) => {
 
     const review = {
       user: userId,
+      title,
       rating,
       comment,
     };
 
     product.reviews.push(review);
     await product.save();
+
+    await product.populate("reviews.user", "fullname username image -_id");
 
     res.status(200).json({
       success: true,

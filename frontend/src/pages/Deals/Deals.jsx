@@ -55,7 +55,7 @@ function Deals() {
     } else {
       setDeals(products?.filter((product) => product.onSale));
     }
-  }, [state, deals, products]);
+  }, [state, products]);
   if (!deals || !products) {
     return;
   }

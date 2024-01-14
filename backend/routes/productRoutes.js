@@ -20,7 +20,7 @@ router.get("/", getProducts);
 router.get("/:id", getProduct);
 router.patch("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
-router.post("/:id/reviews", addUserReview);
+router.patch("/:id/reviews", addUserReview);
 router.put("/:id/reviews/:reviewId", updateUserReview);
 router.post("/apply-global-discount", applyGlobalDiscount);
 router.patch("/:productId/like", likeProduct);

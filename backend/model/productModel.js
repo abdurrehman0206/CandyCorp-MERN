@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema(
   {
-    name: { type: String , required: true},
+    name: { type: String, required: true },
     description: { type: String },
     price: { type: Number },
     quantity: { type: Number },
@@ -20,8 +20,10 @@ const productSchema = new Schema(
     reviews: [
       {
         user: { type: mongoose.Schema.Types.ObjectId, ref: "USER" },
-        rating: Number,
-        comment: String,
+        title: { type: String },
+        rating: { type: Number, default: 5, min: 0, max: 5 },
+        comment: { type: String },
+        timestamp: { type: Date, default: Date.now },
       },
     ],
   },
