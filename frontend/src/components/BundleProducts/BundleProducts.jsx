@@ -38,6 +38,7 @@ function BundleProducts() {
   if (!productData) {
     return <Spinner />;
   }
+  console.log("🚀 ~ BundleProducts ~ productData:", productData);
 
   return (
     <>
@@ -47,7 +48,10 @@ function BundleProducts() {
             card={true}
             products={
               productData && productData?.products.length > 0
-                ? productData?.products.map((p) => p.product)
+                ? productData?.products.map((p) => ({
+                    ...p.product, // Keep the existing properties of the product
+                    inBundleQuan: p.quantity, // Add the new property inBundleQuan
+                  }))
                 : null
             }
             seeMore={false}

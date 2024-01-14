@@ -127,7 +127,8 @@ const getBundles = async (req, res) => {
     const bundles = await BUNDLE.find()
       .populate({
         path: "products.product",
-        select: "_id name price quantity inStock onSale salePercentage images",
+        select:
+          "_id name price quantity inStock onSale salePercentage images likes",
       })
       .sort({ createdAt: -1 });
 
@@ -159,7 +160,8 @@ const getBundle = async (req, res) => {
     const bundle = await BUNDLE.findById(id).populate({
       path: "products.product",
       model: "PRODUCT",
-      select: "_id name price quantity inStock onSale salePercentage images",
+      select:
+        "_id name price quantity inStock onSale salePercentage images likes",
     });
     if (!bundle) {
       return res.status(404).json({

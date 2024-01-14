@@ -53,12 +53,35 @@
       gap: $xs;
       box-shadow: $box-shadow;
     }
+    .product-card-bundle-quantity-badge {
+      display: none;
+      padding: $xs $sm;
+      border-radius: 5px;
+      background-color: lighten(#00dfa4, 50%);
+      color: #00dfa4;
+      border: 1px solid #00dfa4;
+      box-shadow: $box-shadow;
+
+      font-weight: 600;
+      font-size: $md;
+    }
     .instock {
       padding: $xs $sm;
       border-radius: 5px;
       background-color: lighten(#00dfa4, 50%);
       color: #00dfa4;
       border: 1px solid #00dfa4;
+      box-shadow: $box-shadow;
+
+      font-weight: 600;
+      font-size: $md;
+    }
+    .outofstock {
+      padding: $xs $sm;
+      border-radius: 5px;
+      background-color: lighten($theme-accent1, 50%);
+      color: $theme-accent1;
+      border: 1px solid $theme-accent1;
       box-shadow: $box-shadow;
 
       font-weight: 600;

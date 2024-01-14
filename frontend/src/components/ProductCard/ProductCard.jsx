@@ -1,12 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { useAddToCart } from "../../hooks/useAddToCart";
 function ProductCard(props) {
   const nav = useNavigate();
-
-  const { user, dispatch } = useAuthContext();
   const { addProductToCart } = useAddToCart();
   return (
     <div className="product-card-container">
@@ -16,14 +13,21 @@ function ProductCard(props) {
           onClick={() => nav(`/products/${props._id}`)}
         >
           <div className="product-card-badge-header">
-            <span className="product-card-stock-badge instock">
-              {props.quantity} IN STOCK
-            </span>
-            {/* <span className="product-card-stock-badge outofstock">
-            Out Of Stock
-          </span> */}
+            {props.quantity > 0 ? (
+              <span className="product-card-stock-badge instock">
+                {props.quantity} IN STOCK
+              </span>
+            ) : (
+              <span className="product-card-stock-badge outofstock">
+                Out Of Stock
+              </span>
+            )}
+
             <span className="product-card-likes-badge">
               {props.likes?.length} <AiFillHeart />
+            </span>
+            <span className="product-card-bundle-quantity-badge" id="bd-quan">
+              {props?.inBundleQuan ? `${props?.inBundleQuan} IN BUNDLE ` : null}
             </span>
           </div>
           <img src={props.images[0]} alt={props.name + props.description} />
@@ -49,8 +53,9 @@ function ProductCard(props) {
           <button
             className="btn-box-primary"
             onClick={() => addProductToCart(props._id)}
+            disabled={props.quantity > 0 ? false : true}
           >
-            Add To Cart
+            {props.quantity > 0 ? "Add To Cart" : "Out of Stock"}
           </button>
         </div>
       </div>

@@ -3,15 +3,14 @@ import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { toast } from "react-toastify";
-import { useAddToCart } from "../../hooks/useAddToCart";
+import Spinner from "../../components/Common/Spinner";
 import { useRemoveFromCart } from "../../hooks/useRemoveFromCart";
 import { useUpdateItemInCart } from "../../hooks/useUpdateItemInCart";
 function Cart() {
-  const { addProductToCart } = useAddToCart();
   const { removeItemFromCart } = useRemoveFromCart();
   const { updateItemInCart } = useUpdateItemInCart();
-  const [quantity, setQuantity] = useState(1);
-  const { user, dispatch } = useAuthContext();
+
+  const { user } = useAuthContext();
   const [cartItems, setCartItems] = useState(null);
   const [bill, setBill] = useState({
     subtotal: 0,
@@ -49,12 +48,6 @@ function Cart() {
                     item.quantity);
             } else if (item.type === "bundle") {
               let bundleSubtotal = item.bundleId.price;
-              // item.bundleId.products.forEach((product) => {
-              //   bundleSubtotal +=
-              //     product.price *
-              //     ((100 - product.salePercentage) / 100) *
-              //     item.quantity;
-              // });
               subTotal += bundleSubtotal;
             }
           });
@@ -67,34 +60,6 @@ function Cart() {
     };
     fetchCart();
   }, [user]);
-
-  // const removeItemFromCart = async (itemId) => {
-  //   if (!user) {
-  //     console.log("User not logged in");
-  //     return;
-  //   } else {
-  //     const response = await fetch(
-  //       `${process.env.REACT_APP_BASE_URL}/api/users/remove-from-cart/${itemId}`,
-  //       {
-  //         method: "DELETE",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${user.token}`,
-  //         },
-  //       }
-  //     );
-  //     const json = await response.json();
-  //     if (json.success) {
-  //       if (json.data) {
-  //         dispatch({ type: "REMOVE_FROM_CART", payload: json.data });
-  //       } else {
-  //         console.log("Cart items data is undefined");
-  //       }
-  //     } else {
-  //       console.log(json.error);
-  //     }
-  //   }
-  // };
 
   const handleCheckout = async () => {
     try {
@@ -126,7 +91,9 @@ function Cart() {
       toast.error("An error occurred during checkout.");
     }
   };
-
+  if (!cartItems) {
+    return <Spinner />;
+  }
   return (
     <div className="cart-wrapper">
       <div className="cart">

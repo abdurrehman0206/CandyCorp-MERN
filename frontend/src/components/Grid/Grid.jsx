@@ -13,6 +13,7 @@ function Grid({
   seeMore = true,
   className,
 }) {
+  console.log(products);
   const nav = useNavigate();
   return (
     <div className="grid-container">
