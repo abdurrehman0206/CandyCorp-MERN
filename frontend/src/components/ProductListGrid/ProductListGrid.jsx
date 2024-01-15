@@ -94,6 +94,7 @@ function ProductListGrid({
               </select>
             </div>
           </div>
+
           <InfiniteScroll
             dataLength={items.items ? items.items?.length : 0}
             next={fetchMoreData}
@@ -104,6 +105,7 @@ function ProductListGrid({
               <ProductCard {...product} key={index} />
             ))}
           </InfiniteScroll>
+
           {items.items?.length < products?.length && <Spinner />}
         </div>
       </section>

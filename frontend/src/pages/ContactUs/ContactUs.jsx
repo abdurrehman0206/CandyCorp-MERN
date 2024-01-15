@@ -4,19 +4,23 @@ import Input from "../../components/Common/Input";
 import { CgFacebook } from "react-icons/cg";
 import { AiFillInstagram, AiOutlineTwitter } from "react-icons/ai";
 import Logo from "../../assets/Logo.png";
+import { toast } from "react-toastify";
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.name]: e.target.value });
-  };
   const form = useRef();
 
   const sendEmail = async (e) => {
     e.preventDefault();
+    const formControls = form.current.elements;
+
+    for (let i = 0; i < formControls.length; i++) {
+      const control = formControls[i];
+      if (control.tagName === "INPUT") {
+        if (control.value.trim() === "") {
+          toast.error("Invalid inputs");
+          return;
+        }
+      }
+    }
     try {
       await emailjs.sendForm(
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
@@ -24,16 +28,11 @@ const ContactUs = () => {
         form.current,
         process.env.REACT_APP_EMAILJS_PUBLIC_KEY
       );
-      alert("email successfully sent check inbox");
+      toast.success("Successfully Sent");
     } catch (error) {
       console.log(error);
     } finally {
       form.current.reset();
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
     }
   };
   return (
@@ -46,23 +45,12 @@ const ContactUs = () => {
         <div className="contact-form-container">
           <h2>CONTACT US</h2>
           <form ref={form} onSubmit={sendEmail}>
-            <Input
-              type="text"
-              placeholder="Name"
-              name="user_name"
-              onChange={handleChange}
-            />
-            <Input
-              type="email"
-              placeholder="Email"
-              name="user_email"
-              onChange={handleChange}
-            />
+            <Input type="text" placeholder="Name" name="user_name" />
+            <Input type="email" placeholder="Email" name="user_email" />
             <textarea
               placeholder="Message..."
               className="contact-message-area"
               name="message"
-              onChange={handleChange}
             />
             <button className="btn-box-primary">Submit →</button>
           </form>
