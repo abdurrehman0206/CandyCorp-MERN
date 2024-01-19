@@ -2303,6 +2303,11 @@ body {
     justify-content: center;
   }
 }
+@media (min-width: 768px) and (max-width: 1023px) {
+  .product-grid-wrapper .products .products-grid .products-grid-scroll {
+    justify-content: center;
+  }
+}
 
 .bundle-grid-wrapper {
   min-width: 100%;
@@ -2391,6 +2396,11 @@ body {
   flex-wrap: wrap;
 }
 @media (max-width: 767px) {
+  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll {
+    justify-content: center;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
   .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll {
     justify-content: center;
   }

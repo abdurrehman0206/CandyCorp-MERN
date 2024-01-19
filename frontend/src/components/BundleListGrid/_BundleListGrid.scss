@@ -73,6 +73,9 @@
         @include device(mobile) {
           justify-content: center;
         }
+        @include device(tablet) {
+          justify-content: center;
+        }
       }
     }
   }
