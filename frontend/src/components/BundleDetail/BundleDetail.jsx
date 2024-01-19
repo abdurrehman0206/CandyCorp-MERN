@@ -5,6 +5,8 @@ import ReactImageMagnify from "react-image-magnify";
 import { MdCloseFullscreen } from "react-icons/md";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { useAddToCart } from "../../hooks/useAddToCart";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useBundleContext } from "../../hooks/useBundleContext";
 function BundleDetail({
   bundleName,
   bundleImg,
@@ -16,15 +18,46 @@ function BundleDetail({
   bundleFlavor,
   bundleId,
   bundleMaxQuantity,
+  bundleLikes,
   products,
+  setRefetch,
 }) {
   //   const { addProductToCart } = useAddToCart();
   const [open, setOpen] = React.useState(false);
   const [quantity, setQuantity] = useState(1);
-  const [wishlist, setWishlist] = useState(false);
+
   const [imageSwitch, setImageSwitch] = useState(0);
   const bundleImagePath = bundleImg[imageSwitch];
   const { addProductToCart } = useAddToCart();
+  const { user } = useAuthContext();
+  const { dispatch } = useBundleContext();
+  const handleLikeButtonClick = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/api/bundles/${bundleId}/like`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      const json = await response.json();
+
+      if (json.success) {
+        dispatch({
+          type: "UPDATE_BUNDLE_LIKES",
+          payload: { bundleId, likes: json.data.likes },
+        });
+        setRefetch((prev) => !prev);
+      } else {
+        console.error(json.error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="bundle-detail-wrapper">
       <section className="bundle-detail">
@@ -74,7 +107,7 @@ function BundleDetail({
                   <TransformComponent>
                     <img
                       src={bundleImagePath}
-                      alt="bundle-image"
+                      alt="bundle"
                       className="bundle-image-view"
                     />
                   </TransformComponent>
@@ -84,7 +117,7 @@ function BundleDetail({
 
             <img
               src={bundleImagePath}
-              alt="bundle-image"
+              alt="bundle"
               className="bundle-image-resp"
               onClick={() => setOpen(true)}
             />
@@ -172,11 +205,16 @@ function BundleDetail({
             >
               Add To Cart
             </button>
+            <span>{bundleLikes.length}</span>
             <button
               className="bundle-wishlist"
-              onClick={() => setWishlist((prev) => !prev)}
+              onClick={() => handleLikeButtonClick()}
             >
-              {wishlist ? <FaHeart /> : <FaRegHeart />}
+              {bundleLikes.find((like) => user.id === like) ? (
+                <FaHeart />
+              ) : (
+                <FaRegHeart />
+              )}
             </button>
           </div>
 

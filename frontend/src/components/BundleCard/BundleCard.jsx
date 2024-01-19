@@ -26,7 +26,7 @@ function BundleCard(props) {
               </span>
             )}
             <span className="bundle-card-likes-badge">
-              0 <AiFillHeart />
+              {props.likes.length} <AiFillHeart />
             </span>
           </div>
 
