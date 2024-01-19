@@ -14,9 +14,7 @@ function ProductCard(props) {
         >
           <div className="product-card-badge-header">
             {props.quantity > 0 ? (
-              <span className="product-card-stock-badge instock">
-                IN STOCK
-              </span>
+              <span className="product-card-stock-badge instock">IN STOCK</span>
             ) : (
               <span className="product-card-stock-badge outofstock">
                 Sold Out
