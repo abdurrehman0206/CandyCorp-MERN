@@ -1066,6 +1066,16 @@ body {
   font-weight: 600;
   font-size: 0.75rem;
 }
+.bundle-card .bundle-card-header .outofstock {
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  background-color: #fbd3d6;
+  color: #bc131f;
+  border: 1px solid #bc131f;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
 .bundle-card .bundle-card-info {
   width: 100%;
   position: relative;
@@ -2149,9 +2159,11 @@ body {
 .grid-container .grid .blogs-section,
 .grid-container .grid .products-section,
 .grid-container .grid .box-section {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
   width: 100%;
   margin: 0 auto;
@@ -2197,23 +2209,18 @@ body {
   height: 100%;
 }
 @media (max-width: 767px) {
-  .grid-container .grid .blogs-section {
-    grid-template-columns: 1fr;
-  }
-  .grid-container .grid .products-section {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .grid-container .grid .blogs-section,
+  .grid-container .grid .products-section,
   .grid-container .grid .box-section {
-    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
   }
 }
 
 .product-grid-wrapper {
-  width: 100%;
+  min-width: 100%;
 }
 .product-grid-wrapper .products {
   align-self: start;
-  min-width: 75%;
   margin: auto;
 }
 .product-grid-wrapper .products .products-grid .products-header {
@@ -2250,9 +2257,6 @@ body {
   color: #45474b;
 }
 @media (max-width: 767px) {
-  .product-grid-wrapper .products .products-grid .products-header .sort-by {
-    width: 100%;
-  }
   .product-grid-wrapper .products .products-grid .products-header .sort-by select {
     width: 100%;
   }
@@ -2286,50 +2290,30 @@ body {
   }
 }
 .product-grid-wrapper .products .products-grid .products-grid-scroll {
-  overflow: auto;
   min-width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   gap: 1rem;
-}
-.product-grid-wrapper .products .products-grid .products-grid-scroll .product-card-container:nth-child(3n-2) {
-  justify-self: start;
-}
-.product-grid-wrapper .products .products-grid .products-grid-scroll .product-card-container:nth-child(3n-1) {
-  justify-self: center;
-}
-.product-grid-wrapper .products .products-grid .products-grid-scroll .product-card-container:nth-child(3n) {
-  justify-self: end;
+  flex-wrap: wrap;
 }
 @media (max-width: 767px) {
   .product-grid-wrapper .products .products-grid .products-grid-scroll {
-    grid-template-columns: repeat(1, auto);
-  }
-  .product-grid-wrapper .products .products-grid .products-grid-scroll .product-card-container:nth-child(n) {
-    justify-self: center;
-  }
-  .product-grid-wrapper .products .products-grid .products-grid-scroll .product-card-container {
-    min-width: 100%;
+    justify-content: center;
   }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   .product-grid-wrapper .products .products-grid .products-grid-scroll {
-    grid-template-columns: repeat(2, auto);
-  }
-  .product-grid-wrapper .products .products-grid .products-grid-scroll .product-card-container:nth-child(2n-1) {
-    justify-self: start;
-  }
-  .product-grid-wrapper .products .products-grid .products-grid-scroll .product-card-container:nth-child(2n) {
-    justify-self: end;
+    justify-content: center;
   }
 }
 
 .bundle-grid-wrapper {
-  width: 100%;
+  min-width: 100%;
 }
 .bundle-grid-wrapper .bundles {
   align-self: start;
-  min-width: 75%;
   margin: auto;
 }
 .bundle-grid-wrapper .bundles .bundles-grid .bundles-header {
@@ -2402,53 +2386,35 @@ body {
   }
 }
 .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll {
-  overflow: auto;
   min-width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: 1rem;
-}
-.bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(3n-2) {
-  justify-self: start;
-}
-.bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(3n-1) {
-  justify-self: center;
-}
-.bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(3n) {
-  justify-self: end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
 @media (max-width: 767px) {
   .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll {
-    grid-template-columns: repeat(1, auto);
-  }
-  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(n) {
-    justify-self: center;
-  }
-  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container {
-    min-width: 100%;
+    justify-content: center;
   }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll {
-    grid-template-columns: repeat(2, auto);
-  }
-  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(2n-1) {
-    justify-self: start;
-  }
-  .bundle-grid-wrapper .bundles .bundles-grid .bundles-grid-scroll .bundle-card-container:nth-child(2n) {
-    justify-self: end;
+    justify-content: center;
   }
 }
 
 .filter-wrapper {
-  width: 25%;
   margin-right: 1rem;
   min-width: 300px;
+  min-height: 100vh;
 }
 .filter-wrapper .filter-container {
   border-radius: 0.5rem;
   align-self: start;
-  min-height: 100%;
+  height: 100%;
   border: 1px solid #d8d9da;
   padding: 0.75rem;
 }
@@ -2570,39 +2536,23 @@ body {
 .filter-wrapper .filter-container .colors-filter .color-label .show-options-btn {
   margin-right: 1rem;
 }
-.filter-wrapper .filter-container .colors-filter .colors {
-  cursor: pointer;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  padding: 1rem;
-}
-.filter-wrapper .filter-container .colors-filter .color-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.filter-wrapper .filter-container .colors-filter .color-container .color-input {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  outline: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-.filter-wrapper .filter-container .colors-filter .color-container .color-input:checked {
-  border: 2px solid gray;
-}
 .filter-wrapper .filter-container hr {
   opacity: 0.5;
 }
 @media (max-width: 767px) {
   .filter-wrapper .filter-container {
-    display: block;
+    background-color: #ffffff;
+    font-size: 0.75rem;
+    margin-right: 0;
+    animation: fadeIn 0.5s ease forwards;
+    transition: right 0.5s ease;
+  }
+  .filter-wrapper .filter-container .filter .filter-label .filter-label-name {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .filter-wrapper .filter-container {
     background-color: #ffffff;
     font-size: 0.75rem;
     margin-right: 0;
@@ -3302,12 +3252,16 @@ body {
     grid-template-columns: 1fr;
   }
 }
+.contact-wrapper .error {
+  background: red;
+}
 
 .home-wrapper .home .new-candy,
 .home-wrapper .home .featured-brands,
 .home-wrapper .home .sweet-deals,
 .home-wrapper .home .bulk-candy,
 .home-wrapper .home .blog-post {
+  min-width: 100%;
   padding: 1rem 0;
   margin-bottom: 1.25rem;
 }
@@ -3324,10 +3278,9 @@ body {
 .products-wrapper {
   min-width: 100%;
   min-height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
 }
 .products-wrapper .product-grid-wrapper {
   align-self: start;
@@ -3397,10 +3350,9 @@ body {
 .bundles-wrapper {
   min-width: 100%;
   min-height: 100%;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: auto 1fr;
   justify-content: start;
-  align-items: center;
 }
 .bundles-wrapper .bundle-grid-wrapper {
   align-self: start;

@@ -11,10 +11,10 @@
     .blogs-section,
     .products-section,
     .box-section {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      place-items: center;
+      @include flex-layout(row, center, center);
+      flex-wrap: wrap;
       gap: 20px;
+
       width: 100%;
       margin: 0 auto;
     }
@@ -60,16 +60,10 @@
     }
 
     @include device(mobile) {
-      .blogs-section {
-        // row-gap: 20px;
-        grid-template-columns: 1fr;
-        // place-items: center;
-      }
-      .products-section {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .blogs-section,
+      .products-section,
       .box-section {
-        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
       }
     }
   }

@@ -1,7 +1,10 @@
 .bundles-wrapper {
   min-width: 100%;
   min-height: 100%;
-  @include flex-layout(row, start, center);
+  // @include flex-layout(row, start, center);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-content: start;
   .bundle-grid-wrapper {
     align-self: start;
   }

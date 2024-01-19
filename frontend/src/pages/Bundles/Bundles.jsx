@@ -4,7 +4,7 @@ import { Filter, BundleListGrid } from "../../components/imports";
 import { filterContext } from "../../context/filterContext";
 import Spinner from "../../components/Common/Spinner";
 function Bundles() {
-  const [sidebarFilter, setSidebarFilter] = useState(true);
+  const [sidebarFilter, setSidebarFilter] = useState(false);
   const { bundles } = useBundleContext();
   const [allBundles, setAllBundles] = useState(bundles);
   const { state } = useContext(filterContext);

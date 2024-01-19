@@ -1,11 +1,12 @@
 .filter-wrapper {
-  width: 25%;
+  // width: 25%;
   margin-right: $lg;
   min-width: 300px;
+  min-height: 100vh;
   .filter-container {
     border-radius: $sm;
     align-self: start;
-    min-height: 100%;
+    height: 100%;
     border: 1px solid $outline-border-color;
 
     // margin-right: $md;
@@ -130,38 +131,53 @@
         }
       }
 
-      .colors {
-        cursor: pointer;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: $lg;
-        padding: $lg;
-      }
-      .color-container {
-        @include flex-layout(row, center, center);
+      // .colors {
+      //   cursor: pointer;
+      //   display: grid;
+      //   grid-template-columns: repeat(4, 1fr);
+      //   gap: $lg;
+      //   padding: $lg;
+      // }
+      // .color-container {
+      //   @include flex-layout(row, center, center);
 
-        .color-input {
-          appearance: none;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          width: 20px;
-          height: 20px;
-          // border: 1px solid $outline-border-color;
-          border-radius: 50%;
-          outline: none;
-          cursor: pointer;
-          transition: background-color 0.3s ease-in-out;
-        }
-        .color-input:checked {
-          border: 2px solid gray;
-        }
-      }
+      //   .color-input {
+      //     appearance: none;
+      //     -webkit-appearance: none;
+      //     -moz-appearance: none;
+      //     width: 20px;
+      //     height: 20px;
+      //     // border: 1px solid $outline-border-color;
+      //     border-radius: 50%;
+      //     outline: none;
+      //     cursor: pointer;
+      //     transition: background-color 0.3s ease-in-out;
+      //   }
+      //   .color-input:checked {
+      //     border: 2px solid gray;
+      //   }
+      // }
     }
     hr {
       opacity: 0.5;
     }
     @include device(mobile) {
-      display: block;
+      // display: block;
+      background-color: $theme-accent2;
+      font-size: $md;
+      margin-right: 0;
+      animation: fadeIn 0.5s ease forwards;
+      transition: right 0.5s ease;
+      .filter {
+        .filter-label {
+          .filter-label-name {
+            font-size: $lg;
+          }
+        }
+      }
+    }
+    @include device(tablet) {
+      // display: block;
       background-color: $theme-accent2;
       font-size: $md;
       margin-right: 0;

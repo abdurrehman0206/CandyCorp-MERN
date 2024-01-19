@@ -13,7 +13,6 @@ function Input({ label, type = "text", className = "", ...props }) {
       <input
         type={type}
         className={`input-field ${className}`}
-        // ref={ref}
         {...props}
         id={id}
       />
