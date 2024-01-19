@@ -1,9 +1,9 @@
 .bundle-grid-wrapper {
-  width: 100%;
+  min-width: 100%;
   .bundles {
     // background: gray;
     align-self: start;
-    min-width: 75%;
+    // min-width: 75%;
     margin: auto;
     .bundles-grid {
       .bundles-header {

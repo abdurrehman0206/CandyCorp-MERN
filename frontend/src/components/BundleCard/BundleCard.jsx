@@ -18,9 +18,13 @@ function BundleCard(props) {
           onClick={() => nav(`/bundles/${props._id}`)}
         >
           <div className="bundle-card-badge-header">
-            <span className="product-card-stock-badge instock">
-              {props.quantity} IN STOCK
-            </span>
+            {props.quantity > 0 ? (
+              <span className="product-card-stock-badge instock">IN STOCK</span>
+            ) : (
+              <span className="product-card-stock-badge outofstock">
+                Sold Out
+              </span>
+            )}
             <span className="bundle-card-likes-badge">
               0 <AiFillHeart />
             </span>

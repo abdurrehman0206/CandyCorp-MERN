@@ -1066,6 +1066,16 @@ body {
   font-weight: 600;
   font-size: 0.75rem;
 }
+.bundle-card .bundle-card-header .outofstock {
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  background-color: #fbd3d6;
+  color: #bc131f;
+  border: 1px solid #bc131f;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
 .bundle-card .bundle-card-info {
   width: 100%;
   position: relative;
@@ -2151,7 +2161,7 @@ body {
 .grid-container .grid .box-section {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
@@ -2197,6 +2207,13 @@ body {
 .grid-container .grid .grid-box img {
   width: 100%;
   height: 100%;
+}
+@media (max-width: 767px) {
+  .grid-container .grid .blogs-section,
+  .grid-container .grid .products-section,
+  .grid-container .grid .box-section {
+    justify-content: center;
+  }
 }
 
 .product-grid-wrapper {
@@ -2288,11 +2305,10 @@ body {
 }
 
 .bundle-grid-wrapper {
-  width: 100%;
+  min-width: 100%;
 }
 .bundle-grid-wrapper .bundles {
   align-self: start;
-  min-width: 75%;
   margin: auto;
 }
 .bundle-grid-wrapper .bundles .bundles-grid .bundles-header {
@@ -3325,8 +3341,8 @@ body {
   min-width: 100%;
   min-height: 100%;
   display: grid;
-  grid-template-columns: auto auto;
-  justify-content: center;
+  grid-template-columns: auto 1fr;
+  justify-content: start;
 }
 .bundles-wrapper .bundle-grid-wrapper {
   align-self: start;
